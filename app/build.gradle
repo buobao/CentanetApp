@@ -71,4 +71,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:' + GSON_CONVERT_VERSION
     //retrofit2 adapter
     implementation 'com.squareup.retrofit2:adapter-rxjava2:'+ RETROFIT2_ADAPTER_VERSION
+    //glide
+    implementation 'com.github.bumptech.glide:glide:' + GLIDE_VERSION
+    annotationProcessor 'com.github.bumptech.glide:compiler:' + GLIDE_VERSION
 }
