@@ -1,8 +1,8 @@
 package com.cetnaline.findproperty.base;
 
-import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -17,14 +17,14 @@ import java.util.List;
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity {
-
     private PermissionListener mlistener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(getLayout());
         ButterKnife.bind(this);
-
+        init(savedInstanceState);
     }
 
     @Override
@@ -60,6 +60,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         mlistener = null;
     }
+
+    protected abstract @LayoutRes int getLayout();
+
+    protected abstract void init(@Nullable Bundle savedInstanceState);
+
 
     protected void requestPermission(String[] permissions,@NonNull PermissionListener listener) {
         this.mlistener = listener;

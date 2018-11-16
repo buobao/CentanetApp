@@ -29,7 +29,7 @@ public class RxBus {
 
     public Flowable<Object> toFlowable() {
         return mBus;
-    }
+}
 
     public boolean hasSubscribers() {
         return mBus.hasSubscribers();
