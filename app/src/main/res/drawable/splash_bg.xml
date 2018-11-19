@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<item android:drawable="@mipmap/ic_splash_bg">-->
+    <!--</item>-->
+
+    <item>
+        <shape >
+            <solid android:color="@android:color/white"/>
+        </shape>
+    </item>
+    <item>
+        <bitmap android:src="@mipmap/start_logo"
+            android:gravity="center"/>
+    </item>
+
+</layer-list>

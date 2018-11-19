@@ -1,4 +1,4 @@
-package com.cetnaline.findproperty;
+package com.cetnaline.findproperty.ui;
 
 import android.Manifest;
 import android.content.Intent;
@@ -9,16 +9,15 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.cetnaline.findproperty.R;
+import com.cetnaline.findproperty.TwoActivity;
 import com.cetnaline.findproperty.base.BaseActivity;
 import com.cetnaline.findproperty.bus.RxBus;
 import com.cetnaline.findproperty.bus.events.BaseEvent;
 import com.cetnaline.findproperty.bus.events.TextEvent;
 import com.cetnaline.findproperty.utils.RxUtil;
 
-import java.util.List;
-
 import butterknife.BindView;
-import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.textView)

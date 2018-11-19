@@ -1,7 +1,10 @@
 package com.cetnaline.findproperty.base;
 
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +12,11 @@ import android.support.annotation.StringRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.cetnaline.findproperty.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +30,17 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+                    | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getStatusBarColor());
+        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            // TODO: 2018/11/19
+        }
+        //设置竖屏
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.bind(this);
         init(savedInstanceState);
     }
@@ -62,6 +80,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract @LayoutRes int getLayout();
+
+    /**
+     * 指定状态栏颜色
+     * @return
+     */
+    protected @ColorInt int getStatusBarColor(){
+        return getResources().getColor(R.color.white);
+    }
 
     protected abstract void init(@Nullable Bundle savedInstanceState);
 
