@@ -1,6 +1,4 @@
 package com.cetnaline.findproperty.ui;
-
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -12,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.TwoActivity;
 import com.cetnaline.findproperty.base.BaseActivity;
+import com.cetnaline.findproperty.base.IPresenter;
 import com.cetnaline.findproperty.bus.RxBus;
 import com.cetnaline.findproperty.bus.events.BaseEvent;
 import com.cetnaline.findproperty.bus.events.TextEvent;
@@ -28,6 +27,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected int getLayout() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected IPresenter createPresenter() {
+        return null;
     }
 
     @Override
@@ -91,6 +95,7 @@ public class MainActivity extends BaseActivity {
         });
 
     }
+
 }
 
 
