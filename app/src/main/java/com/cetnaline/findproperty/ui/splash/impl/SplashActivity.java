@@ -6,6 +6,7 @@ import android.view.WindowManager;
 
 import com.cetnaline.findproperty.BuildConfig;
 import com.cetnaline.findproperty.base.BaseActivity;
+import com.cetnaline.findproperty.network.NetWorkContents;
 import com.cetnaline.findproperty.ui.splash.SplashPresenter;
 import com.cetnaline.findproperty.ui.splash.SplashView;
 
@@ -22,10 +23,11 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
         if (BuildConfig.DEBUG) {
             //基础数据请求
-        } else {
 
+        } else {
+            mPresenter.getAppHost();
         }
-        mPresenter.getAppHost();
+
     }
 
     @Override
@@ -37,5 +39,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @Override
     public void updateAppHost(String host) {
         showMessage(host);
+        NetWorkContents.CENTANET_BASE_HOST = host;
+        //获取基础数据
+
     }
 }

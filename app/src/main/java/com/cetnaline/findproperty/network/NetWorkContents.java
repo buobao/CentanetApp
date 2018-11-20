@@ -1,8 +1,8 @@
 package com.cetnaline.findproperty.network;
 
+import com.cetnaline.findproperty.BuildConfig;
+
 public class NetWorkContents {
     //服务器地址
-    public static final String CENTANET_BASE_HOST = "https://apish.centanet.com/v3/zfapi_apush/json/reply/";
-
-
+    public static String CENTANET_BASE_HOST = BuildConfig.API_URL;
 }

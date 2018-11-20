@@ -10,6 +10,14 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     public void getAppHost() {
         addDisposable(ApiRequestImp.getAppServiceAddressRequest().subscribe(stringBaseResponseBean -> {
             iView.updateAppHost(stringBaseResponseBean.getResult());
+        }, throwable -> {
+            throwable.printStackTrace();
+            iView.showMessage(throwable.getMessage());
         }));
+    }
+
+    @Override
+    public void getAppBaseData() {
+
     }
 }

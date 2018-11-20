@@ -14,7 +14,7 @@ public class ApiRequestImp {
      */
     public static Observable<BaseResponseBean<String>> getAppServiceAddressRequest() {
         String[] arr = BuildConfig.VERSION_NAME.split("-");
-        return NetWorkManager.getCentalineRequest().getAppServiceAddressRequest("APP_ANDROID_APUSH", arr[0])
+        return NetWorkManager.getInstance().getCentalineRequest().getAppServiceAddressRequest("APP_ANDROID_APUSH", arr[0])
                 .compose(RxUtil.applyIoSchedulers());
     }
 

@@ -13,6 +13,16 @@ public class NetWorkManager {
     private static Retrofit retrofit;
     private static volatile ApiRequestService centanetRequest = null;
 
+    private NetWorkManager() {
+        OkHttpClient client = new OkHttpClient.Builder().build();
+        retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(NetWorkContents.CENTANET_BASE_HOST)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
     public static NetWorkManager getInstance() {
         if (mInstance == null) {
             synchronized (NetWorkManager.class) {
@@ -24,18 +34,7 @@ public class NetWorkManager {
         return mInstance;
     }
 
-    public void init() {
-        OkHttpClient client = new OkHttpClient.Builder().build();
-
-        retrofit = new Retrofit.Builder()
-                .client(client)
-                .baseUrl(NetWorkContents.CENTANET_BASE_HOST)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-    }
-
-    public static ApiRequestService getCentalineRequest() {
+    public ApiRequestService getCentalineRequest() {
         if (centanetRequest == null) {
             synchronized (Request.class) {
                 centanetRequest = retrofit.create(ApiRequestService.class);

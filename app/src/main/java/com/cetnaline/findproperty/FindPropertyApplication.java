@@ -10,8 +10,7 @@ public class FindPropertyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         if (BuildConfig.APPLICATION_ID.equals(ApplicationUtil.getCurProcessName(this))) {
-            //network init
-            NetWorkManager.getInstance().init();
+            //init something
 
         }
     }
