@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion ANDROID_BUILD_SDK_VERSION as int
@@ -11,8 +12,6 @@ android {
         versionCode APP_VERSION_CODE as int
         versionName APP_VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-
     }
 
     compileOptions {
@@ -48,6 +47,14 @@ android {
     }
 }
 
+greendao {
+    schemaVersion DATABASE_VERSION as int
+    daoPackage 'com.cetnaline.findproperty.database.dao'
+    targetGenDir 'src/main/java'
+    generateTests false
+}
+
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:' + SUPPORT_LIB_VERSION
@@ -74,4 +81,6 @@ dependencies {
     //glide
     implementation 'com.github.bumptech.glide:glide:' + GLIDE_VERSION
     annotationProcessor 'com.github.bumptech.glide:compiler:' + GLIDE_VERSION
+    //greendao
+    implementation 'org.greenrobot:greendao:' + GREEN_DAO_VERSION
 }
