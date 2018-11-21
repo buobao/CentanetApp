@@ -1,14 +1,19 @@
 package com.cetnaline.findproperty.ui.splash.impl;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.WindowManager;
 
 import com.cetnaline.findproperty.BuildConfig;
+import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
 import com.cetnaline.findproperty.network.NetWorkContents;
+import com.cetnaline.findproperty.network.NetWorkManager;
 import com.cetnaline.findproperty.ui.splash.SplashPresenter;
 import com.cetnaline.findproperty.ui.splash.SplashView;
+
+import java.util.List;
 
 public class SplashActivity extends BaseActivity<SplashPresenter> implements SplashView {
 
@@ -23,7 +28,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
         if (BuildConfig.DEBUG) {
             //基础数据请求
-
+            requestBaseData();
         } else {
             mPresenter.getAppHost();
         }
@@ -39,8 +44,51 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @Override
     public void updateAppHost(String host) {
         showMessage(host);
-        NetWorkContents.CENTANET_BASE_HOST = host;
+        NetWorkManager.getInstance().resetHost(host);
         //获取基础数据
+        requestBaseData();
+    }
 
+    private void requestBaseData() {
+        requestPermission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionListener() {
+            @Override
+            public void onGranted() {
+
+            }
+
+            @Override
+            public void onGranted(List<String> grantedPermission) {
+
+            }
+
+            @Override
+            public void onDenied(List<String> deniedPermission) {
+                showMessage(getResources().getString(R.string.no_storage_permission_msg));
+            }
+        });
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

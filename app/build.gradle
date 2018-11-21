@@ -76,6 +76,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:' + RX_JAVA_ANDROID_VERSION
     //retrofit2
     implementation 'com.squareup.retrofit2:retrofit:' + RETROFIT2_VERSION
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:' + OKHTTP_LOGGING_VERSION
     //gson
     implementation 'com.google.code.gson:gson:' + GSON_VERSION
     //gson convert

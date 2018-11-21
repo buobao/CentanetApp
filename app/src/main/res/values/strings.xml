@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CentanetApp</string>
+
+    <string name="no_storage_permission_msg">未能获取文件读取权限，请重启并授权</string>
 </resources>
