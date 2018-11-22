@@ -76,7 +76,7 @@ public class ApiRequestImp {
      * @param regionId
      * @return
      */
-    Observable<BaseResponseBean<List<School>>> getSchoolList(@Query("regionId") String regionId){
+    public static Observable<BaseResponseBean<List<School>>> getSchoolList(@Query("regionId") String regionId){
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getSchools(regionId)
                 .compose(RxUtil.applyIoSchedulers());
@@ -86,7 +86,7 @@ public class ApiRequestImp {
      * 获取搜索菜单
      * @return
      */
-    Observable<BaseResponseBean<List<SearchMenuBean>>> getSearchData(){
+    public static Observable<BaseResponseBean<List<SearchMenuBean>>> getSearchData(){
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getSearchData()
                 .compose(RxUtil.applyIoSchedulers());

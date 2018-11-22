@@ -12,7 +12,10 @@ import com.cetnaline.findproperty.model.sp.SpHelper;
 import com.cetnaline.findproperty.ui.splash.SplashPresenter;
 import com.cetnaline.findproperty.ui.splash.SplashView;
 
+import java.util.HashMap;
+
 import io.reactivex.Observable;
+import io.reactivex.functions.Function5;
 
 public class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPresenter {
     @Override
@@ -37,7 +40,14 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
                 SpHelper.getInstance(context).saveLong(SpContents.BASE_DATA_VERSION, longBaseResponseBean.getResult());
                 //加载服务器数据
                 // TODO: 2018/11/22  
-//                addDisposable(Observable.zip().);
+//                addDisposable(Observable.zip(ApiRequestImp.getGscopes(),
+//                        ApiRequestImp.getRailLines(),
+//                        ApiRequestImp.getSchoolList("0"),
+//                        ApiRequestImp.getSearchData(),
+//                        ApiRequestImp.getStores(new HashMap() {{
+//                            put("PageIndex", "1");
+//                            put("PageCount", "10000");
+//                        }}, new Function5<>())));
             }
         }, throwable -> {
             if (CacheHolder.getInstance().isFirstOpen()) {
