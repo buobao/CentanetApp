@@ -2,6 +2,8 @@ package com.cetnaline.findproperty.utils;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class ApplicationUtil {
 
@@ -25,5 +27,18 @@ public class ApplicationUtil {
             }
         }
         return curProcessName;
+    }
+
+    /**
+     * 获取当前网络状态
+     *
+     * @param context
+     * @return
+     */
+    public static boolean checkNetwork(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo.State wifiState = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState();
+        NetworkInfo.State mobileState = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState();
+        return wifiState == NetworkInfo.State.CONNECTED || mobileState == NetworkInfo.State.CONNECTED;
     }
 }

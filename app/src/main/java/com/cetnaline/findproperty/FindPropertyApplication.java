@@ -3,7 +3,7 @@ package com.cetnaline.findproperty;
 import android.app.Application;
 import android.content.Context;
 
-import com.cetnaline.findproperty.network.NetWorkManager;
+import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
 
 public class FindPropertyApplication extends Application {
@@ -14,8 +14,8 @@ public class FindPropertyApplication extends Application {
         super.onCreate();
         mContext = this;
         if (BuildConfig.APPLICATION_ID.equals(ApplicationUtil.getCurProcessName(this))) {
-            //init something
-
+            //init app cache
+            CacheHolder.init(this);
         }
     }
 

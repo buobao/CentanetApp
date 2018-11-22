@@ -72,8 +72,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
                     if (deniedPermissions.isEmpty()) {
                         mlistener.onGranted();
                     } else {
-                        mlistener.onDenied(deniedPermissions);
-                        mlistener.onGranted(grantedPermissions);
+                        mlistener.onDenied(grantedPermissions, deniedPermissions);
                     }
                 }
                 break;
@@ -130,10 +129,8 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     public interface PermissionListener {
         //授权成功
         void onGranted();
-        //授权部分
-        void onGranted(List<String> grantedPermission);
         //拒绝授权
-        void onDenied(List<String> deniedPermission);
+        void onDenied(List<String> grantedPermission,List<String> deniedPermission);
     }
 
 }

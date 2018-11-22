@@ -1,4 +1,4 @@
-package com.cetnaline.findproperty.network.bean;
+package com.cetnaline.findproperty.model.network.bean;
 
 public class BaseResponseBean<T> {
 

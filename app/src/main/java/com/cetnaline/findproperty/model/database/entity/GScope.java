@@ -1,4 +1,4 @@
-package com.cetnaline.findproperty.database.entity;
+package com.cetnaline.findproperty.model.database.entity;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;

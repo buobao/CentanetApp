@@ -53,7 +53,7 @@ android {
 
 greendao {
     schemaVersion DATABASE_VERSION as int
-    daoPackage 'com.cetnaline.findproperty.database.dao'
+    daoPackage 'com.cetnaline.findproperty.model.database.dao'
     targetGenDir 'src/main/java'
     generateTests false
 }

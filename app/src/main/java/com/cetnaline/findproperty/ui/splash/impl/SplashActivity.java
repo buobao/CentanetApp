@@ -8,8 +8,7 @@ import android.view.WindowManager;
 import com.cetnaline.findproperty.BuildConfig;
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
-import com.cetnaline.findproperty.network.NetWorkContents;
-import com.cetnaline.findproperty.network.NetWorkManager;
+import com.cetnaline.findproperty.model.network.NetWorkManager;
 import com.cetnaline.findproperty.ui.splash.SplashPresenter;
 import com.cetnaline.findproperty.ui.splash.SplashView;
 
@@ -57,12 +56,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
             }
 
             @Override
-            public void onGranted(List<String> grantedPermission) {
-
-            }
-
-            @Override
-            public void onDenied(List<String> deniedPermission) {
+            public void onDenied(List<String> grantedPermission,List<String> deniedPermission) {
                 showMessage(getResources().getString(R.string.no_storage_permission_msg));
             }
         });

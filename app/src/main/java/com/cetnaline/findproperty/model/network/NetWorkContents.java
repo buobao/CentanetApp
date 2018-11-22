@@ -1,4 +1,4 @@
-package com.cetnaline.findproperty.network;
+package com.cetnaline.findproperty.model.network;
 
 import com.cetnaline.findproperty.BuildConfig;
 

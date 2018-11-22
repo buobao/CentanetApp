@@ -1,20 +1,20 @@
-package com.cetnaline.findproperty.database;
+package com.cetnaline.findproperty.model.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.cetnaline.findproperty.database.dao.DaoMaster;
-import com.cetnaline.findproperty.database.dao.DaoSession;
-import com.cetnaline.findproperty.database.dao.GScopeDao;
-import com.cetnaline.findproperty.database.entity.GScope;
+import com.cetnaline.findproperty.model.database.dao.DaoMaster;
+import com.cetnaline.findproperty.model.database.dao.DaoSession;
+import com.cetnaline.findproperty.model.database.dao.GScopeDao;
+import com.cetnaline.findproperty.model.database.entity.GScope;
 
 import java.util.List;
 
 public class DatabaseHelper {
 
     private DaoMaster.DevOpenHelper openHelper;
-    private static DaoSession writeDaoSession;
-    private static DaoSession readDaoSession;
+    private DaoSession writeDaoSession;
+    private DaoSession readDaoSession;
     private static DatabaseHelper databaseHelper;
     private int dbVersion;
 
@@ -53,6 +53,14 @@ public class DatabaseHelper {
             }
         }
         return databaseHelper;
+    }
+
+    /**
+     * 当前数据库版本号
+     * @return
+     */
+    public int getDbVersion() {
+        return dbVersion;
     }
 
     /**
