@@ -27,6 +27,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Function5;
+import io.reactivex.internal.operators.observable.ObservableEmpty;
 
 public class SplashPresenterImpl extends BasePresenter<SplashView> implements SplashPresenter {
     @Override
@@ -50,26 +51,30 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
             if (SpHelper.getInstance(context).getLong(SpContents.BASE_DATA_VERSION) < longBaseResponseBean.getResult() || isDatabaseUpdate(context)) {
                 SpHelper.getInstance(context).saveLong(SpContents.BASE_DATA_VERSION, longBaseResponseBean.getResult());
                 //加载服务器数据
-//                addDisposable(Observable.zip(ApiRequestImp.getGscopes(),
-//                        ApiRequestImp.getRailLines().doOnSubscribe(disposable -> {
-//                            Log.i("splash","getRailLines doOnSubscribe");
-//                        }),
-//                        ApiRequestImp.getSchoolList("0"),
-//                        ApiRequestImp.getSearchData(),
-//                        ApiRequestImp.getStores(new HashMap() {{
-//                            put("PageIndex", "1");
-//                            put("PageCount", "10000");
-//                        }}), (Function5<BaseResponseBean<List<GScope>>,
-//                                BaseResponseBean<List<RailLine>>,
-//                                BaseResponseBean<List<School>>,
-//                                BaseResponseBean<List<SearchMenuBean>>,
-//                                BaseResponseBean<List<Store>>, Boolean>)
-//                                (listBaseResponseBean, listBaseResponseBean2,
-//                                 listBaseResponseBean3, listBaseResponseBean4,
-//                                 listBaseResponseBean5) -> {
-////                                    if (listBaseResponseBean != null && )
-//                                    return true;
-//                                }).subscribe());
+                // TODO: 2018/11/23 处理并发的操作
+                addDisposable(Observable.zip(ApiRequestImp.getGscopes().onErrorResumeNext(new Function<Throwable, ObservableSource<? extends BaseResponseBean<List<GScope>>>>() {
+                            @Override
+                            public ObservableSource<? extends BaseResponseBean<List<GScope>>> apply(Throwable throwable) throws Exception {
+                                return Observable.empty();
+                            }
+                        }),
+                        ApiRequestImp.getRailLines(),
+                        ApiRequestImp.getSchoolList("0"),
+                        ApiRequestImp.getSearchData(),
+                        ApiRequestImp.getStores(new HashMap() {{
+                            put("PageIndex", "1");
+                            put("PageCount", "10000");
+                        }}), (Function5<BaseResponseBean<List<GScope>>,
+                                BaseResponseBean<List<RailLine>>,
+                                BaseResponseBean<List<School>>,
+                                BaseResponseBean<List<SearchMenuBean>>,
+                                BaseResponseBean<List<Store>>, Boolean>)
+                                (listBaseResponseBean, listBaseResponseBean2,
+                                 listBaseResponseBean3, listBaseResponseBean4,
+                                 listBaseResponseBean5) -> {
+//                                    if (listBaseResponseBean != null && )
+                                    return true;
+                                }).subscribe());
 
 //                addDisposable(Observable.merge(ApiRequestImp.getGscopes(),
 //                        ApiRequestImp.getRailLines()).subscribe(baseResponseBean -> {
