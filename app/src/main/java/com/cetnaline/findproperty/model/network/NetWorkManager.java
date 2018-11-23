@@ -27,7 +27,8 @@ public class NetWorkManager {
 
     private static NetWorkManager mInstance;
 //    private OkHttpClient client;
-     private static Retrofit retrofit;
+    private static Retrofit retrofitNoCache;
+    private static Retrofit retrofitCache;
     private static volatile ApiRequestService centanetCacheRequest = null;
     private static volatile ApiRequestService centanetNoCacheRequest = null;
 
@@ -36,8 +37,14 @@ public class NetWorkManager {
     private static Cache cache = new Cache(httpCacheDirectory, cacheSize);
 
     private NetWorkManager() {
-        retrofit = new Retrofit.Builder()
+        retrofitNoCache = new Retrofit.Builder()
                 .client(getClient(null, false))
+                .baseUrl(NetWorkContents.CENTANET_BASE_HOST)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        retrofitCache = new Retrofit.Builder()
+                .client(getClient(null, true))
                 .baseUrl(NetWorkContents.CENTANET_BASE_HOST)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -109,8 +116,14 @@ public class NetWorkManager {
      * @param host
      */
     public void resetHost(String host) {
-        retrofit = new Retrofit.Builder()
+        retrofitNoCache = new Retrofit.Builder()
                 .client(getClient(null, false))
+                .baseUrl(host)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        retrofitCache = new Retrofit.Builder()
+                .client(getClient(null, true))
                 .baseUrl(host)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
@@ -132,18 +145,14 @@ public class NetWorkManager {
 
     public ApiRequestService getCacheCentalineRequest() {
         if (centanetCacheRequest == null) {
-            synchronized (centanetCacheRequest.getClass()) {
-                centanetCacheRequest = retrofit.create(ApiRequestService.class);
-            }
+            centanetCacheRequest = retrofitCache.create(ApiRequestService.class);
         }
         return centanetCacheRequest;
     }
 
     public ApiRequestService getNoCacheCentalineRequest() {
         if (centanetNoCacheRequest == null) {
-            synchronized (centanetNoCacheRequest.getClass()) {
-                centanetNoCacheRequest = retrofit.create(ApiRequestService.class);
-            }
+            centanetNoCacheRequest = retrofitNoCache.create(ApiRequestService.class);
         }
         return centanetNoCacheRequest;
     }

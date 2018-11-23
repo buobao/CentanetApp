@@ -1,5 +1,6 @@
 package com.cetnaline.findproperty.ui.splash;
 
+
 import android.content.Context;
 
 import com.cetnaline.findproperty.base.IPresenter;

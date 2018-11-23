@@ -27,7 +27,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
         if (BuildConfig.DEBUG) {
             //基础数据请求
-            requestBaseData();
+            mPresenter.getAppHost();
+//            requestBaseData();
         } else {
             mPresenter.getAppHost();
         }
@@ -52,7 +53,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         requestPermission(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionListener() {
             @Override
             public void onGranted() {
-
+                mPresenter.checkDatabaseVersion(SplashActivity.this);
             }
 
             @Override

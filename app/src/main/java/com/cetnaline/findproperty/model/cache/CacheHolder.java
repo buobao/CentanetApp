@@ -29,7 +29,7 @@ public class CacheHolder {
 
     public static void init(Context context) {
         if (cacheHolder == null) {
-            synchronized (cacheHolder) {
+            synchronized (CacheHolder.class) {
                 if (cacheHolder == null) {
                     cacheHolder = new CacheHolder();
                     spHelper = SpHelper.getInstance(context);

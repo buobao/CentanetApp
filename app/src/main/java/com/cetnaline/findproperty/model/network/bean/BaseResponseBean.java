@@ -6,6 +6,8 @@ public class BaseResponseBean<T> {
 
     public static final int FAILE_CODE = -1;
 
+    public static final int REQUEST_ERROR_CODE = -2;
+
     private int ResultNo;
 
     private String Message;
