@@ -38,7 +38,7 @@ public interface ApiRequestService {
      * 获取区域、板块信息
      * @return
      */
-    @GET("GetAllGScopeRequests")
+    @GET("GetAllGScopeRequest")
     Observable<BaseResponseBean<List<GScope>>> getGScope();
 
     /**

@@ -1,0 +1,230 @@
+[
+  {
+    "UserIntentionConfigResponse": [
+      {
+        "ID": 0,
+        "Value": "",
+        "Text": "不限",
+        "IsHide": false
+      },
+      {
+        "ID": 1,
+        "Value": "0,350",
+        "Text": "0-350万",
+        "IsHide": false
+      },
+      {
+        "ID": 2,
+        "Value": "350,500",
+        "Text": "350-500万",
+        "IsHide": false
+      },
+      {
+        "ID": 3,
+        "Value": "500,700",
+        "Text": "500-700万",
+        "IsHide": false
+      },
+      {
+        "ID": 4,
+        "Value": "700,9999",
+        "Text": "700万以上",
+        "IsHide": false
+      }
+    ],
+    "Name": "IntentionSell"
+  },
+  {
+    "UserIntentionConfigResponse": [
+      {
+        "ID": 0,
+        "Value": "",
+        "Text": "不限",
+        "IsHide": false
+      },
+      {
+        "ID": 1,
+        "Value": "0,5000",
+        "Text": "0-5000元/月",
+        "IsHide": false
+      },
+      {
+        "ID": 2,
+        "Value": "5000,8000",
+        "Text": "5000-8000元/月",
+        "IsHide": false
+      },
+      {
+        "ID": 3,
+        "Value": "8000,12000",
+        "Text": "8000-12000元/月",
+        "IsHide": false
+      },
+      {
+        "ID": 4,
+        "Value": "12000,999999",
+        "Text": "12000元/月以上",
+        "IsHide": false
+      }
+    ],
+    "Name": "IntentionRent"
+  },
+  {
+    "UserIntentionConfigResponse": [
+      {
+        "ID": 0,
+        "Value": "",
+        "Text": "不限",
+        "IsHide": false
+      },
+      {
+        "ID": 1,
+        "Value": "h1",
+        "Text": "一室",
+        "IsHide": false
+      },
+      {
+        "ID": 2,
+        "Value": "h2",
+        "Text": "二室",
+        "IsHide": false
+      },
+      {
+        "ID": 3,
+        "Value": "h3",
+        "Text": "三室",
+        "IsHide": false
+      },
+      {
+        "ID": 4,
+        "Value": "h4h5h6",
+        "Text": "四室及以上",
+        "IsHide": false
+      }
+    ],
+    "Name": "IntentionRoom"
+  },
+  {
+    "UserIntentionConfigResponse": [
+      {
+        "ID": 1,
+        "Value": "w1",
+        "Text": "烹饪",
+        "IsHide": false
+      },
+      {
+        "ID": 2,
+        "Value": "w2",
+        "Text": "宠物",
+        "IsHide": false
+      },
+      {
+        "ID": 3,
+        "Value": "w3",
+        "Text": "旅游",
+        "IsHide": false
+      },
+      {
+        "ID": 4,
+        "Value": "w4",
+        "Text": "美食",
+        "IsHide": false
+      },
+      {
+        "ID": 5,
+        "Value": "w5",
+        "Text": "育儿",
+        "IsHide": false
+      },
+      {
+        "ID": 6,
+        "Value": "w6",
+        "Text": "投资",
+        "IsHide": false
+      },
+      {
+        "ID": 7,
+        "Value": "w7",
+        "Text": "社交",
+        "IsHide": false
+      },
+      {
+        "ID": 8,
+        "Value": "w8",
+        "Text": "文艺",
+        "IsHide": false
+      },
+      {
+        "ID": 9,
+        "Value": "w9",
+        "Text": "运动",
+        "IsHide": false
+      },
+      {
+        "ID": 10,
+        "Value": "w10",
+        "Text": "购物",
+        "IsHide": false
+      },
+      {
+        "ID": 11,
+        "Value": "w11",
+        "Text": "户外",
+        "IsHide": false
+      }
+    ],
+    "Name": "IntentionXQ"
+  },
+  {
+    "UserIntentionConfigResponse": [
+      {
+        "ID": 1,
+        "Value": "ershoufang",
+        "Text": "买房",
+        "IsHide": false
+      },
+      {
+        "ID": 2,
+        "Value": "zufang",
+        "Text": "租房",
+        "IsHide": false
+      },
+      {
+        "ID": 3,
+        "Value": "rent/sale",
+        "Text": "出租/出售",
+        "IsHide": false
+      },
+      {
+        "ID": 4,
+        "Value": "default",
+        "Text": "了解楼市",
+        "IsHide": false
+      }
+    ],
+    "Name": "Role"
+  },
+  {
+    "UserIntentionConfigResponse": [
+      {
+        "ID": 1,
+        "Value": "all",
+        "Text": "全城找房,无指定区域",
+        "IsHide": false
+      },
+      {
+        "ID": 2,
+        "Value": "region",
+        "Text": "目标区域,指定区域 板块",
+        "IsHide": false
+      },
+      {
+        "ID": 3,
+        "Value": "metro",
+        "Text": "地铁沿线,轨交线路 站点周边",
+        "IsHide": false
+      }
+    ],
+    "Name": "GuideType"
+  }
+]

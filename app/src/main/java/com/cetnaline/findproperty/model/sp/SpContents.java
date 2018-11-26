@@ -13,11 +13,19 @@ public class SpContents {
     /**
      * 初始化数据加载状态
      */
+    public final static String ALL_BASEDATA_LOADED = "all_basedata_loaded";
     public final static String SEARCHDATA_LOADED = "search_data_loaded";
     public final static String DISTRICTEST_LOADED = "districtest_loaded";
     public final static String GSCOPEDATA_LOADED = "gscope_data_loaded";
     public final static String RAILLINEDATA_LOADED = "railline_data_loaded";
     public final static String STOREDATA_LOADED = "store_data_loaded";
     public final static String SCHOOLDATA_LOADED = "school_data_loaded";
+
+    public final static String SEARCHDATA_JSON_LOADED = "search_data_json_loaded";
+    public final static String DISTRICTEST_JSON_LOADED = "districtest_json_loaded";
+    public final static String GSCOPEDATA_JSON_LOADED = "gscope_data_json_loaded";
+    public final static String RAILLINEDATA_JSON_LOADED = "railline_data_json_loaded";
+    public final static String STOREDATA_JSON_LOADED = "store_data_json_loaded";
+    public final static String SCHOOLDATA_JSON_LOADED = "school_data_json_loaded";
 
 }

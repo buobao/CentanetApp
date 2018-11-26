@@ -15,7 +15,7 @@ import com.cetnaline.findproperty.model.database.entity.GScope;
 /** 
  * DAO for table "centanet_gscope".
 */
-public class GScopeDao extends AbstractDao<GScope, Integer> {
+public class GScopeDao extends AbstractDao<GScope, Long> {
 
     public static final String TABLENAME = "centanet_gscope";
 
@@ -24,7 +24,7 @@ public class GScopeDao extends AbstractDao<GScope, Integer> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property GScopeId = new Property(0, Integer.class, "GScopeId", true, "GSCOPE_ID");
+        public final static Property GScopeId = new Property(0, Long.class, "GScopeId", true, "_id");
         public final static Property GScopeCode = new Property(1, String.class, "GScopeCode", false, "GSCOPE_CODE");
         public final static Property GScopeLevel = new Property(2, Integer.class, "GScopeLevel", false, "GSCOPE_LEVEL");
         public final static Property GScopeName = new Property(3, String.class, "GScopeName", false, "GSCOPE_NAME");
@@ -56,7 +56,7 @@ public class GScopeDao extends AbstractDao<GScope, Integer> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"centanet_gscope\" (" + //
-                "\"GSCOPE_ID\" INTEGER PRIMARY KEY ," + // 0: GScopeId
+                "\"_id\" INTEGER PRIMARY KEY ," + // 0: GScopeId
                 "\"GSCOPE_CODE\" TEXT," + // 1: GScopeCode
                 "\"GSCOPE_LEVEL\" INTEGER," + // 2: GScopeLevel
                 "\"GSCOPE_NAME\" TEXT," + // 3: GScopeName
@@ -85,7 +85,7 @@ public class GScopeDao extends AbstractDao<GScope, Integer> {
     protected final void bindValues(DatabaseStatement stmt, GScope entity) {
         stmt.clearBindings();
  
-        Integer GScopeId = entity.getGScopeId();
+        Long GScopeId = entity.getGScopeId();
         if (GScopeId != null) {
             stmt.bindLong(1, GScopeId);
         }
@@ -175,7 +175,7 @@ public class GScopeDao extends AbstractDao<GScope, Integer> {
     protected final void bindValues(SQLiteStatement stmt, GScope entity) {
         stmt.clearBindings();
  
-        Integer GScopeId = entity.getGScopeId();
+        Long GScopeId = entity.getGScopeId();
         if (GScopeId != null) {
             stmt.bindLong(1, GScopeId);
         }
@@ -262,14 +262,14 @@ public class GScopeDao extends AbstractDao<GScope, Integer> {
     }
 
     @Override
-    public Integer readKey(Cursor cursor, int offset) {
-        return cursor.isNull(offset + 0) ? null : cursor.getInt(offset + 0);
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public GScope readEntity(Cursor cursor, int offset) {
         GScope entity = new GScope( //
-            cursor.isNull(offset + 0) ? null : cursor.getInt(offset + 0), // GScopeId
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // GScopeId
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // GScopeCode
             cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2), // GScopeLevel
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // GScopeName
@@ -292,7 +292,7 @@ public class GScopeDao extends AbstractDao<GScope, Integer> {
      
     @Override
     public void readEntity(Cursor cursor, GScope entity, int offset) {
-        entity.setGScopeId(cursor.isNull(offset + 0) ? null : cursor.getInt(offset + 0));
+        entity.setGScopeId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setGScopeCode(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setGScopeLevel(cursor.isNull(offset + 2) ? null : cursor.getInt(offset + 2));
         entity.setGScopeName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
@@ -312,12 +312,13 @@ public class GScopeDao extends AbstractDao<GScope, Integer> {
      }
     
     @Override
-    protected final Integer updateKeyAfterInsert(GScope entity, long rowId) {
-        return entity.getGScopeId();
+    protected final Long updateKeyAfterInsert(GScope entity, long rowId) {
+        entity.setGScopeId(rowId);
+        return rowId;
     }
     
     @Override
-    public Integer getKey(GScope entity) {
+    public Long getKey(GScope entity) {
         if(entity != null) {
             return entity.getGScopeId();
         } else {

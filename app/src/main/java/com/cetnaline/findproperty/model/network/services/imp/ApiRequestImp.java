@@ -12,9 +12,9 @@ import com.cetnaline.findproperty.utils.RxUtil;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import io.reactivex.Observable;
-import retrofit2.http.GET;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -27,7 +27,8 @@ public class ApiRequestImp {
         String[] arr = BuildConfig.VERSION_NAME.split("-");
         return NetWorkManager.getInstance().getCacheCentalineRequest()
                 .getAppServiceAddressRequest("APP_ANDROID_APUSH", arr[0])
-                .compose(RxUtil.applyIoSchedulers());
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
 
     /**
@@ -37,7 +38,8 @@ public class ApiRequestImp {
     public static Observable<BaseResponseBean<Long>> getDataVersion() {
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getDataVersion()
-                .compose(RxUtil.applyIoSchedulers());
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
 
     /**
@@ -47,7 +49,8 @@ public class ApiRequestImp {
     public static Observable<BaseResponseBean<List<GScope>>> getGscopes() {
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getGScope()
-                .compose(RxUtil.applyIoSchedulers());
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
 
     /**
@@ -57,7 +60,8 @@ public class ApiRequestImp {
     public static Observable<BaseResponseBean<List<RailLine>>> getRailLines() {
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getRailLines()
-                .compose(RxUtil.applyIoSchedulers());
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
 
     /**
@@ -68,7 +72,8 @@ public class ApiRequestImp {
     public static Observable<BaseResponseBean<List<Store>>> getStores(@QueryMap(encoded = true) Map<String, String> params){
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getStores(params)
-                .compose(RxUtil.applyIoSchedulers());
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
 
     /**
@@ -79,7 +84,8 @@ public class ApiRequestImp {
     public static Observable<BaseResponseBean<List<School>>> getSchoolList(@Query("regionId") String regionId){
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getSchools(regionId)
-                .compose(RxUtil.applyIoSchedulers());
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
 
     /**
@@ -89,7 +95,8 @@ public class ApiRequestImp {
     public static Observable<BaseResponseBean<List<SearchMenuBean>>> getSearchData(){
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getSearchData()
-                .compose(RxUtil.applyIoSchedulers());
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
 }
 

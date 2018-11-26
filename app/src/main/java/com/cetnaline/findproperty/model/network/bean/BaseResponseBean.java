@@ -8,6 +8,8 @@ public class BaseResponseBean<T> {
 
     public static final int REQUEST_ERROR_CODE = -2;
 
+    public static final int REQUEST_OVERTIME_CODE = -3;
+
     private int ResultNo;
 
     private String Message;

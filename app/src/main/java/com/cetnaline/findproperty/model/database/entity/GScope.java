@@ -7,7 +7,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity(nameInDb = "centanet_gscope")
 public class GScope {
     @Id
-    private Integer GScopeId;
+    private Long GScopeId;
     private String GScopeCode;
     private Integer GScopeLevel;
     private String GScopeName;
@@ -25,8 +25,8 @@ public class GScope {
     private Double SaleAvgPriceRise;
     private Integer PostCount;
 
-    @Generated(hash = 503759470)
-    public GScope(Integer GScopeId, String GScopeCode, Integer GScopeLevel,
+    @Generated(hash = 125252307)
+    public GScope(Long GScopeId, String GScopeCode, Integer GScopeLevel,
             String GScopeName, String GScopeAlias, String FullPY, String FirstPY,
             Integer ParentId, Integer OrderBy, Double Lng, Double Lat,
             Integer SaleCount, Integer RentCount, Integer EstateCount,
@@ -54,11 +54,11 @@ public class GScope {
     public GScope() {
     }
 
-    public Integer getGScopeId() {
+    public Long getGScopeId() {
         return GScopeId;
     }
 
-    public void setGScopeId(Integer GScopeId) {
+    public void setGScopeId(Long GScopeId) {
         this.GScopeId = GScopeId;
     }
 

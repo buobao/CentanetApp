@@ -24,15 +24,12 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @Override
     protected void init(@Nullable Bundle savedInstanceState) {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //全屏
-
         if (BuildConfig.DEBUG) {
             //基础数据请求
-            mPresenter.getAppHost();
-//            requestBaseData();
+            requestBaseData();
         } else {
             mPresenter.getAppHost();
         }
-
     }
 
     @Override

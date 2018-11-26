@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.cetnaline.findproperty.model.cache.CacheHolder;
+import com.cetnaline.findproperty.model.database.DatabaseHelper;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
 
 public class FindPropertyApplication extends Application {
@@ -16,6 +17,8 @@ public class FindPropertyApplication extends Application {
         if (BuildConfig.APPLICATION_ID.equals(ApplicationUtil.getCurProcessName(this))) {
             //init app cache
             CacheHolder.init(this);
+            //init database
+            DatabaseHelper.init(this);
         }
     }
 

@@ -20,6 +20,13 @@ public class CacheHolder {
     private boolean storeDataLoaded;
     private boolean schoolDataLoaded;
 
+    private boolean searchDataJsonLoaded;
+    private boolean districtEstJsonLoaded;
+    private boolean gScopeDataJsonLoaded;
+    private boolean railLineDataJsonLoaded;
+    private boolean storeDataJsonLoaded;
+    private boolean schoolDataJsonLoaded;
+
     private static CacheHolder cacheHolder;
     private static SpHelper spHelper;
 
@@ -41,6 +48,14 @@ public class CacheHolder {
                     cacheHolder.railLineDataLoaded = spHelper.getBoolean(SpContents.RAILLINEDATA_LOADED);
                     cacheHolder.storeDataLoaded = spHelper.getBoolean(SpContents.STOREDATA_LOADED);
                     cacheHolder.schoolDataLoaded = spHelper.getBoolean(SpContents.SCHOOLDATA_LOADED);
+
+                    cacheHolder.searchDataJsonLoaded = spHelper.getBoolean(SpContents.SEARCHDATA_LOADED);
+                    cacheHolder.districtEstJsonLoaded = spHelper.getBoolean(SpContents.DISTRICTEST_LOADED);
+                    cacheHolder.gScopeDataJsonLoaded = spHelper.getBoolean(SpContents.GSCOPEDATA_LOADED);
+                    cacheHolder.railLineDataJsonLoaded = spHelper.getBoolean(SpContents.RAILLINEDATA_LOADED);
+                    cacheHolder.storeDataJsonLoaded = spHelper.getBoolean(SpContents.STOREDATA_LOADED);
+                    cacheHolder.schoolDataJsonLoaded = spHelper.getBoolean(SpContents.SCHOOLDATA_LOADED);
+
                     cacheHolder.isFirstOpen = spHelper.getBoolean(SpContents.FIRST_OPEN);
                 }
             }
@@ -61,12 +76,12 @@ public class CacheHolder {
     }
 
     public boolean isFirstOpen() {
-        return isFirstOpen;
+        return !isFirstOpen;
     }
 
     public void setFirstOpen(boolean firstOpen) {
-        isFirstOpen = firstOpen;
-        spHelper.saveBoolean(SpContents.FIRST_OPEN, firstOpen);
+        isFirstOpen = !firstOpen;
+        spHelper.saveBoolean(SpContents.FIRST_OPEN, !firstOpen);
     }
 
     public boolean isSearchDataLoaded() {
@@ -123,6 +138,60 @@ public class CacheHolder {
         spHelper.saveBoolean(SpContents.SCHOOLDATA_LOADED, schoolDataLoaded);
     }
 
+    public boolean isSearchDataJsonLoaded() {
+        return searchDataJsonLoaded;
+    }
+
+    public void setSearchDataJsonLoaded(boolean searchDataJsonLoaded) {
+        this.searchDataJsonLoaded = searchDataJsonLoaded;
+        spHelper.saveBoolean(SpContents.SCHOOLDATA_JSON_LOADED, searchDataJsonLoaded);
+    }
+
+    public boolean isDistrictEstJsonLoaded() {
+        return districtEstJsonLoaded;
+    }
+
+    public void setDistrictEstJsonLoaded(boolean districtEstJsonLoaded) {
+        this.districtEstJsonLoaded = districtEstJsonLoaded;
+        spHelper.saveBoolean(SpContents.DISTRICTEST_JSON_LOADED, districtEstJsonLoaded);
+    }
+
+    public boolean isgScopeDataJsonLoaded() {
+        return gScopeDataJsonLoaded;
+    }
+
+    public void setgScopeDataJsonLoaded(boolean gScopeDataJsonLoaded) {
+        this.gScopeDataJsonLoaded = gScopeDataJsonLoaded;
+        spHelper.saveBoolean(SpContents.GSCOPEDATA_JSON_LOADED, gScopeDataJsonLoaded);
+    }
+
+    public boolean isRailLineDataJsonLoaded() {
+        return railLineDataJsonLoaded;
+    }
+
+    public void setRailLineDataJsonLoaded(boolean railLineDataJsonLoaded) {
+        this.railLineDataJsonLoaded = railLineDataJsonLoaded;
+        spHelper.saveBoolean(SpContents.RAILLINEDATA_JSON_LOADED, railLineDataJsonLoaded);
+    }
+
+    public boolean isStoreDataJsonLoaded() {
+        return storeDataJsonLoaded;
+    }
+
+    public void setStoreDataJsonLoaded(boolean storeDataJsonLoaded) {
+        this.storeDataJsonLoaded = storeDataJsonLoaded;
+        spHelper.saveBoolean(SpContents.STOREDATA_JSON_LOADED, storeDataJsonLoaded);
+    }
+
+    public boolean isSchoolDataJsonLoaded() {
+        return schoolDataJsonLoaded;
+    }
+
+    public void setSchoolDataJsonLoaded(boolean schoolDataJsonLoaded) {
+        this.schoolDataJsonLoaded = schoolDataJsonLoaded;
+        spHelper.saveBoolean(SpContents.SCHOOLDATA_JSON_LOADED, schoolDataJsonLoaded);
+    }
+
     public void clearInitDataStatus() {
         searchDataLoaded = false;
         spHelper.saveBoolean(SpContents.SEARCHDATA_LOADED, false);
@@ -136,5 +205,18 @@ public class CacheHolder {
         spHelper.saveBoolean(SpContents.STOREDATA_LOADED, false);
         schoolDataLoaded = false;
         spHelper.saveBoolean(SpContents.SCHOOLDATA_LOADED, false);
+
+        searchDataJsonLoaded = false;
+        spHelper.saveBoolean(SpContents.SEARCHDATA_JSON_LOADED, false);
+        districtEstJsonLoaded = false;
+        spHelper.saveBoolean(SpContents.DISTRICTEST_JSON_LOADED, false);
+        gScopeDataJsonLoaded = false;
+        spHelper.saveBoolean(SpContents.GSCOPEDATA_JSON_LOADED, false);
+        railLineDataJsonLoaded = false;
+        spHelper.saveBoolean(SpContents.RAILLINEDATA_JSON_LOADED, false);
+        storeDataJsonLoaded = false;
+        spHelper.saveBoolean(SpContents.STOREDATA_JSON_LOADED, false);
+        schoolDataJsonLoaded = false;
+        spHelper.saveBoolean(SpContents.SCHOOLDATA_JSON_LOADED, false);
     }
 }

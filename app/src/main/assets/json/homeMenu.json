@@ -1,0 +1,1222 @@
+{"Ver":"1.0",
+  "data":[
+    {
+      "title":"顾问",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_agency_19.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_agency_17.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_agency_16.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_agency_15.png",
+
+      "menuIndex":"10",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.AdviserListActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_agency"
+
+
+
+    },		{
+      "title":"门店",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_store_15.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_store_13.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_store_12.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_store_11.png",
+
+      "menuIndex":"9",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.StoreSearchActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_store"
+
+
+
+    },		{
+      "title":"身份检测",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/identity_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/identity_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/identity_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/identity_3.png",
+
+      "menuIndex":"8",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":[{"name":"TAG","value":"BACK","type":"0"},{"name":"requestPermission","value":"android.permission.CAMERA","type":"3"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.FaceDetectIdentifyActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"identity"
+
+
+
+    },		{
+      "title":"估价",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_11.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_17.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_16.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_15.png",
+
+      "menuIndex":"7",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":[{"name":"target_url","value":"http://m.sh.centanet.com/tool/entrust/?utm=app","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_evaluate"
+
+
+
+    },		{
+      "title":"业主中心",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/me_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/me_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/me_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/me_3.png",
+
+      "menuIndex":"6",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.OwnerCenterActivity",
+
+      "openType":"0",
+
+      "needLogin":"1",
+
+      "defaultimage":"ic_my_entrust"
+
+
+
+    },		{
+      "title":"发布房源",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_entrust_11.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_entrust_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_entrust_10.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_entrust_8.png",
+
+      "menuIndex":"5",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":[{"name":"tab","value":"1","type":"1"},{"name":"tab_bar","value":"0","type":"1"}],
+
+      "classPath":"null",
+
+      "openType":"2",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_entrust"
+
+
+
+    },		{
+      "title":"小区",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_village_20.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_village_10.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_village_9.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_village_8.png",
+
+      "menuIndex":"4",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.EstateList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_village"
+
+
+
+    },		{
+      "title":"新房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_15.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_7.png",
+
+      "menuIndex":"3",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"2","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_new_house"
+
+
+
+    },		{
+      "title":"租房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_second_15.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_second_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_second_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_second_7.png",
+
+      "menuIndex":"2",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"1","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_second"
+
+
+
+    },		{
+      "title":"二手房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_rent_15.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_rent_13.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_rent_12.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_rent_11.png",
+
+      "menuIndex":"1",
+
+      "tabIndex":"1",
+
+      "sflabel":"3",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"0","type":"0"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_rent"
+
+
+
+    },		{
+      "title":"门店",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_store_14.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_store_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_store_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_store_7.png",
+
+      "menuIndex":"11",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.StoreSearchActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_store"
+
+
+
+    },		{
+      "title":"估价",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_12.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_3.png",
+
+      "menuIndex":"7",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"target_url","value":"http://m.sh.centanet.com/tool/entrust/?utm=app","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_evaluate"
+
+
+
+    },		{
+      "title":"顾问",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_agency_18.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_agency_10.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_agency_9.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_agency_8.png",
+
+      "menuIndex":"9",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.AdviserListActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_agency"
+
+
+
+    },		{
+      "title":"AR找房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_ar_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_ar_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_ar_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_ar_3.png",
+
+      "menuIndex":"8",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"requestPermission","value":"android.permission.CAMERA","type":"3"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.WikiARActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_ar"
+
+
+
+    },		{
+      "title":"百科",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_10.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_7.png",
+
+      "menuIndex":"6",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"target_url","value":"http://sh.centanet.com/baike/vbaike?hmsr=app&amp;hmmd=daohang","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_knowladge"
+
+
+
+    },		{
+      "title":"优惠",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_3.png",
+
+      "menuIndex":"5",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"tab","value":"1","type":"1"},{"name":"tab_bar","value":"1","type":"1"}],
+
+      "classPath":"null",
+
+      "openType":"2",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_favourable"
+
+
+
+    },		{
+      "title":"精选",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/invalid_name_5.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/invalid_name_4.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/invalid_name_3.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_village_7.png",
+
+      "menuIndex":"10",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"target_url","value":"http://sh.centanet.com/m/act/index.html?jxfy&amp;hmsr=app&amp;hmmd=daohang","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"invalid_name"
+
+
+
+    },		{
+      "title":"小区",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_village_14.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_village_13.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_village_12.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_village_11.png",
+
+      "menuIndex":"4",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.EstateList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_village"
+
+
+
+    },		{
+      "title":"新房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_14.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_13.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_12.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_11.png",
+
+      "menuIndex":"3",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"2","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_new_house"
+
+
+
+    },		{
+      "title":"租房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_second_14.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_second_13.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_second_12.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_second_11.png",
+
+      "menuIndex":"2",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"1","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_second"
+
+
+
+    },		{
+      "title":"二手房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_rent_10.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_rent_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_rent_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_rent_7.png",
+
+      "menuIndex":"1",
+
+      "tabIndex":"3",
+
+      "sflabel":"4",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"0","type":"0"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_rent"
+
+
+
+    },		{
+      "title":"门店",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_store_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_store_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_store_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_store_3.png",
+
+      "menuIndex":"10",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.StoreSearchActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_store"
+
+
+
+    },		{
+      "title":"顾问",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_agency_14.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_agency_12.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_agency_11.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_agency_7.png",
+
+      "menuIndex":"9",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.AdviserListActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_agency"
+
+
+
+    },		{
+      "title":"AR找房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/fu_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/fu_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/fu_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/fu_80_0.png",
+
+      "menuIndex":"8",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":[{"name":"requestPermission","value":"android.permission.CAMERA","type":"3"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.WikiARActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_ar"
+
+
+
+    },		{
+      "title":"百科",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/xing_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/xing_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/xing_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/xing_80_0.png",
+
+      "menuIndex":"7",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":[{"name":"target_url","value":"http://sh.centanet.com/baike/vbaike?hmsr=app&amp;hmmd=daohang","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_knowladge"
+
+
+
+    },		{
+      "title":"优惠",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/jia_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/jia_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/jia_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/jia_80_0.png",
+
+      "menuIndex":"6",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":[{"name":"tab","value":"1","type":"1"},{"name":"tab_bar","value":"1","type":"1"}],
+
+      "classPath":"null",
+
+      "openType":"2",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_favourable"
+
+
+
+    },		{
+      "title":"精选",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/he_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/he_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/he_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/he_80_0.png",
+
+      "menuIndex":"5",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":[{"name":"target_url","value":"http://sh.centanet.com/m/act/index.html?jxfy&amp;hmsr=app&amp;hmmd=daohang","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"invalid_name"
+
+
+
+    },		{
+      "title":"小区",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/le_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/le_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/le_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/le_80_0.png",
+
+      "menuIndex":"4",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.EstateList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_village"
+
+
+
+    },		{
+      "title":"新房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/kuai_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/kuai_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/kuai_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/kuai_80_0.png",
+
+      "menuIndex":"3",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"2","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_new_house"
+
+
+
+    },		{
+      "title":"租房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/xin_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/xin_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/xin_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/xin_80.png",
+
+      "menuIndex":"1",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"1","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_second"
+
+
+
+    },		{
+      "title":"二手房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/nian_30.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/nian_40.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/nian_60.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/nian_80_0.png",
+
+      "menuIndex":"2",
+
+      "tabIndex":"2",
+
+      "sflabel":"2",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"0","type":"0"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_rent"
+
+
+
+    },		{
+      "title":"门店",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_store_23.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_store_22.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_store_21.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_store_20.png",
+
+      "menuIndex":"11",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.StoreSearchActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_store"
+
+
+
+    },		{
+      "title":"顾问",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_agency_27.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_agency_26.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_agency_25.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_agency_24.png",
+
+      "menuIndex":"10",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.AdviserListActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_agency"
+
+
+
+    },		{
+      "title":"估价",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_10.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_evaluate_7.png",
+
+      "menuIndex":"7",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"target_url","value":"http://m.sh.centanet.com/tool/entrust/?utm=app","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_evaluate"
+
+
+
+    },		{
+      "title":"AR找房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_ar_10.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_ar_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_ar_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_ar_7.png",
+
+      "menuIndex":"8",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"requestPermission","value":"android.permission.CAMERA","type":"3"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.WikiARActivity",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_ar"
+
+
+
+    },		{
+      "title":"百科",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_14.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_13.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_12.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_knowladge_11.png",
+
+      "menuIndex":"6",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"target_url","value":"http://sh.centanet.com/baike/vbaike?hmsr=app&amp;hmmd=daohang","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_knowladge"
+
+
+
+    },		{
+      "title":"优惠",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_11.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_10.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_9.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_favourable_8.png",
+
+      "menuIndex":"5",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"tab","value":"1","type":"1"},{"name":"tab_bar","value":"1","type":"1"}],
+
+      "classPath":"null",
+
+      "openType":"2",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_favourable"
+
+
+
+    },		{
+      "title":"精选",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/invalid_name_10.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/invalid_name_9.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/invalid_name_8.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/invalid_name_7.png",
+
+      "menuIndex":"9",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"target_url","value":"http://sh.centanet.com/m/act/index.html?jxfy&amp;hmsr=app&amp;hmmd=daohang","type":"0"}],
+
+      "classPath":"null",
+
+      "openType":"1",
+
+      "needLogin":"0",
+
+      "defaultimage":"invalid_name"
+
+
+
+    },		{
+      "title":"小区",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_village_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_village_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_village_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_village_3.png",
+
+      "menuIndex":"4",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":null,
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.EstateList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_village"
+
+
+
+    },		{
+      "title":"新房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_new_house_3.png",
+
+      "menuIndex":"3",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"2","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_new_house"
+
+
+
+    },		{
+      "title":"租房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_second_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_second_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_second_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_second_3.png",
+
+      "menuIndex":"2",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"1","type":"1"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_second"
+
+
+
+    },		{
+      "title":"二手房",
+
+      "pic_s":"http://cms.sh.centanet.com/sites/default/files/ic_rent_6.png",
+
+      "pic_m":"http://cms.sh.centanet.com/sites/default/files/ic_rent_5.png",
+
+      "pic_l":"http://cms.sh.centanet.com/sites/default/files/ic_rent_4.png",
+
+      "pic_xl":"http://cms.sh.centanet.com/sites/default/files/ic_rent_3.png",
+
+      "menuIndex":"1",
+
+      "tabIndex":"0",
+
+      "sflabel":"1",
+
+      "params":[{"name":"HOUSE_TYPE_KEY","value":"0","type":"0"},{"name":"LIST_TYPE","value":"0","type":"0"}],
+
+      "classPath":"com.cetnaline.findproperty.ui.activity.HouseList",
+
+      "openType":"0",
+
+      "needLogin":"0",
+
+      "defaultimage":"ic_rent"
+
+
+
+    }]
+}

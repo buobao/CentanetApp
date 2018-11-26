@@ -1,0 +1,1158 @@
+[
+  {
+    "DistrictId": 512,
+    "NewPropCount": 1,
+    "District": {
+      "GScopeId": 512,
+      "GScopeCnName": "昆山市",
+      "FullPY": "kunshanshi",
+      "FirstPY": "KSS",
+      "GScopeLevel": 2,
+      "ParentId": 51,
+      "lng": 0,
+      "lat": 0
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 5123,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 5123,
+          "GScopeCnName": "花桥",
+          "FullPY": "huaqiaozhen",
+          "FirstPY": "HQZ",
+          "GScopeLevel": 3,
+          "ParentId": 512,
+          "lng": 0,
+          "lat": 0
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2172,
+    "NewPropCount": 26,
+    "District": {
+      "GScopeId": 2172,
+      "GScopeCnName": "浦东",
+      "FullPY": "pudongxinqu",
+      "FirstPY": "PDXQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.560796,
+      "lat": 31.218296
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217201,
+        "NewPropCount": 5,
+        "District": {
+          "GScopeId": 217201,
+          "GScopeCnName": "外高桥",
+          "FullPY": "waigaoqiao",
+          "FirstPY": "WGQ",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.599008,
+          "lat": 31.344287
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217202,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 217202,
+          "GScopeCnName": "金桥",
+          "FullPY": "jinqiao",
+          "FirstPY": "JQ",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.594409,
+          "lat": 31.276537
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217205,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 217205,
+          "GScopeCnName": "源深",
+          "FullPY": "yuanshen",
+          "FirstPY": "YS",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.538871,
+          "lat": 31.241067
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217208,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217208,
+          "GScopeCnName": "世纪公园",
+          "FullPY": "shijigongyuan",
+          "FirstPY": "SJGY",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.553381,
+          "lat": 31.217013
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217212,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217212,
+          "GScopeCnName": "陆家嘴",
+          "FullPY": "lujiazui",
+          "FirstPY": "LJZ",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.515843,
+          "lat": 31.237389
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217213,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217213,
+          "GScopeCnName": "塘桥",
+          "FullPY": "tangqiao",
+          "FirstPY": "TQ",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.527621,
+          "lat": 31.215256
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217214,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217214,
+          "GScopeCnName": "曹路",
+          "FullPY": "caolu",
+          "FirstPY": "CL",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.694013,
+          "lat": 31.28061
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217217,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 217217,
+          "GScopeCnName": "唐镇",
+          "FullPY": "tangzhen",
+          "FirstPY": "TZ",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.655111,
+          "lat": 31.217415
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217218,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217218,
+          "GScopeCnName": "川沙",
+          "FullPY": "chuansha",
+          "FirstPY": "CS",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.73644,
+          "lat": 31.172655
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217219,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217219,
+          "GScopeCnName": "张江",
+          "FullPY": "zhangjiang",
+          "FirstPY": "ZJ",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.609357,
+          "lat": 31.210837
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217220,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217220,
+          "GScopeCnName": "北蔡",
+          "FullPY": "beicai",
+          "FirstPY": "BC",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.571987,
+          "lat": 31.186064
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217224,
+        "NewPropCount": 4,
+        "District": {
+          "GScopeId": 217224,
+          "GScopeCnName": "周浦",
+          "FullPY": "zhoupu",
+          "FirstPY": "ZP",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.587616,
+          "lat": 31.120084
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217225,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217225,
+          "GScopeCnName": "航头",
+          "FullPY": "hangtou",
+          "FirstPY": "HT",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.62373,
+          "lat": 31.048984
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217226,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217226,
+          "GScopeCnName": "惠南",
+          "FullPY": "huinan",
+          "FirstPY": "HN",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.76066,
+          "lat": 31.048958
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217227,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217227,
+          "GScopeCnName": "临港新城",
+          "FullPY": "lingangxincheng",
+          "FirstPY": "LGXC",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.877101,
+          "lat": 30.93731
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217230,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217230,
+          "GScopeCnName": "上南",
+          "FullPY": "shangnan",
+          "FirstPY": "SN",
+          "GScopeLevel": 3,
+          "ParentId": 2172,
+          "lng": 121.49373,
+          "lat": 31.175071
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2165,
+    "NewPropCount": 17,
+    "District": {
+      "GScopeId": 2165,
+      "GScopeCnName": "闵行区",
+      "FullPY": "minxingqu",
+      "FirstPY": "MXQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.400181,
+      "lat": 31.116533
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 216505,
+        "NewPropCount": 3,
+        "District": {
+          "GScopeId": 216505,
+          "GScopeCnName": "七宝",
+          "FullPY": "qibao",
+          "FirstPY": "QB",
+          "GScopeLevel": 3,
+          "ParentId": 2165,
+          "lng": 121.361722,
+          "lat": 31.152578
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216506,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 216506,
+          "GScopeCnName": "古美西",
+          "FullPY": "gumeixi",
+          "FirstPY": "GMX",
+          "GScopeLevel": 3,
+          "ParentId": 2165,
+          "lng": 121.388593,
+          "lat": 31.148888
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216508,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 216508,
+          "GScopeCnName": "金虹桥",
+          "FullPY": "jinhongqiao",
+          "FirstPY": "JHQ",
+          "GScopeLevel": 3,
+          "ParentId": 2165,
+          "lng": 121.394159,
+          "lat": 31.19094
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216509,
+        "NewPropCount": 3,
+        "District": {
+          "GScopeId": 216509,
+          "GScopeCnName": "华漕",
+          "FullPY": "huacao",
+          "FirstPY": "HC",
+          "GScopeLevel": 3,
+          "ParentId": 2165,
+          "lng": 121.303071,
+          "lat": 31.222202
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216510,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 216510,
+          "GScopeCnName": "南莘庄",
+          "FullPY": "nanxinzhuang",
+          "FirstPY": "NXZ",
+          "GScopeLevel": 3,
+          "ParentId": 2165,
+          "lng": 121.392406,
+          "lat": 31.103732
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216516,
+        "NewPropCount": 4,
+        "District": {
+          "GScopeId": 216516,
+          "GScopeCnName": "浦江镇",
+          "FullPY": "pujiangzhen",
+          "FirstPY": "PJZ",
+          "GScopeLevel": 3,
+          "ParentId": 2165,
+          "lng": 121.517905,
+          "lat": 31.070299
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216521,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 216521,
+          "GScopeCnName": "古北",
+          "FullPY": "gubeiminxingqu",
+          "FirstPY": "GB",
+          "GScopeLevel": 3,
+          "ParentId": 2165,
+          "lng": 121.409689,
+          "lat": 31.192619
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2177,
+    "NewPropCount": 11,
+    "District": {
+      "GScopeId": 2177,
+      "GScopeCnName": "宝山区",
+      "FullPY": "baoshanqu",
+      "FirstPY": "BSQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.417182,
+      "lat": 31.39748
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217702,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217702,
+          "GScopeCnName": "罗店",
+          "FullPY": "luodian",
+          "FirstPY": "LD",
+          "GScopeLevel": 3,
+          "ParentId": 2177,
+          "lng": 121.356574,
+          "lat": 31.408229
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217704,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217704,
+          "GScopeCnName": "顾村",
+          "FullPY": "gucun",
+          "FirstPY": "GC",
+          "GScopeLevel": 3,
+          "ParentId": 2177,
+          "lng": 121.389667,
+          "lat": 31.370437
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217705,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217705,
+          "GScopeCnName": "杨行",
+          "FullPY": "yangxing",
+          "FirstPY": "YX",
+          "GScopeLevel": 3,
+          "ParentId": 2177,
+          "lng": 121.461604,
+          "lat": 31.383385
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217707,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217707,
+          "GScopeCnName": "淞宝",
+          "FullPY": "songbao",
+          "FirstPY": "SB",
+          "GScopeLevel": 3,
+          "ParentId": 2177,
+          "lng": 121.498973,
+          "lat": 31.398551
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217715,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217715,
+          "GScopeCnName": "大华",
+          "FullPY": "dahua",
+          "FirstPY": "DH",
+          "GScopeLevel": 3,
+          "ParentId": 2177,
+          "lng": 121.418988,
+          "lat": 31.290512
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217716,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217716,
+          "GScopeCnName": "上大",
+          "FullPY": "shangda",
+          "FirstPY": "SD",
+          "GScopeLevel": 3,
+          "ParentId": 2177,
+          "lng": 121.384349,
+          "lat": 31.319087
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2176,
+    "NewPropCount": 13,
+    "District": {
+      "GScopeId": 2176,
+      "GScopeCnName": "普陀区",
+      "FullPY": "putuoqu",
+      "FirstPY": "PTQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.404059,
+      "lat": 31.256775
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217603,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217603,
+          "GScopeCnName": "中远两湾城",
+          "FullPY": "zhongyuanliangwancheng",
+          "FirstPY": "ZYLWC",
+          "GScopeLevel": 3,
+          "ParentId": 2176,
+          "lng": 121.448275,
+          "lat": 31.260131
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217606,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217606,
+          "GScopeCnName": "真如",
+          "FullPY": "zhenru",
+          "FirstPY": "ZR",
+          "GScopeLevel": 3,
+          "ParentId": 2176,
+          "lng": 121.410653,
+          "lat": 31.260866
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217607,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217607,
+          "GScopeCnName": "武宁",
+          "FullPY": "wuning",
+          "FirstPY": "WN",
+          "GScopeLevel": 3,
+          "ParentId": 2176,
+          "lng": 121.426891,
+          "lat": 31.244808
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217609,
+        "NewPropCount": 4,
+        "District": {
+          "GScopeId": 217609,
+          "GScopeCnName": "长风",
+          "FullPY": "changfeng",
+          "FirstPY": "CF",
+          "GScopeLevel": 3,
+          "ParentId": 2176,
+          "lng": 121.400026,
+          "lat": 31.230883
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217611,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217611,
+          "GScopeCnName": "长征",
+          "FullPY": "changzheng",
+          "FirstPY": "CZ",
+          "GScopeLevel": 3,
+          "ParentId": 2176,
+          "lng": 121.3831,
+          "lat": 31.241989
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2166,
+    "NewPropCount": 2,
+    "District": {
+      "GScopeId": 2166,
+      "GScopeCnName": "徐汇区",
+      "FullPY": "xuhuiqu",
+      "FirstPY": "XHQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.44219,
+      "lat": 31.174805
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 216603,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 216603,
+          "GScopeCnName": "大木桥",
+          "FullPY": "damuqiao",
+          "FirstPY": "DMQ",
+          "GScopeLevel": 3,
+          "ParentId": 2166,
+          "lng": 121.465293,
+          "lat": 31.201248
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216611,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 216611,
+          "GScopeCnName": "徐家汇",
+          "FullPY": "xujiahui",
+          "FirstPY": "XJH",
+          "GScopeLevel": 3,
+          "ParentId": 2166,
+          "lng": 121.442071,
+          "lat": 31.201058
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2167,
+    "NewPropCount": 9,
+    "District": {
+      "GScopeId": 2167,
+      "GScopeCnName": "长宁区",
+      "FullPY": "changningqu",
+      "FirstPY": "CNQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.389367,
+      "lat": 31.212666
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 216702,
+        "NewPropCount": 4,
+        "District": {
+          "GScopeId": 216702,
+          "GScopeCnName": "中山公园",
+          "FullPY": "zhongshangongyuan",
+          "FirstPY": "ZSGY",
+          "GScopeLevel": 3,
+          "ParentId": 2167,
+          "lng": 121.425419,
+          "lat": 31.224114
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216703,
+        "NewPropCount": 3,
+        "District": {
+          "GScopeId": 216703,
+          "GScopeCnName": "新华路",
+          "FullPY": "xinhualu",
+          "FirstPY": "XHL",
+          "GScopeLevel": 3,
+          "ParentId": 2167,
+          "lng": 121.43188,
+          "lat": 31.210822
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216706,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 216706,
+          "GScopeCnName": "古北",
+          "FullPY": "gubeichangningqu",
+          "FirstPY": "GB",
+          "GScopeLevel": 3,
+          "ParentId": 2167,
+          "lng": 121.410511,
+          "lat": 31.20093
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216709,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 216709,
+          "GScopeCnName": "北新泾",
+          "FullPY": "beixinjing",
+          "FirstPY": "BXJ",
+          "GScopeLevel": 3,
+          "ParentId": 2167,
+          "lng": 121.363437,
+          "lat": 31.221708
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2168,
+    "NewPropCount": 4,
+    "District": {
+      "GScopeId": 2168,
+      "GScopeCnName": "静安区",
+      "FullPY": "jinganqu",
+      "FirstPY": "JAQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.453566,
+      "lat": 31.233715
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 216801,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 216801,
+          "GScopeCnName": "曹家渡",
+          "FullPY": "caojiadu",
+          "FirstPY": "CJD",
+          "GScopeLevel": 3,
+          "ParentId": 2168,
+          "lng": 121.438056,
+          "lat": 31.23677
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 216802,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 216802,
+          "GScopeCnName": "昌平",
+          "FullPY": "changping",
+          "FirstPY": "CP",
+          "GScopeLevel": 3,
+          "ParentId": 2168,
+          "lng": 121.452515,
+          "lat": 31.243331
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2171,
+    "NewPropCount": 2,
+    "District": {
+      "GScopeId": 2171,
+      "GScopeCnName": "黄浦区",
+      "FullPY": "huangpuqu",
+      "FirstPY": "HPQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.489743,
+      "lat": 31.224576
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217106,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217106,
+          "GScopeCnName": "豫园",
+          "FullPY": "yuyuan",
+          "FirstPY": "YY",
+          "GScopeLevel": 3,
+          "ParentId": 2171,
+          "lng": 121.49686,
+          "lat": 31.231208
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2175,
+    "NewPropCount": 2,
+    "District": {
+      "GScopeId": 2175,
+      "GScopeCnName": "闸北区",
+      "FullPY": "zhabeiqu",
+      "FirstPY": "ZBQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.454152,
+      "lat": 31.291275
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217502,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217502,
+          "GScopeCnName": "大宁绿地",
+          "FullPY": "daninglvdi",
+          "FirstPY": "DNLD",
+          "GScopeLevel": 3,
+          "ParentId": 2175,
+          "lng": 121.455895,
+          "lat": 31.285458
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217505,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217505,
+          "GScopeCnName": "彭浦",
+          "FullPY": "pengpu",
+          "FirstPY": "PP",
+          "GScopeLevel": 3,
+          "ParentId": 2175,
+          "lng": 121.455827,
+          "lat": 31.317366
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2170,
+    "NewPropCount": 1,
+    "District": {
+      "GScopeId": 2170,
+      "GScopeCnName": "虹口区",
+      "FullPY": "hongkouqu",
+      "FirstPY": "HKQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.489002,
+      "lat": 31.286843
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217007,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217007,
+          "GScopeCnName": "北外滩",
+          "FullPY": "beiwaitan",
+          "FirstPY": "BWT",
+          "GScopeLevel": 3,
+          "ParentId": 2170,
+          "lng": 121.506688,
+          "lat": 31.2564
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2174,
+    "NewPropCount": 1,
+    "District": {
+      "GScopeId": 2174,
+      "GScopeCnName": "杨浦区",
+      "FullPY": "yangpuqu",
+      "FirstPY": "YPQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.534878,
+      "lat": 31.307482
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217401,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 217401,
+          "GScopeCnName": "新江湾",
+          "FullPY": "xinjiangwan",
+          "FirstPY": "XJW",
+          "GScopeLevel": 3,
+          "ParentId": 2174,
+          "lng": 121.514964,
+          "lat": 31.333767
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2184,
+    "NewPropCount": 12,
+    "District": {
+      "GScopeId": 2184,
+      "GScopeCnName": "松江",
+      "FullPY": "songjiang",
+      "FirstPY": "SJ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.23674,
+      "lat": 31.038094
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 218402,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 218402,
+          "GScopeCnName": "南九亭",
+          "FullPY": "nanjiuting",
+          "FirstPY": "NJT",
+          "GScopeLevel": 3,
+          "ParentId": 2184,
+          "lng": 121.330667,
+          "lat": 31.122588
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 218407,
+        "NewPropCount": 6,
+        "District": {
+          "GScopeId": 218407,
+          "GScopeCnName": "松江新城",
+          "FullPY": "songjiangxincheng",
+          "FirstPY": "SJXC",
+          "GScopeLevel": 3,
+          "ParentId": 2184,
+          "lng": 121.243567,
+          "lat": 31.036856
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 218410,
+        "NewPropCount": 4,
+        "District": {
+          "GScopeId": 218410,
+          "GScopeCnName": "泗泾",
+          "FullPY": "sijing",
+          "FirstPY": "SJ",
+          "GScopeLevel": 3,
+          "ParentId": 2184,
+          "lng": 121.273319,
+          "lat": 31.109604
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 218411,
+        "NewPropCount": 1,
+        "District": {
+          "GScopeId": 218411,
+          "GScopeCnName": "松江大学城",
+          "FullPY": "songjiangdaxuecheng",
+          "FirstPY": "SJDXC",
+          "GScopeLevel": 3,
+          "ParentId": 2184,
+          "lng": 121.219777,
+          "lat": 31.0598
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2178,
+    "NewPropCount": 21,
+    "District": {
+      "GScopeId": 2178,
+      "GScopeCnName": "嘉定区",
+      "FullPY": "jiadingqu",
+      "FirstPY": "JDQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.255518,
+      "lat": 31.373404
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 217802,
+        "NewPropCount": 9,
+        "District": {
+          "GScopeId": 217802,
+          "GScopeCnName": "南翔",
+          "FullPY": "nanxiang",
+          "FirstPY": "NX",
+          "GScopeLevel": 3,
+          "ParentId": 2178,
+          "lng": 121.30652,
+          "lat": 31.317514
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 217808,
+        "NewPropCount": 11,
+        "District": {
+          "GScopeId": 217808,
+          "GScopeCnName": "嘉定城区",
+          "FullPY": "jiadingchengqu",
+          "FirstPY": "JDCQ",
+          "GScopeLevel": 3,
+          "ParentId": 2178,
+          "lng": 121.22246,
+          "lat": 31.413456
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2185,
+    "NewPropCount": 8,
+    "District": {
+      "GScopeId": 2185,
+      "GScopeCnName": "青浦区",
+      "FullPY": "qingpuqu",
+      "FirstPY": "QPQ",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.132393,
+      "lat": 31.158627
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 218501,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 218501,
+          "GScopeCnName": "华新",
+          "FullPY": "huaxin",
+          "FirstPY": "HX",
+          "GScopeLevel": 3,
+          "ParentId": 2185,
+          "lng": 121.241267,
+          "lat": 31.236406
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 218504,
+        "NewPropCount": 2,
+        "District": {
+          "GScopeId": 218504,
+          "GScopeCnName": "青浦城区",
+          "FullPY": "qingpuchengqu",
+          "FirstPY": "QPCQ",
+          "GScopeLevel": 3,
+          "ParentId": 2185,
+          "lng": 121.147269,
+          "lat": 31.169318
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 218505,
+        "NewPropCount": 4,
+        "District": {
+          "GScopeId": 218505,
+          "GScopeCnName": "朱家角",
+          "FullPY": "zhujiajiao",
+          "FirstPY": "ZJJ",
+          "GScopeLevel": 3,
+          "ParentId": 2185,
+          "lng": 121.048972,
+          "lat": 31.127397
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2188,
+    "NewPropCount": 21,
+    "District": {
+      "GScopeId": 2188,
+      "GScopeCnName": "其他",
+      "FullPY": "qita",
+      "FirstPY": "QT",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 0,
+      "lat": 0
+    },
+    "GscopeEsts": [
+      {
+        "DistrictId": 218801,
+        "NewPropCount": 10,
+        "District": {
+          "GScopeId": 218801,
+          "GScopeCnName": "奉贤",
+          "FullPY": "fengxian",
+          "FirstPY": "FX",
+          "GScopeLevel": 3,
+          "ParentId": 2188,
+          "lng": 121.478988,
+          "lat": 30.924939
+        },
+        "GscopeEsts": []
+      },
+      {
+        "DistrictId": 218804,
+        "NewPropCount": 10,
+        "District": {
+          "GScopeId": 218804,
+          "GScopeCnName": "昆山",
+          "FullPY": "kunsan",
+          "FirstPY": "ks",
+          "GScopeLevel": 3,
+          "ParentId": 2188,
+          "lng": 120.98,
+          "lat": 31.38
+        },
+        "GscopeEsts": []
+      }
+    ]
+  },
+  {
+    "DistrictId": 2182,
+    "NewPropCount": 3,
+    "District": {
+      "GScopeId": 2182,
+      "GScopeCnName": "南汇",
+      "FullPY": "nanhui",
+      "FirstPY": "NH",
+      "GScopeLevel": 2,
+      "ParentId": 21,
+      "lng": 121.796212,
+      "lat": 31.012658
+    },
+    "GscopeEsts": []
+  }
+]

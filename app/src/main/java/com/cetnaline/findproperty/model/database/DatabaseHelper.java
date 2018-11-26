@@ -5,9 +5,18 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.cetnaline.findproperty.model.database.dao.DaoMaster;
 import com.cetnaline.findproperty.model.database.dao.DaoSession;
+import com.cetnaline.findproperty.model.database.dao.DropMenuDao;
 import com.cetnaline.findproperty.model.database.dao.GScopeDao;
+import com.cetnaline.findproperty.model.database.dao.RailWayDao;
+import com.cetnaline.findproperty.model.database.entity.DropMenu;
 import com.cetnaline.findproperty.model.database.entity.GScope;
+import com.cetnaline.findproperty.model.database.entity.RailLine;
+import com.cetnaline.findproperty.model.database.entity.RailWay;
+import com.cetnaline.findproperty.model.database.entity.School;
+import com.cetnaline.findproperty.model.database.entity.Store;
+import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper {
@@ -44,14 +53,13 @@ public class DatabaseHelper {
         return db;
     }
 
-    public static DatabaseHelper getInstance(Context context) {
+    public static void init(Context context) {
         if (databaseHelper == null) {
-            synchronized (DatabaseHelper.class) {
-                if (databaseHelper == null) {
-                    databaseHelper = new DatabaseHelper(context);
-                }
-            }
+            databaseHelper = new DatabaseHelper(context);
         }
+    }
+
+    public static DatabaseHelper getInstance() {
         return databaseHelper;
     }
 
@@ -69,6 +77,9 @@ public class DatabaseHelper {
      * @return 插入成功标识
      */
     public void insertGscopes(List<GScope> gScopes){
+        if (gScopes == null || gScopes.size() <= 0) {
+            return;
+        }
         writeDaoSession.getGScopeDao().insertOrReplaceInTx(gScopes);
     }
 
@@ -96,7 +107,76 @@ public class DatabaseHelper {
         return gScopes;
     }
 
+    public void insertRailLines(List<RailLine> railLines) {
+        if (railLines == null || railLines.size() == 0) {
+            return;
+        }
+        writeDaoSession.getRailLineDao().insertOrReplaceInTx(railLines);
+        List<RailWay> allRailWay = new ArrayList<>();
+        for (RailLine railLine : railLines) {
+            List<RailWay> railWays = railLine.getRailWayList();
+            if (railWays != null) {
+                for (RailWay railWay : railWays) {
+                    railWay.setRailLineID(railLine.getRailLineID());
+                }
+                allRailWay.addAll(railWays);
+            }
+        }
+        writeDaoSession.getRailWayDao().insertOrReplaceInTx(allRailWay);
+    }
 
+    public List<RailLine> getRailLines() {
+        return readDaoSession.getRailLineDao().queryBuilder().list();
+    }
+
+    public List<RailWay> getRailWayByRailLineId(String radilLineId) {
+        return readDaoSession.getRailWayDao().queryBuilder()
+                .where(RailWayDao.Properties.RailLineID.eq(radilLineId))
+                .list();
+    }
+
+    public void insertSchools(List<School> schools) {
+        if (schools == null || schools.size() <= 0) {
+            return;
+        }
+        writeDaoSession.getSchoolDao().insertOrReplaceInTx(schools);
+    }
+
+    public List<School> getSchools() {
+        return readDaoSession.getSchoolDao().queryBuilder().list();
+    }
+
+    public void inseartSearchDatas(List<SearchMenuBean> searchMenuBeans) {
+        if (searchMenuBeans == null || searchMenuBeans.size() <= 0) {
+            return;
+        }
+        List<DropMenu> allDrops = new ArrayList<>();
+        for (SearchMenuBean searchData : searchMenuBeans) {
+            List<DropMenu> dropBos = searchData.getSearchDataItemList();
+            for (DropMenu dropBo : dropBos) {
+                dropBo.setName(searchData.getName());
+            }
+            allDrops.addAll(dropBos);
+        }
+        writeDaoSession.getDropMenuDao().insertInTx(allDrops);
+    }
+
+    public List<DropMenu> getSearchDataByName(String name) {
+        return readDaoSession.getDropMenuDao().queryBuilder()
+                .where(DropMenuDao.Properties.Name.eq(name))
+                .list();
+    }
+
+    public void insertStores(List<Store> stores) {
+        if (stores == null || stores.size() <= 0) {
+            return;
+        }
+        writeDaoSession.getStoreDao().insertOrReplaceInTx(stores);
+    }
+
+    public List<Store> getStores() {
+        return readDaoSession.getStoreDao().queryBuilder().list();
+    }
 }
 
 
