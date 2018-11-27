@@ -4,11 +4,13 @@ import android.content.Context;
 
 import com.cetnaline.findproperty.model.sp.SpContents;
 import com.cetnaline.findproperty.model.sp.SpHelper;
+import com.cetnaline.findproperty.utils.ApplicationUtil;
 
 public class CacheHolder {
 
     private int dbVersion; //当前数据库版本
     private boolean isFirstOpen; //首次打开
+    private boolean networkStatus; //网络状态
 
     /**
      * 初始化数据加载状态
@@ -57,6 +59,7 @@ public class CacheHolder {
                     cacheHolder.schoolDataJsonLoaded = spHelper.getBoolean(SpContents.SCHOOLDATA_LOADED);
 
                     cacheHolder.isFirstOpen = spHelper.getBoolean(SpContents.FIRST_OPEN);
+                    cacheHolder.networkStatus = ApplicationUtil.checkNetwork(context);
                 }
             }
         }
@@ -190,6 +193,14 @@ public class CacheHolder {
     public void setSchoolDataJsonLoaded(boolean schoolDataJsonLoaded) {
         this.schoolDataJsonLoaded = schoolDataJsonLoaded;
         spHelper.saveBoolean(SpContents.SCHOOLDATA_JSON_LOADED, schoolDataJsonLoaded);
+    }
+
+    public boolean isNetworkStatus() {
+        return networkStatus;
+    }
+
+    public void setNetworkStatus(boolean networkStatus) {
+        this.networkStatus = networkStatus;
     }
 
     public void clearInitDataStatus() {

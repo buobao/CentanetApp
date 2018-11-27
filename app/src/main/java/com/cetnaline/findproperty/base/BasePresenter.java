@@ -1,11 +1,15 @@
 package com.cetnaline.findproperty.base;
 
+import com.cetnaline.findproperty.bus.RxBus;
+import com.cetnaline.findproperty.bus.events.NormalEvent;
+import com.cetnaline.findproperty.model.cache.CacheHolder;
+
 import java.util.HashSet;
 import java.util.Set;
 
 import io.reactivex.disposables.Disposable;
 
-public abstract class BasePresenter<T extends IView> implements IPresenter<T> {
+public abstract class BasePresenter<T extends BaseView> implements IPresenter<T> {
     public T iView;
     private Set<Disposable> disposables;
 
@@ -31,5 +35,19 @@ public abstract class BasePresenter<T extends IView> implements IPresenter<T> {
                 }
             }
         }
+    }
+
+    @Override
+    public void eventhandler() {
+        addDisposable(RxBus.getInstance().toFlowable(NormalEvent.class)
+                .subscribe(normalEvent -> {
+                    if (normalEvent.getCode() == NormalEvent.NETWORK_CONNECTED) {
+                        iView.connectNetworkHandler();
+                    } else if (normalEvent.getCode() == NormalEvent.NETWORK_DISCONNECTED) {
+                        iView.disConnectNetworkHandler();
+                    } else {
+                        iView.eventHandler(normalEvent);
+                    }
+                }));
     }
 }

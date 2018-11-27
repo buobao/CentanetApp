@@ -12,8 +12,7 @@ import com.cetnaline.findproperty.TwoActivity;
 import com.cetnaline.findproperty.base.BaseActivity;
 import com.cetnaline.findproperty.base.IPresenter;
 import com.cetnaline.findproperty.bus.RxBus;
-import com.cetnaline.findproperty.bus.events.BaseEvent;
-import com.cetnaline.findproperty.bus.events.TextEvent;
+import com.cetnaline.findproperty.bus.events.NormalEvent;
 import com.cetnaline.findproperty.utils.RxUtil;
 
 import butterknife.BindView;
@@ -87,12 +86,12 @@ public class MainActivity extends BaseActivity {
                 .apply(options)
                 .into(imageView);
 
-        RxBus.getInstance().toFlowable(BaseEvent.class).compose(RxUtil.flowableApplyToScheduler()).subscribe(baseEvent -> {
-            textView.setText("refresh by two activity.");
-            if (baseEvent instanceof TextEvent) {
-                textView.setText("TextEvent");
-            }
-        });
+//        RxBus.getInstance().toFlowable(NormalEvent.class).compose(RxUtil.flowableApplyToScheduler()).subscribe(normalEvent -> {
+//            textView.setText("refresh by two activity.");
+//            if (normalEvent instanceof TextEvent) {
+//                textView.setText("TextEvent");
+//            }
+//        });
 
     }
 

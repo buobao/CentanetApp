@@ -1,10 +1,7 @@
 package com.cetnaline.findproperty.base;
 
-import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -14,7 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.cetnaline.findproperty.ui.broadcastreceiver.NetWorkChangReceiver;
+import com.cetnaline.findproperty.bus.events.NormalEvent;
 import com.cetnaline.findproperty.utils.statusbar.StatusBarUtil;
 
 import java.util.ArrayList;
@@ -22,10 +19,9 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 
-public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements BaseView,NetWorkChangReceiver.NetworkListener {
+public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements BaseView {
     private PermissionListener mlistener;
     protected T mPresenter;
-    private NetWorkChangReceiver netWorkChangReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,15 +39,6 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         if (!StatusBarUtil.setStatusBarDarkTheme(this, true)) {
             StatusBarUtil.setStatusBarColor(this,0x55000000);
         }
-
-        netWorkChangReceiver = new NetWorkChangReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
-        filter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
-        filter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(netWorkChangReceiver, filter);
-        netWorkChangReceiver.setNetworkListener(this);
-
         //设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.bind(this);
@@ -59,6 +46,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         if (mPresenter!=null){
             mPresenter.attachView(this);
         }
+        mPresenter.eventhandler();
         init(savedInstanceState);
     }
 
@@ -98,23 +86,34 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unregisterReceiver(netWorkChangReceiver);
         if (mPresenter != null) mPresenter.detachView();
-    }
-
-    @Override
-    public void onNetworkConnected() {
-//        showMessage("网络已连接");
-    }
-
-    @Override
-    public void onNetworkDisconnected() {
-//        showMessage("网络已断开");
     }
 
     protected abstract @LayoutRes int getLayout();
     protected abstract void init(@Nullable Bundle savedInstanceState);
     protected abstract T createPresenter();
+
+    /**
+     * 网路连接处理
+     */
+    @Override
+    public void connectNetworkHandler() {
+
+    }
+
+    /**
+     * 网络断开处理
+     */
+    @Override
+    public void disConnectNetworkHandler() {
+
+    }
+
+    //事件处理
+    @Override
+    public void eventHandler(NormalEvent normalEvent) {
+
+    }
 
     /**
      * 设置沉浸式状态栏

@@ -89,4 +89,5 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:' + GLIDE_VERSION
     //greendao
     implementation 'org.greenrobot:greendao:' + GREEN_DAO_VERSION
+    implementation 'org.jetbrains:annotations:15.0'
 }

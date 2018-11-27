@@ -1,6 +1,7 @@
 package com.cetnaline.findproperty.ui.splash.impl;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.WindowManager;
@@ -9,6 +10,7 @@ import com.cetnaline.findproperty.BuildConfig;
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
 import com.cetnaline.findproperty.model.network.NetWorkManager;
+import com.cetnaline.findproperty.ui.service.NetworkStateService;
 import com.cetnaline.findproperty.ui.splash.SplashPresenter;
 import com.cetnaline.findproperty.ui.splash.SplashView;
 
@@ -30,6 +32,8 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         } else {
             mPresenter.getAppHost();
         }
+        Intent i=new Intent(this,NetworkStateService.class);
+        startService(i);
     }
 
     @Override
@@ -44,6 +48,16 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         NetWorkManager.getInstance().resetHost(host);
         //获取基础数据
         requestBaseData();
+    }
+
+    @Override
+    public void connectNetworkHandler() {
+        showMessage("网络已连接");
+    }
+
+    @Override
+    public void disConnectNetworkHandler() {
+        showMessage("网络已断开");
     }
 
     private void requestBaseData() {
