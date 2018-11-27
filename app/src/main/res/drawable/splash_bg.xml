@@ -9,7 +9,7 @@
         </shape>
     </item>
     <item>
-        <bitmap android:src="@mipmap/start_logo"
+        <bitmap android:src="@drawable/start_logo"
             android:gravity="center"/>
     </item>
 

@@ -11,8 +11,8 @@ import com.cetnaline.findproperty.R;
 public class GlideImageLoader {
 
     private static RequestOptions options = new RequestOptions()
-            .placeholder(R.mipmap.image_loading)
-            .error(R.mipmap.image_load_err)
+            .placeholder(R.drawable.image_loading)
+            .error(R.drawable.image_load_err)
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC);
 
     public static void loadWithUrl(Context context, String url, ImageView target) {

@@ -45,16 +45,11 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
     }
 
     @Override
-    public void getAppBaseData() {
-
-    }
-
-    @Override
     public void checkDatabaseVersion(Context context) {
         addDisposable(ApiRequestImp.getDataVersion().subscribe(longBaseResponseBean -> {
             if (longBaseResponseBean.getResultNo() != 0) {
                 if (CacheHolder.getInstance().isFirstOpen()) {
-                    CacheHolder.getInstance().setFirstOpen(false);
+                    CacheHolder.getInstance().setFirstOpen(false);  //首次加载标志
                     loadJsonGscope(context);
                     loadJsonStore(context);
                     loadJsonSearchData(context);
@@ -154,6 +149,7 @@ public class SplashPresenterImpl extends BasePresenter<SplashView> implements Sp
                     }));
                 }
             }
+            iView.goNext();
         }));
     }
 

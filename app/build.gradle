@@ -39,11 +39,13 @@ android {
 //            buildConfigField('boolean', 'DEBUG', 'true')
             versionNameSuffix "-d"
             buildConfigField "String", "API_URL", "\"${project.property("TEST_API_HOST")}\""
+            buildConfigField "Integer", "GUILD_FLAG", "${project.property("GUILD_FLAG")}"
             //"\"${project.property("FORMAL_API_LOCATION")}\""
         }
 
         release {
             buildConfigField "String", "API_URL", "\"${project.property("FORMAL_API_HOST")}\""
+            buildConfigField "Integer", "GUILD_FLAG", "${project.property("GUILD_FLAG")}"
             //"\"${project.property("FORMAL_API_LOCATION")}\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

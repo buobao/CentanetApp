@@ -9,7 +9,10 @@ import android.view.WindowManager;
 import com.cetnaline.findproperty.BuildConfig;
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
+import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.model.network.NetWorkManager;
+import com.cetnaline.findproperty.ui.MainActivity;
+import com.cetnaline.findproperty.ui.guild.impl.GuildActivity;
 import com.cetnaline.findproperty.ui.service.NetworkStateService;
 import com.cetnaline.findproperty.ui.splash.SplashPresenter;
 import com.cetnaline.findproperty.ui.splash.SplashView;
@@ -26,14 +29,14 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
     @Override
     protected void init(@Nullable Bundle savedInstanceState) {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //全屏
+        Intent i=new Intent(this,NetworkStateService.class);
+        startService(i);
         if (BuildConfig.DEBUG) {
             //基础数据请求
             requestBaseData();
         } else {
             mPresenter.getAppHost();
         }
-        Intent i=new Intent(this,NetworkStateService.class);
-        startService(i);
     }
 
     @Override
@@ -48,6 +51,22 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
         NetWorkManager.getInstance().resetHost(host);
         //获取基础数据
         requestBaseData();
+    }
+
+    @Override
+    public void goNext() {
+        if (CacheHolder.getInstance().getGuildVersion() < BuildConfig.GUILD_FLAG) {
+            CacheHolder.getInstance().setGuildVersion(BuildConfig.GUILD_FLAG);
+            //启动引导页
+            Intent intent = new Intent(this, GuildActivity.class);
+            startActivity(intent);
+
+        } else {
+            //启动首页
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+        finish();
     }
 
     @Override
@@ -70,6 +89,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
             @Override
             public void onDenied(List<String> grantedPermission,List<String> deniedPermission) {
                 showMessage(getResources().getString(R.string.no_storage_permission_msg));
+                finish();
             }
         });
     }

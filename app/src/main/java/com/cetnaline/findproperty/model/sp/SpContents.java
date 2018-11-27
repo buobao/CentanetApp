@@ -10,6 +10,8 @@ public class SpContents {
     public final static String DB_VERSION = "db_version";
     //基础数据版本号
     public final static String BASE_DATA_VERSION = "base_data_version";
+    //引导页版本号
+    public final static String GUILD_VERSION = "guild_version";
     /**
      * 初始化数据加载状态
      */

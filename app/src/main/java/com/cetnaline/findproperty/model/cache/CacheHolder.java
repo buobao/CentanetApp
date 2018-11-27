@@ -9,6 +9,7 @@ import com.cetnaline.findproperty.utils.ApplicationUtil;
 public class CacheHolder {
 
     private int dbVersion; //当前数据库版本
+    private int guildVersion; //引导页版本号
     private boolean isFirstOpen; //首次打开
     private boolean networkStatus; //网络状态
 
@@ -43,7 +44,8 @@ public class CacheHolder {
                     cacheHolder = new CacheHolder();
                     spHelper = SpHelper.getInstance(context);
                     //加载状态数据
-                    cacheHolder.dbVersion = spHelper.getInt(SpContents.DB_VERSION);
+                    cacheHolder.dbVersion = spHelper.getInt(SpContents.DB_VERSION, 0);
+                    cacheHolder.guildVersion = spHelper.getInt(SpContents.GUILD_VERSION, 0);
                     cacheHolder.searchDataLoaded = spHelper.getBoolean(SpContents.SEARCHDATA_LOADED);
                     cacheHolder.districtEstLoaded = spHelper.getBoolean(SpContents.DISTRICTEST_LOADED);
                     cacheHolder.gScopeDataLoaded = spHelper.getBoolean(SpContents.GSCOPEDATA_LOADED);
@@ -76,6 +78,15 @@ public class CacheHolder {
     public void setDbVersion(int dbVersion) {
         this.dbVersion = dbVersion;
         spHelper.saveInt(SpContents.DB_VERSION, dbVersion);
+    }
+
+    public int getGuildVersion() {
+        return guildVersion;
+    }
+
+    public void setGuildVersion(int guildVersion) {
+        this.guildVersion = guildVersion;
+        spHelper.saveInt(SpContents.GUILD_VERSION, guildVersion);
     }
 
     public boolean isFirstOpen() {
