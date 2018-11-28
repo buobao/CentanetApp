@@ -1,13 +1,19 @@
 package com.cetnaline.findproperty.base;
 
+import android.view.View;
+import android.widget.Button;
+
 import com.cetnaline.findproperty.bus.RxBus;
 import com.cetnaline.findproperty.bus.events.NormalEvent;
-import com.cetnaline.findproperty.model.cache.CacheHolder;
+import com.cetnaline.findproperty.utils.RxUtil;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 public abstract class BasePresenter<T extends BaseView> implements IPresenter<T> {
     public T iView;
@@ -48,6 +54,15 @@ public abstract class BasePresenter<T extends BaseView> implements IPresenter<T>
                     } else {
                         iView.eventHandler(normalEvent);
                     }
+                }));
+    }
+
+    @Override
+    public void onViewClick(View target, View.OnClickListener listener) {
+        addDisposable(Observable.create(new RxUtil.RxView(target))
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(view -> {
+                    listener.onClick(view);
                 }));
     }
 }

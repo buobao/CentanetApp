@@ -1,11 +1,13 @@
 package com.cetnaline.findproperty.utils;
 
+import android.view.View;
+
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
-
 import java.util.concurrent.TimeoutException;
-
 import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -40,4 +42,49 @@ public class RxUtil {
             return Observable.just(new BaseResponseBean<>());
         });
     }
+
+
+    public static class RxView implements ObservableOnSubscribe<View> {
+        private ObservableEmitter<View> emitter;
+        @Override
+        public void subscribe(ObservableEmitter<View> emitter) throws Exception {
+            this.emitter = emitter;
+        }
+
+        public RxView(View view) {
+            view.setOnClickListener(v -> {
+                emitter.onNext(view);
+            });
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

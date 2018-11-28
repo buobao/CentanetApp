@@ -1,5 +1,6 @@
 package com.cetnaline.findproperty.ui.guild.impl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,10 +8,12 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
+import com.cetnaline.findproperty.ui.MainActivity;
 import com.cetnaline.findproperty.ui.guild.GuildPresenter;
 import com.cetnaline.findproperty.ui.guild.GuildView;
 import com.cetnaline.findproperty.widgets.DotIndicator;
@@ -22,6 +25,8 @@ public class GuildActivity extends BaseActivity<GuildPresenter> implements Guild
     protected ViewPager viewPager;
     @BindView(R.id.dot_indicator)
     protected DotIndicator dotIndicator;
+    @BindView(R.id.access_btn)
+    protected Button accessButton;
     protected int[] guildImages = new int[]{R.drawable.ic_lead_1, R.drawable.ic_lead_2, R.drawable.ic_lead_3, R.drawable.ic_lead_4};
 
     @Override
@@ -31,6 +36,12 @@ public class GuildActivity extends BaseActivity<GuildPresenter> implements Guild
 
     @Override
     protected void init(@Nullable Bundle savedInstanceState) {
+        mPresenter.onViewClick(accessButton, v -> {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
+
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -62,16 +73,16 @@ public class GuildActivity extends BaseActivity<GuildPresenter> implements Guild
         dotIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
-//                if (position == 3) {
-//                    ll_bottom_bt.setVisibility(View.VISIBLE);
-//                } else {
-//                    ll_bottom_bt.setVisibility(View.GONE);
-//                }
+
             }
 
             @Override
             public void onPageSelected(int i) {
-
+                if (i == guildImages.length-1) {
+                    accessButton.setVisibility(View.VISIBLE);
+                } else {
+                    accessButton.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -83,6 +94,6 @@ public class GuildActivity extends BaseActivity<GuildPresenter> implements Guild
 
     @Override
     protected GuildPresenter createPresenter() {
-        return null;
+        return new GuildPresenterImpl();
     }
 }

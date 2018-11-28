@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="text_x_large">24sp</dimen>
+    <dimen name="text_large">21sp</dimen>
+    <dimen name="title">18sp</dimen>
+    <dimen name="sub_title">16sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_mini">10sp</dimen>
+</resources>
