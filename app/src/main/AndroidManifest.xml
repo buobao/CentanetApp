@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.guild.impl.GuildActivity"/>
-        <activity android:name=".ui.MainActivity"/>
+        <activity android:name=".ui.main.impl.MainActivity"/>
 
         <service android:enabled="true" android:name=".ui.service.NetworkStateService" />
     </application>

@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
-import com.cetnaline.findproperty.ui.MainActivity;
+import com.cetnaline.findproperty.ui.main.impl.MainActivity;
 import com.cetnaline.findproperty.ui.guild.GuildPresenter;
 import com.cetnaline.findproperty.ui.guild.GuildView;
 import com.cetnaline.findproperty.widgets.DotIndicator;

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.cetnaline.findproperty.bus.events.NormalEvent;
 import com.cetnaline.findproperty.utils.statusbar.StatusBarUtil;
+import com.cetnaline.findproperty.widgets.LoadingDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ import butterknife.ButterKnife;
 public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivity implements BaseView {
     private PermissionListener mlistener;
     protected T mPresenter;
+
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -147,6 +150,23 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     @Override
     public void showMessage(int msgId) {
         showMessage(getResources().getString(msgId));
+    }
+
+    @Override
+    public void showLoadingDialog(boolean cancelable) {
+        if (loadingDialog == null) {
+            loadingDialog = new LoadingDialog(this, cancelable);
+        } else {
+            loadingDialog.setCancelable(cancelable);
+        }
+        loadingDialog.show();
+    }
+
+    @Override
+    public void cancelLoadingDialog() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     public interface PermissionListener {

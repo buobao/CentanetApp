@@ -92,4 +92,6 @@ dependencies {
     //greendao
     implementation 'org.greenrobot:greendao:' + GREEN_DAO_VERSION
     implementation 'org.jetbrains:annotations:15.0'
+    //FlycoTabLayout tab切换控件
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:' + FLYCO_TABLAYOUT_VERSION
 }

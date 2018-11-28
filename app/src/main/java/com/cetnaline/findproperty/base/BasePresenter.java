@@ -1,7 +1,6 @@
 package com.cetnaline.findproperty.base;
 
 import android.view.View;
-import android.widget.Button;
 
 import com.cetnaline.findproperty.bus.RxBus;
 import com.cetnaline.findproperty.bus.events.NormalEvent;
@@ -13,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 public abstract class BasePresenter<T extends BaseView> implements IPresenter<T> {
     public T iView;

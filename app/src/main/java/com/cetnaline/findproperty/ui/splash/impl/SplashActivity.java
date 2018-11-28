@@ -11,7 +11,7 @@ import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
 import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.model.network.NetWorkManager;
-import com.cetnaline.findproperty.ui.MainActivity;
+import com.cetnaline.findproperty.ui.main.impl.MainActivity;
 import com.cetnaline.findproperty.ui.guild.impl.GuildActivity;
 import com.cetnaline.findproperty.ui.service.NetworkStateService;
 import com.cetnaline.findproperty.ui.splash.SplashPresenter;

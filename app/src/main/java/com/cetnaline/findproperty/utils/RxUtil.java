@@ -44,17 +44,18 @@ public class RxUtil {
     }
 
 
+    /**
+     * 用于点击事件处理
+     */
     public static class RxView implements ObservableOnSubscribe<View> {
         private ObservableEmitter<View> emitter;
         @Override
-        public void subscribe(ObservableEmitter<View> emitter) throws Exception {
+        public void subscribe(ObservableEmitter<View> emitter) {
             this.emitter = emitter;
         }
 
         public RxView(View view) {
-            view.setOnClickListener(v -> {
-                emitter.onNext(view);
-            });
+            view.setOnClickListener(v -> emitter.onNext(view));
         }
     }
 }

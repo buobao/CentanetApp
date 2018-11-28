@@ -1,22 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.MainActivity">
-    <ImageView
-        android:id="@+id/imageView"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.main.impl.MainActivity">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/fragment_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic[0]" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:text="orient"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"/>
 
 
-</LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true">
+        <com.flyco.tablayout.CommonTabLayout
+            android:id="@+id/bottom_tab_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            app:tl_indicator_bounce_enable="false"
+            app:tl_indicator_width="0dp"
+            app:tl_textBold="SELECT"
+            app:tl_textSelectColor="@color/colorAccent"
+            app:tl_textUnselectColor="@color/textNormal"
+            app:tl_textsize="@dimen/text_mini" />
+
+        <ImageView
+            android:id="@+id/map_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_main_map" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
