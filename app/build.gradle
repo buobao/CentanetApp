@@ -12,6 +12,14 @@ android {
         versionCode APP_VERSION_CODE as int
         versionName APP_VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","x86_64"
+        }
+
+        manifestPlaceholders = [
+                AMAP_KEY : "${project.property("AMAP_KEY")}"
+        ]
     }
 
     compileOptions {
@@ -94,4 +102,10 @@ dependencies {
     implementation 'org.jetbrains:annotations:15.0'
     //FlycoTabLayout tab切换控件
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:' + FLYCO_TABLAYOUT_VERSION
+    //AMap 3D地图
+    implementation 'com.amap.api:3dmap:' + AMAP_3DMAP_VERSION
+    //AMap search
+    implementation 'com.amap.api:search:' + AMAP_SEARCH_VERSION
+    //AMap 定位
+    implementation 'com.amap.api:location:' + AMAP_LOCATION_VERSION
 }

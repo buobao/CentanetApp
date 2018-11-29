@@ -2,6 +2,7 @@
     <string name="app_name">CentanetApp</string>
     <!--splash page-->
     <string name="no_storage_permission_msg">未能获取文件读取权限，请重启并授权</string>
+    <string name="no_location_permission_msg">未能获取定位权限。</string>
     <!--guild page-->
     <string name="access_btn_text">开启我的中原</string>
 </resources>

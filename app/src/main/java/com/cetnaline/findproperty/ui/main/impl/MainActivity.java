@@ -1,4 +1,5 @@
 package com.cetnaline.findproperty.ui.main.impl;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import com.cetnaline.findproperty.ui.fragments.home.MainPagerAdapter;
 import com.cetnaline.findproperty.ui.fragments.personalcenter.PersonalCenterFragment;
 import com.cetnaline.findproperty.ui.main.MainPresenter;
 import com.cetnaline.findproperty.ui.main.MainView;
+import com.cetnaline.findproperty.ui.map.impl.MapActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
@@ -105,6 +107,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
         mPresenter.onViewClick(mapButton, v -> {
             //打开地图找房
+            Intent intent = new Intent(this, MapActivity.class);
+            startActivity(intent);
         });
     }
 
