@@ -16,8 +16,6 @@ import com.cetnaline.findproperty.ui.map.MapPresenter;
 import com.cetnaline.findproperty.ui.map.MapView;
 import com.cetnaline.findproperty.utils.LocationUtil;
 
-import java.util.List;
-
 import butterknife.BindView;
 
 public class MapActivity extends BaseActivity<MapPresenter> implements MapView {
