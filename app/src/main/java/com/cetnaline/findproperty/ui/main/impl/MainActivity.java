@@ -11,6 +11,7 @@ import com.cetnaline.findproperty.ui.fragments.chatconversation.ChatConversation
 import com.cetnaline.findproperty.ui.fragments.home.HomeFragment;
 import com.cetnaline.findproperty.ui.fragments.home.MainPagerAdapter;
 import com.cetnaline.findproperty.ui.fragments.personalcenter.PersonalCenterFragment;
+import com.cetnaline.findproperty.ui.login.impl.LoginActivity;
 import com.cetnaline.findproperty.ui.main.MainPresenter;
 import com.cetnaline.findproperty.ui.main.MainView;
 import com.cetnaline.findproperty.ui.map.impl.MapActivity;
@@ -107,7 +108,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
         mPresenter.onViewClick(mapButton, v -> {
             //打开地图找房
-            Intent intent = new Intent(this, MapActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         });
     }

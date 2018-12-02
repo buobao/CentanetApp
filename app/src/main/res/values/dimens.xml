@@ -1,4 +1,6 @@
 <resources>
+    <dimen name="status_bar_height">22dp</dimen>
+
     <dimen name="text_x_large">24sp</dimen>
     <dimen name="text_large">21sp</dimen>
     <dimen name="title">18sp</dimen>

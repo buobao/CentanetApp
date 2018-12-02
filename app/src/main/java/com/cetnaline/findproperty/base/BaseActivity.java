@@ -29,6 +29,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        beforeViewInit(savedInstanceState);
         if (getLayout() != 0) {
             setContentView(getLayout());
         }
@@ -51,6 +52,10 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
             mPresenter.eventhandler();
         }
         init(savedInstanceState);
+    }
+
+    protected void beforeViewInit(Bundle savedInstanceState){
+
     }
 
     @Override
