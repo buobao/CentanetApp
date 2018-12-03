@@ -79,7 +79,7 @@
                         android:textStyle="bold"
                         android:padding="3dp"
                         android:text="+86 |"
-                        android:textSize="16sp"
+                        android:textSize="@dimen/sub_title"
                         android:textColor="@color/textHintDark" />
 
                     <android.support.v7.widget.AppCompatEditText
@@ -92,7 +92,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="phone"
                         android:textColorHint="@color/textHint"
-                        android:textSize="@dimen/text_body"
+                        android:textSize="@dimen/sub_title"
                         android:textColor="@color/textNormal" />
 
                 </LinearLayout>
