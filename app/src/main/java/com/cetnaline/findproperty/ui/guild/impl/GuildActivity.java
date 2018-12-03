@@ -30,6 +30,11 @@ public class GuildActivity extends BaseActivity<GuildPresenter> implements Guild
     protected int[] guildImages = new int[]{R.drawable.ic_lead_1, R.drawable.ic_lead_2, R.drawable.ic_lead_3, R.drawable.ic_lead_4};
 
     @Override
+    protected boolean fullScreenEnable() {
+        return true;
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_guild;
     }

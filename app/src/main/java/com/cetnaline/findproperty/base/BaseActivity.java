@@ -34,15 +34,17 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
             setContentView(getLayout());
         }
 
-        if (paddingStatusBar()) {
-            StatusBarUtil.setRootViewFitsSystemWindows(this,true);
+        if (fullScreenEnable()) {
+            //设置状态栏透明
+            StatusBarUtil.setTranslucentStatus(this);
+            if (!StatusBarUtil.setStatusBarDarkTheme(this, true)) {
+                StatusBarUtil.setStatusBarColor(this,0x55000000);
+            }
+            if (paddingStatus()) {
+                StatusBarUtil.setRootViewFitsSystemWindows(this,true);
+            }
         }
 
-        //设置状态栏透明
-        StatusBarUtil.setTranslucentStatus(this);
-        if (!StatusBarUtil.setStatusBarDarkTheme(this, true)) {
-            StatusBarUtil.setStatusBarColor(this,0x55000000);
-        }
         //设置竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ButterKnife.bind(this);
@@ -127,7 +129,15 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
      * 设置沉浸式状态栏
      * @return
      */
-    protected boolean paddingStatusBar() {
+    protected boolean fullScreenEnable() {
+        return false;
+    }
+
+    /**
+     * 设置预留状态栏高度 默认不预留
+     * @return
+     */
+    protected boolean paddingStatus() {
         return false;
     }
 

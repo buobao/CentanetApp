@@ -21,24 +21,24 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        RailLineDao.createTable(db, ifNotExists);
-        SchoolDao.createTable(db, ifNotExists);
-        NearByScopeDao.createTable(db, ifNotExists);
-        GScopeDao.createTable(db, ifNotExists);
-        StoreDao.createTable(db, ifNotExists);
-        RailWayDao.createTable(db, ifNotExists);
         DropMenuDao.createTable(db, ifNotExists);
+        GScopeDao.createTable(db, ifNotExists);
+        NearByScopeDao.createTable(db, ifNotExists);
+        RailLineDao.createTable(db, ifNotExists);
+        RailWayDao.createTable(db, ifNotExists);
+        SchoolDao.createTable(db, ifNotExists);
+        StoreDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        RailLineDao.dropTable(db, ifExists);
-        SchoolDao.dropTable(db, ifExists);
-        NearByScopeDao.dropTable(db, ifExists);
-        GScopeDao.dropTable(db, ifExists);
-        StoreDao.dropTable(db, ifExists);
-        RailWayDao.dropTable(db, ifExists);
         DropMenuDao.dropTable(db, ifExists);
+        GScopeDao.dropTable(db, ifExists);
+        NearByScopeDao.dropTable(db, ifExists);
+        RailLineDao.dropTable(db, ifExists);
+        RailWayDao.dropTable(db, ifExists);
+        SchoolDao.dropTable(db, ifExists);
+        StoreDao.dropTable(db, ifExists);
     }
 
     /**
@@ -57,13 +57,13 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(RailLineDao.class);
-        registerDaoClass(SchoolDao.class);
-        registerDaoClass(NearByScopeDao.class);
-        registerDaoClass(GScopeDao.class);
-        registerDaoClass(StoreDao.class);
-        registerDaoClass(RailWayDao.class);
         registerDaoClass(DropMenuDao.class);
+        registerDaoClass(GScopeDao.class);
+        registerDaoClass(NearByScopeDao.class);
+        registerDaoClass(RailLineDao.class);
+        registerDaoClass(RailWayDao.class);
+        registerDaoClass(SchoolDao.class);
+        registerDaoClass(StoreDao.class);
     }
 
     public DaoSession newSession() {

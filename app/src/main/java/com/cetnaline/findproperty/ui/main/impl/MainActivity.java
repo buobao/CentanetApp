@@ -33,6 +33,16 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
     private int currentPage;
 
     @Override
+    protected boolean fullScreenEnable() {
+        return true;
+    }
+
+    @Override
+    protected boolean paddingStatus() {
+        return true;
+    }
+
+    @Override
     protected int getLayout() {
         return R.layout.activity_main;
     }
