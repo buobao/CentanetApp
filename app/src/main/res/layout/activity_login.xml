@@ -82,7 +82,7 @@
                         android:textSize="@dimen/sub_title"
                         android:textColor="@color/textHintDark" />
 
-                    <android.support.v7.widget.AppCompatEditText
+                    <com.cetnaline.findproperty.widgets.ClearableEditView
                         android:id="@+id/phone_number_edt"
                         android:padding="6dp"
                         android:layout_width="match_parent"
@@ -92,7 +92,7 @@
                         android:background="@android:color/transparent"
                         android:inputType="phone"
                         android:textColorHint="@color/textHint"
-                        android:textSize="@dimen/sub_title"
+                        android:textSize="@dimen/text_large"
                         android:textColor="@color/textNormal" />
 
                 </LinearLayout>
