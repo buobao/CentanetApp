@@ -15,6 +15,7 @@ import com.cetnaline.findproperty.utils.ApplicationUtil;
 public class ClearableEditView extends AppCompatEditText implements TextWatcher {
     private boolean isClearButtonShow;
     private ClearActionListener clearActionListener;
+    private OnTextChangedListener onTextChangedListener;
 
     public ClearableEditView(Context context) {
         super(context);
@@ -74,6 +75,10 @@ public class ClearableEditView extends AppCompatEditText implements TextWatcher 
             setCompoundDrawables(drawables[0],drawables[1],null,drawables[3]);
             isClearButtonShow = false;
         }
+
+        if (onTextChangedListener != null) {
+            onTextChangedListener.onTextChanged(s);
+        }
     }
 
     @Override
@@ -85,8 +90,16 @@ public class ClearableEditView extends AppCompatEditText implements TextWatcher 
         this.clearActionListener = clearActionListener;
     }
 
+    public void setOnTextChangedListener(OnTextChangedListener onTextChangedListener) {
+        this.onTextChangedListener = onTextChangedListener;
+    }
+
     public interface ClearActionListener {
         void onClear(ClearableEditView clearableEditView);
+    }
+
+    public interface OnTextChangedListener {
+        void onTextChanged(CharSequence s);
     }
 
 }
