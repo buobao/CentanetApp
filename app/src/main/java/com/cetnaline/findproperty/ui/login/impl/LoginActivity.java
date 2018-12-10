@@ -1,9 +1,7 @@
 package com.cetnaline.findproperty.ui.login.impl;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.View;
 
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;

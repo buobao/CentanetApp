@@ -27,6 +27,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void init() {
+        showLoadingDialog(false);
         webView.loadUrl("http://m.sh.centanet.com/shangye/?utm_source=wap");
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
@@ -53,6 +54,12 @@ public class HomeFragment extends BaseFragment {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return super.shouldOverrideUrlLoading(view, url);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                cancelLoadingDialog();
+                super.onPageFinished(view, url);
             }
         });
     }
