@@ -174,7 +174,9 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         } else {
             loadingDialog.setCancelable(cancelable);
         }
-        loadingDialog.show();
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
     }
 
     @Override
