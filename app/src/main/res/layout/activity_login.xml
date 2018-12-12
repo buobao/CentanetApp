@@ -1,159 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none">
-        <RelativeLayout
+        android:layout_height="match_parent">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            android:scrollbars="none">
             <RelativeLayout
-                android:id="@+id/top_bar"
-                android:gravity="center_vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:id="@+id/top_bar"
+                    android:gravity="center_vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="15dp"
+                        android:src="@drawable/ic_close"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:padding="15dp"
+                        android:textColor="@color/textLoginGray"
+                        android:textSize="@dimen/text_body"
+                        android:text="@string/yaoqingma_btn_text" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/top_bar"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_close"/>
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/login_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:text="@string/login_phone"
+                        android:textColor="@color/black"
+                        android:textSize="36sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:padding="15dp"
-                    android:textColor="@color/textLoginGray"
-                    android:textSize="@dimen/text_body"
-                    android:text="@string/yaoqingma_btn_text" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/login_unregistered"
+                        android:textColor="#c4c4c6"
+                        android:textSize="13sp" />
+
+                    <LinearLayout
+                        android:layout_marginTop="60dp"
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginRight="45dp"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/login_phone_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:enabled="true"
+                            android:textStyle="bold"
+                            android:padding="3dp"
+                            android:text="+86 |"
+                            android:textSize="@dimen/sub_title"
+                            android:textColor="@color/textHintDark" />
+
+                        <com.cetnaline.findproperty.widgets.ClearableEditView
+                            android:id="@+id/phone_number_edt"
+                            android:padding="6dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/login_phone_hint"
+                            android:maxLength="11"
+                            android:background="@android:color/transparent"
+                            android:inputType="phone"
+                            android:textColorHint="@color/textHint"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/textNormal" />
+
+                    </LinearLayout>
+                    <View
+                        android:background="#dddddd"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="45dp"
+                        android:layout_marginRight="45dp"/>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:layout_below="@+id/top_bar"
+        </ScrollView>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <RelativeLayout
+                android:layout_marginLeft="90dp"
+                android:layout_marginRight="90dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="80dp">
 
-                <TextView
-                    android:id="@+id/login_title"
+                <ImageView
+                    android:id="@+id/login_for_qq"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:text="@string/login_phone"
-                    android:textColor="@color/black"
-                    android:textSize="36sp" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/login_qq" />
 
-                <TextView
+                <ImageView
+                    android:id="@+id/login_for_wx"
+                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/login_unregistered"
-                    android:textColor="#c4c4c6"
-                    android:textSize="13sp" />
+                    android:layout_height="match_parent"
+                    android:src="@drawable/login_chat" />
 
-                <LinearLayout
-                    android:layout_marginTop="60dp"
-                    android:layout_marginLeft="45dp"
-                    android:layout_marginRight="45dp"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/login_phone_area"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:enabled="true"
-                        android:textStyle="bold"
-                        android:padding="3dp"
-                        android:text="+86 |"
-                        android:textSize="@dimen/sub_title"
-                        android:textColor="@color/textHintDark" />
+                <ImageView
+                    android:id="@+id/login_for_wb"
+                    android:layout_alignParentRight="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/login_sina" />
 
-                    <com.cetnaline.findproperty.widgets.ClearableEditView
-                        android:id="@+id/phone_number_edt"
-                        android:padding="6dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/login_phone_hint"
-                        android:maxLength="11"
-                        android:background="@android:color/transparent"
-                        android:inputType="phone"
-                        android:textColorHint="@color/textHint"
-                        android:textSize="@dimen/text_large"
-                        android:textColor="@color/textNormal" />
+            </RelativeLayout>
 
-                </LinearLayout>
-                <View
-                    android:background="#dddddd"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginLeft="45dp"
-                    android:layout_marginRight="45dp"/>
 
-            </LinearLayout>
+            <android.support.v7.widget.AppCompatTextView
+                android:gravity="center"
+                android:textSize="@dimen/text_small"
+                android:textColor="@color/textHint"
+                android:text="@string/login_bottom_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        </RelativeLayout>
-
-    </ScrollView>
-
-    <LinearLayout
+    </RelativeLayout>
+    <com.cetnaline.findproperty.widgets.AnimationLayout
+        android:id="@+id/code_layout"
+        android:clickable="true"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_marginLeft="90dp"
-            android:layout_marginRight="90dp"
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_back_gray_24dp"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp" />
 
-            <ImageView
-                android:id="@+id/login_for_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/login_qq" />
+        <TextView
+            android:id="@+id/msg_table"
+            android:layout_marginTop="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/title"
+            android:textColor="@color/textHintDark"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="-4sp"
+            android:text="验证码发送至" />
 
-            <ImageView
-                android:id="@+id/login_for_wx"
-                android:layout_centerHorizontal="true"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/login_chat" />
+        <com.cetnaline.findproperty.widgets.CodeInputView
+            android:id="@+id/msg_code"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-            <ImageView
-                android:id="@+id/login_for_wb"
-                android:layout_alignParentRight="true"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/login_sina" />
+    </com.cetnaline.findproperty.widgets.AnimationLayout>
+</FrameLayout>
 
-        </RelativeLayout>
-
-
-        <android.support.v7.widget.AppCompatTextView
-            android:gravity="center"
-            android:textSize="@dimen/text_small"
-            android:textColor="@color/textHint"
-            android:text="@string/login_bottom_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-</RelativeLayout>
 
 
 

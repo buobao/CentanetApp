@@ -13,6 +13,7 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
 import com.cetnaline.findproperty.R;
@@ -38,6 +39,12 @@ public class CodeInputView extends LinearLayout {
         init(context,attrs);
     }
 
+    public void cleartext() {
+        focusIndex = 0;
+        removeAllViews();
+        initInputs();
+    }
+
     private void init(Context context, AttributeSet attrs) {
         TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.CodeInputView);
         codeNum = ta.getInt(R.styleable.CodeInputView_code_num, 4);
@@ -58,24 +65,28 @@ public class CodeInputView extends LinearLayout {
         ta.recycle();
 
         setOrientation(HORIZONTAL);
-        int padding = ApplicationUtil.dip2px(context, 4);
+        initInputs();
+    }
+
+    private void initInputs() {
+        int padding = ApplicationUtil.dip2px(getContext(), 4);
         setPadding(padding,padding,padding,padding);
         for (int i = 0; i < codeNum; i++) {
-            InputItem editText = new InputItem(context);
+            InputItem editText = new InputItem(getContext(), i);
             editText.setInputType(InputType.TYPE_CLASS_NUMBER);
             editText.setFocusable(true);
             editText.setFocusableInTouchMode(true);
 //            editText.setOnClickListener(v-> setFocusIndex(focusIndex));
             editText.setOnFocusChangeListener((v, hasFocus) -> {
-                           if (hasFocus) {
-                               setFocusIndex(focusIndex);
-                           } else {
-                               if (TextUtils.isEmpty(((InputItem)v).getText())) {
-                                   v.setBackground(itemUninputDrawable);
-                               } else {
-                                   v.setBackground(itemInputedDrawable);
-                               }
-                           }
+                if (hasFocus) {
+                    setFocusIndex(focusIndex);
+                } else {
+                    if (TextUtils.isEmpty(((InputItem)v).getText())) {
+                        v.setBackground(itemUninputDrawable);
+                    } else {
+                        v.setBackground(itemInputedDrawable);
+                    }
+                }
             });
             editText.addTextChangedListener(new TextWatcher() {
                 @Override
@@ -98,7 +109,6 @@ public class CodeInputView extends LinearLayout {
                             }
                         }
                     }
-
 //                    if (start == 0 && before == 1 && focusIndex > 0) {
 //                        editText.setText("");
 //                        if (focusIndex > 0) {
@@ -128,6 +138,10 @@ public class CodeInputView extends LinearLayout {
 
             if(focusIndex == i) {
                 editText.setBackgroundDrawable(itemFocusDrawable);
+                editText.post(() -> {
+                    editText.requestFocus();
+                    ApplicationUtil.showSoftInput(getContext(), getChildAt(0));
+                });
             } else {
                 editText.setBackgroundDrawable(itemUninputDrawable);
             }
@@ -140,7 +154,6 @@ public class CodeInputView extends LinearLayout {
             }
             addView(editText, params);
         }
-
     }
 
     private void setFocusIndex(int index) {
@@ -159,14 +172,13 @@ public class CodeInputView extends LinearLayout {
         this.onInputFinished = onInputFinished;
     }
 
-    private static class InputItem extends AppCompatEditText {
+    private class InputItem extends AppCompatEditText {
 
-        public InputItem(Context context) {
+        private int index;
+
+        public InputItem(Context context, int index) {
             super(context);
-        }
-
-        public InputItem(Context context, AttributeSet attrs) {
-            super(context, attrs);
+            this.index = index;
         }
 
         @Override
@@ -175,6 +187,17 @@ public class CodeInputView extends LinearLayout {
             if(selStart==selEnd){
                 setSelection(getText().length());
             }
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+            if (index != focusIndex) {
+                getChildAt(focusIndex).requestFocus();
+                //强制显示输入框
+                ApplicationUtil.showSoftInput(getContext(),getChildAt(focusIndex));
+                return true;
+            }
+            return super.onTouchEvent(event);
         }
     }
 
