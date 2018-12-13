@@ -3,6 +3,8 @@ package com.cetnaline.findproperty.utils;
 import android.view.View;
 
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
+
+import java.net.ConnectException;
 import java.util.concurrent.TimeoutException;
 import io.reactivex.FlowableTransformer;
 import io.reactivex.Observable;
@@ -27,7 +29,10 @@ public class RxUtil {
     public static <T> Function<Throwable, ObservableSource<? extends BaseResponseBean<T>>> requestErrorHandler() {
         return throwable -> {
             BaseResponseBean<T> baseResponseBean = new BaseResponseBean();
-            if (throwable instanceof TimeoutException) {
+            if (throwable instanceof ConnectException) {
+                baseResponseBean.setResultNo(BaseResponseBean.REQUEST_NOT_CONNECTION_CODE);
+                return Observable.just(baseResponseBean);
+            }else if (throwable instanceof TimeoutException) {
                 baseResponseBean.setResultNo(BaseResponseBean.REQUEST_OVERTIME_CODE);
                 return Observable.just(baseResponseBean);
             } else {

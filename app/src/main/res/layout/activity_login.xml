@@ -160,9 +160,9 @@
     <com.cetnaline.findproperty.widgets.AnimationLayout
         android:id="@+id/code_layout"
         android:clickable="true"
+        android:visibility="gone"
         android:background="@color/white"
         android:orientation="vertical"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -193,6 +193,32 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/request_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:layout_gravity="center_horizontal"
+            android:shadowRadius="5.64"
+            android:visibility="gone"
+            android:textSize="@dimen/text_small"
+            android:letterSpacing="0.08"
+            android:lineSpacingExtra="-1sp"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/tx_timer"
+            android:layout_marginTop="10dp"
+            android:textSize="@dimen/text_body"
+            android:textColor="@color/code_text_color"
+            android:text=""
+            android:letterSpacing="0.05"
+            android:enabled="false"
+            android:lineSpacingExtra="-4sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </com.cetnaline.findproperty.widgets.AnimationLayout>
 </FrameLayout>

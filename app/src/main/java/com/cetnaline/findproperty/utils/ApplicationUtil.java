@@ -6,11 +6,15 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.cetnaline.findproperty.R;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class ApplicationUtil {
 
@@ -107,5 +111,39 @@ public class ApplicationUtil {
     public static void hideSoftInput(Context context,View view) {
         InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
+
+    final static char[] HEX_DIGITS = {'0', '1', '2', '3', '4', '5',
+            '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+    /**
+     * md5加密 用于部分数据请求及图片压缩
+     * @param strings
+     * @return
+     */
+    public static String md5Encode(String... strings) {
+        final StringBuilder input = new StringBuilder();
+        for (String s : strings) {
+            input.append(s);
+        }
+        Log.d("md5 : %s", input.toString());
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.update(input.toString().getBytes());
+            byte[] bytes = messageDigest.digest();
+            int len = bytes.length;
+            char[] resultCharArray = new char[len * 2];
+            int index = 0;
+            for (byte b : bytes) {
+                resultCharArray[index++] = HEX_DIGITS[b >>> 4 & 0xf];
+                resultCharArray[index++] = HEX_DIGITS[b & 0xf];
+            }
+            return new String(resultCharArray);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

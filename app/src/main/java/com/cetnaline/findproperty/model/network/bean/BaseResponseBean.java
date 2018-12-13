@@ -1,14 +1,16 @@
 package com.cetnaline.findproperty.model.network.bean;
 
 public class BaseResponseBean<T> {
-
+    //请求成功
     public static final int SUCCESS_CODE = 0;
-
+    //请求成功但接口业务处理失败
     public static final int FAILE_CODE = -1;
-
+    //请求接口异常
     public static final int REQUEST_ERROR_CODE = -2;
-
+    //请求超时
     public static final int REQUEST_OVERTIME_CODE = -3;
+    //服务器无法连接
+    public static final int REQUEST_NOT_CONNECTION_CODE = -4;
 
     private int ResultNo;
 

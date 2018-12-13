@@ -5,11 +5,14 @@ import com.cetnaline.findproperty.model.database.entity.GScope;
 import com.cetnaline.findproperty.model.database.entity.RailLine;
 import com.cetnaline.findproperty.model.database.entity.School;
 import com.cetnaline.findproperty.model.database.entity.Store;
+import com.cetnaline.findproperty.model.network.NetWorkContents;
 import com.cetnaline.findproperty.model.network.NetWorkManager;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
+import com.cetnaline.findproperty.utils.ApplicationUtil;
 import com.cetnaline.findproperty.utils.RxUtil;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
@@ -95,6 +98,24 @@ public class ApiRequestImp {
     public static Observable<BaseResponseBean<List<SearchMenuBean>>> getSearchData(){
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getSearchData()
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
+    }
+
+    /**
+     * 获取短信验证码
+     * @param phone
+     * @return
+     */
+    public static Observable<BaseResponseBean<Integer>> getMessageCode(String phone) {
+        Map<String, String> params = new HashMap<>();
+        params.put("Mobile", phone);
+        params.put("AppNo", NetWorkContents.APP_NO);
+        params.put("CityCode", "021");
+        String sign = ApplicationUtil.md5Encode(NetWorkContents.PRIVATESECRET, "021", phone, NetWorkContents.PUBLICSECRET);
+        params.put("Sign", sign);
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .getMessageCode(params)
                 .compose(RxUtil.applyIoSchedulers())
                 .onErrorResumeNext(RxUtil.requestErrorHandler());
     }

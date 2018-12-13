@@ -138,10 +138,10 @@ public class CodeInputView extends LinearLayout {
 
             if(focusIndex == i) {
                 editText.setBackgroundDrawable(itemFocusDrawable);
-                editText.post(() -> {
-                    editText.requestFocus();
-                    ApplicationUtil.showSoftInput(getContext(), getChildAt(0));
-                });
+//                editText.post(() -> {
+//                    editText.requestFocus();
+//                    ApplicationUtil.showSoftInput(getContext(), getChildAt(0));
+//                });
             } else {
                 editText.setBackgroundDrawable(itemUninputDrawable);
             }
