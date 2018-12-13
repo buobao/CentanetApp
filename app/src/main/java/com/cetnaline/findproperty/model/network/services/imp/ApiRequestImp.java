@@ -9,6 +9,7 @@ import com.cetnaline.findproperty.model.network.NetWorkContents;
 import com.cetnaline.findproperty.model.network.NetWorkManager;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
 import com.cetnaline.findproperty.utils.RxUtil;
 
@@ -111,7 +112,7 @@ public class ApiRequestImp {
         Map<String, String> params = new HashMap<>();
         params.put("Mobile", phone);
         params.put("AppNo", NetWorkContents.APP_NO);
-        params.put("CityCode", "021");
+        params.put("CityCode", NetWorkContents.CITY_CODE);
         String sign = ApplicationUtil.md5Encode(NetWorkContents.PRIVATESECRET, "021", phone, NetWorkContents.PUBLICSECRET);
         params.put("Sign", sign);
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
@@ -119,6 +120,21 @@ public class ApiRequestImp {
                 .compose(RxUtil.applyIoSchedulers())
                 .onErrorResumeNext(RxUtil.requestErrorHandler());
     }
+
+    /**
+     * 用户登录
+     * @param params
+     * @return
+     */
+    public static Observable<BaseResponseBean<UserInfoBean>> login(Map<String, String> params) {
+        params.put("AppNo", NetWorkContents.APP_NO);
+        params.put("CityCode", NetWorkContents.CITY_CODE);
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .login(params)
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
+    }
+
 }
 
 

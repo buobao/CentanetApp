@@ -11,6 +11,7 @@ public class NetWorkContents {
     public static final int WRITE_TIMEOUT = 8;
 
     public static final String APP_NO = "APP_ANDROID_APUSH";
+    public static final String CITY_CODE = "021";
     //加密公钥私钥
     public final static String PUBLICSECRET = "F53DB798524C44AF8DE106DB744EC07";
     public final static String PRIVATESECRET = "2Fo1URzMx2qw3zV2juhcvM7LfjG";

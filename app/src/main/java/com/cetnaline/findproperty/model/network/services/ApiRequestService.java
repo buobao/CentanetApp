@@ -7,6 +7,7 @@ import com.cetnaline.findproperty.model.database.entity.RailLine;
 import com.cetnaline.findproperty.model.database.entity.Store;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 
 import java.util.List;
 import java.util.Map;
@@ -86,6 +87,15 @@ public interface ApiRequestService {
     @FormUrlEncoded
     @POST("SmsRequest")
     Observable<BaseResponseBean<Integer>> getMessageCode(@FieldMap Map<String, String> params);
+
+    /**
+     * 用户登录
+     * @param params
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("UserLogin2Request")
+    Observable<BaseResponseBean<UserInfoBean>> login(@FieldMap Map<String, String> params);
 }
 
 
