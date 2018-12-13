@@ -4,13 +4,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
 import com.cetnaline.findproperty.bus.RxBus;
 import com.cetnaline.findproperty.bus.events.NormalEvent;
+import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
@@ -27,6 +30,10 @@ import java.util.Map;
 import butterknife.BindView;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginView {
+    @BindView(R.id.close)
+    protected ImageView closeBtn;
+    @BindView(R.id.exchange_type)
+    protected TextView exchangeTypeBtn;
     @BindView(R.id.phone_number_edt)
     protected ClearableEditView phoneEditView;
     @BindView(R.id.code_layout)
@@ -42,6 +49,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @BindView(R.id.request_msg)
     protected TextView requestMsg;
 
+    @BindView(R.id.invite_code_edt_layout)
+    protected LinearLayout inviteCodeEdtLayout;
+    @BindView(R.id.invite_code_edt)
+    protected ClearableEditView inviteCodeEdt;
+    @BindView(R.id.next_btn)
+    protected TextView nextBtn;
+
 //    private FullScreenDialog codeDialog;
 
     @Override
@@ -50,6 +64,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         StatusBarUtil.setStatusBarDarkTheme(this, true);
         //设置状态栏背景色
         StatusBarUtil.setStatusBarColor(this, ApplicationUtil.getPageColorPrimary(this));
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     @Override
@@ -59,15 +74,19 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     protected void init(@Nullable Bundle savedInstanceState) {
+        mPresenter.onViewClick(closeBtn, v -> finish());
+        mPresenter.onViewClick(exchangeTypeBtn, v->{
+            if (inviteCodeEdtLayout.getVisibility() == View.VISIBLE) {
+                inviteCodeEdtLayout.setVisibility(View.GONE);
+                nextBtn.setVisibility(View.GONE);
+            } else {
+                inviteCodeEdtLayout.setVisibility(View.VISIBLE);
+                nextBtn.setVisibility(View.VISIBLE);
+            }
+        });
         phoneEditView.setOnTextChangedListener(s -> {
-            if (s.length() >= 11) {
-                msgCode.cleartext();
-                msgTable.setText("验证码发送至 +86 " + s.toString());
-                codeLayout.setVisibility(View.VISIBLE);
-                requestMsg.setVisibility(View.GONE);
-                txTimer.setText("60s后重新发送");
-                txTimer.setEnabled(false);
-                mPresenter.requestCode(s.toString());
+            if (s.length() >= 11 && inviteCodeEdtLayout.getVisibility() != View.VISIBLE) {
+                goNextView(s.toString());
             }
         });
         mPresenter.onViewClick(codeBack, v -> codeLayout.setVisibility(View.GONE));
@@ -77,14 +96,35 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             mPresenter.requestCode(phoneEditView.getText().toString());
         });
 
+        inviteCodeEdt.setOnTextChangedListener(s -> {
+            if (!TextUtils.isEmpty(s)) {
+                nextBtn.setEnabled(true);
+            } else {
+                nextBtn.setEnabled(false);
+            }
+        });
+
+        mPresenter.onViewClick(nextBtn, v -> goNextView(phoneEditView.getText().toString()));
+
         msgCode.setOnInputFinished(code -> {
             Map<String, String> params = new HashMap<>();
             params.put("Phone", phoneEditView.getText().toString());
             params.put("VerificationCode", code);
-            // TODO: 2018/12/13 邀请码登录在这里添加参数
-//            params.put("YaoQingMa", yaoqingma);
+            if (inviteCodeEdtLayout.getVisibility() == View.VISIBLE) {
+                params.put("YaoQingMa", inviteCodeEdt.getText().toString());
+            }
             mPresenter.userLogin(params);
         });
+    }
+
+    private void goNextView(String s) {
+        msgCode.cleartext();
+        msgTable.setText("验证码发送至 +86 " + s);
+        codeLayout.setVisibility(View.VISIBLE);
+        requestMsg.setVisibility(View.GONE);
+        txTimer.setText("60s后重新发送");
+        txTimer.setEnabled(false);
+        mPresenter.requestCode(s);
     }
 
     @Override
@@ -121,6 +161,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 txTimer.setEnabled(true);
                 mPresenter.canceltimer();
                 break;
+            case BaseResponseBean.SUCCESS_CODE:
+                showMessage("验证码已发送");
+                break;
         }
     }
 
@@ -139,7 +182,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void loginfinish(BaseResponseBean<UserInfoBean> responseBean) {
         switch (responseBean.getResultNo()) {
             case BaseResponseBean.FAILE_CODE:
-                showMessage("登录失败");
+                if (!TextUtils.isEmpty(responseBean.getMessage())) {
+                    showMessage(responseBean.getMessage());
+                } else {
+                    showMessage("登录失败");
+                }
                 break;
             case BaseResponseBean.REQUEST_ERROR_CODE:
                 showMessage("服务器请求异常");
@@ -152,6 +199,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 break;
             case BaseResponseBean.SUCCESS_CODE:
                 showMessage("登录成功");
+                CacheHolder.getInstance().setCurrentUserInfo(responseBean.getResult()); //保存当前用户登录数据
                 RxBus.getInstance().post(new NormalEvent(NormalEvent.LOGIN_SUCCESS)); //发送登录成功事件
                 finish();
                 break;

@@ -3,6 +3,10 @@ package com.cetnaline.findproperty.model.sp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
+
+import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
+import com.google.gson.Gson;
 
 public class SpHelper {
     private Context mContext;
@@ -75,5 +79,32 @@ public class SpHelper {
 
     public int getInt(String name, int def) {
         return mSharedPreferences.getInt(name, def);
+    }
+
+    /**
+     * 获取当前登录人信息
+     * @return
+     */
+    public UserInfoBean getUserInfo() {
+        Gson gson = new Gson();
+        String json = getString(SpContents.CURRENT_USER_INFO);
+        if (TextUtils.isEmpty(json)) {
+            return null;
+        } else {
+            UserInfoBean user = gson.fromJson(json, UserInfoBean.class);
+            return user;
+        }
+    }
+
+    /**
+     * 保存当前登录人信息
+     * @param userInfoBean
+     */
+    public void saveUserInfo(UserInfoBean userInfoBean) {
+        if (userInfoBean == null) {
+            return;
+        }
+        Gson gson = new Gson();
+        saveString(SpContents.CURRENT_USER_INFO, gson.toJson(userInfoBean));
     }
 }

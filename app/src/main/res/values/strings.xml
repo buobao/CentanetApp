@@ -11,5 +11,7 @@
     <string name="login_phone">手机快捷登录</string>
     <string name="login_unregistered">未注册手机将自动创建账号</string>
     <string name="login_phone_hint">请输入手机号</string>
+    <string name="login_invite_code_hint">请输入邀请码</string>
+    <string name="login_invite_next_text">下一步</string>
     <string name="login_bottom_text">登录即视为同意《中原地产用户协议》</string>
 </resources>

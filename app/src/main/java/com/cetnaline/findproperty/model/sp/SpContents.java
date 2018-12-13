@@ -29,5 +29,7 @@ public class SpContents {
     public final static String RAILLINEDATA_JSON_LOADED = "railline_data_json_loaded";
     public final static String STOREDATA_JSON_LOADED = "store_data_json_loaded";
     public final static String SCHOOLDATA_JSON_LOADED = "school_data_json_loaded";
+    //当前登录用户信息
+    public final static String CURRENT_USER_INFO = "current_user_info";
 
 }

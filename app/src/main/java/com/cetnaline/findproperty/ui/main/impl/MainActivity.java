@@ -6,6 +6,7 @@ import android.widget.ImageView;
 
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
+import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.ui.fragments.active.ActiveFragment;
 import com.cetnaline.findproperty.ui.fragments.chatconversation.ChatConversationFragment;
 import com.cetnaline.findproperty.ui.fragments.home.HomeFragment;
@@ -118,8 +119,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
 
         mPresenter.onViewClick(mapButton, v -> {
             //打开地图找房
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            if (!CacheHolder.getInstance().isLogin()) {
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+            } else {
+                showMessage("当前用户已登录");
+            }
         });
     }
 

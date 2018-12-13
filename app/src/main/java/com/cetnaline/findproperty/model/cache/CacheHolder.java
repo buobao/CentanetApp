@@ -1,7 +1,9 @@
 package com.cetnaline.findproperty.model.cache;
 
 import android.content.Context;
+import android.text.TextUtils;
 
+import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.model.sp.SpContents;
 import com.cetnaline.findproperty.model.sp.SpHelper;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
@@ -23,12 +25,17 @@ public class CacheHolder {
     private boolean storeDataLoaded;
     private boolean schoolDataLoaded;
 
+    /**
+     * 本地默认数据加载标志
+     */
     private boolean searchDataJsonLoaded;
     private boolean districtEstJsonLoaded;
     private boolean gScopeDataJsonLoaded;
     private boolean railLineDataJsonLoaded;
     private boolean storeDataJsonLoaded;
     private boolean schoolDataJsonLoaded;
+
+    private UserInfoBean currentUserInfo;
 
     private static CacheHolder cacheHolder;
     private static SpHelper spHelper;
@@ -62,6 +69,8 @@ public class CacheHolder {
 
                     cacheHolder.isFirstOpen = spHelper.getBoolean(SpContents.FIRST_OPEN);
                     cacheHolder.networkStatus = ApplicationUtil.checkNetwork(context);
+
+                    cacheHolder.currentUserInfo = spHelper.getUserInfo();
                 }
             }
         }
@@ -212,6 +221,23 @@ public class CacheHolder {
 
     public void setNetworkStatus(boolean networkStatus) {
         this.networkStatus = networkStatus;
+    }
+
+    public UserInfoBean getCurrentUserInfo() {
+        return currentUserInfo;
+    }
+
+    public void setCurrentUserInfo(UserInfoBean currentUserInfo) {
+        spHelper.saveUserInfo(currentUserInfo);
+        this.currentUserInfo = currentUserInfo;
+    }
+
+    public boolean isLogin() {
+        if (currentUserInfo != null && !TextUtils.isEmpty(currentUserInfo.getUserId())) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void clearInitDataStatus() {

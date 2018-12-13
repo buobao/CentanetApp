@@ -37,8 +37,7 @@
         <activity android:name=".ui.guild.impl.GuildActivity"/>
         <activity android:name=".ui.main.impl.MainActivity"/>
         <activity android:name=".ui.map.impl.MapActivity"/>
-        <activity android:name=".ui.login.impl.LoginActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.login.impl.LoginActivity"/>
 
         <service android:enabled="true" android:name=".ui.service.NetworkStateService" />
 

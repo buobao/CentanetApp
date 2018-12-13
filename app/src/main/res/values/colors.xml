@@ -6,6 +6,8 @@
 
     <color name="white">#ffffffff</color>
     <color name="black">#000000</color>
+    <color name="disableGray">#dddddd</color>
+    <color name="lightRed">#f55967</color>
 
     <color name="textNormal">#333</color>
     <color name="textLight">#666</color>
