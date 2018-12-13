@@ -1,4 +1,4 @@
-package com.cetnaline.findproperty.ui.fragments.home;
+package com.cetnaline.findproperty.ui.main.impl;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

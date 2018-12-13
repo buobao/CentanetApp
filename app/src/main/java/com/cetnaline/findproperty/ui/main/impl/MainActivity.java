@@ -10,12 +10,10 @@ import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.ui.fragments.active.ActiveFragment;
 import com.cetnaline.findproperty.ui.fragments.chatconversation.ChatConversationFragment;
 import com.cetnaline.findproperty.ui.fragments.home.HomeFragment;
-import com.cetnaline.findproperty.ui.fragments.home.MainPagerAdapter;
 import com.cetnaline.findproperty.ui.fragments.personalcenter.PersonalCenterFragment;
 import com.cetnaline.findproperty.ui.login.impl.LoginActivity;
 import com.cetnaline.findproperty.ui.main.MainPresenter;
 import com.cetnaline.findproperty.ui.main.MainView;
-import com.cetnaline.findproperty.ui.map.impl.MapActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
