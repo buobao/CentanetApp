@@ -74,7 +74,7 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
             isCreateView = true;
             if (mPresenter != null) {
                 mPresenter.attachView(this);
-                mPresenter.eventhandler();
+                mPresenter.eventHandler();
             }
             ButterKnife.bind(this, rootView);
             init();

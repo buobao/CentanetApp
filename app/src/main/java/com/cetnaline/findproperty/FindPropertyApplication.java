@@ -8,6 +8,7 @@ import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.model.database.DatabaseHelper;
 import com.cetnaline.findproperty.ui.service.NetworkStateService;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
+import com.cetnaline.findproperty.utils.ThirdShareUtil;
 
 public class FindPropertyApplication extends Application {
     private static Context mContext;
@@ -21,6 +22,7 @@ public class FindPropertyApplication extends Application {
             CacheHolder.init(this);
             //init database
             DatabaseHelper.init(this);
+            ThirdShareUtil.init();
         }
     }
 

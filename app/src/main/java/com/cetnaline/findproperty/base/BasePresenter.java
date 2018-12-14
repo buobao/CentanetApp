@@ -42,7 +42,7 @@ public abstract class BasePresenter<T extends BaseView> implements IPresenter<T>
     }
 
     @Override
-    public void eventhandler() {
+    public void eventHandler() {
         addDisposable(RxBus.getInstance().toFlowable(NormalEvent.class)
                 .subscribe(normalEvent -> {
                     if (normalEvent.getCode() == NormalEvent.NETWORK_CONNECTED) {

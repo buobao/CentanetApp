@@ -20,6 +20,10 @@ android {
         manifestPlaceholders = [
                 AMAP_KEY : "${project.property("AMAP_KEY")}"
         ]
+
+        //微信
+        buildConfigField "String", "APP_ID_WX", "\"${project.property("APP_ID_WX")}\""
+        buildConfigField "String", "APP_SECRET_WX", "\"${project.property("APP_SECRET_WX")}\""
     }
 
     compileOptions {
@@ -70,14 +74,13 @@ greendao {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:' + SUPPORT_LIB_VERSION
     implementation 'com.android.support:design:' + SUPPORT_LIB_VERSION
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
     //butterknife
     implementation 'com.jakewharton:butterknife:' + BUTTER_KNIFE_VERSION
     annotationProcessor 'com.jakewharton:butterknife-compiler:' + BUTTER_KNIFE_VERSION
@@ -87,14 +90,13 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:' + RX_JAVA_ANDROID_VERSION
     //retrofit2
     implementation 'com.squareup.retrofit2:retrofit:' + RETROFIT2_VERSION
-
     implementation 'com.squareup.okhttp3:logging-interceptor:' + OKHTTP_LOGGING_VERSION
     //gson
     implementation 'com.google.code.gson:gson:' + GSON_VERSION
     //gson convert
     implementation 'com.squareup.retrofit2:converter-gson:' + GSON_CONVERT_VERSION
     //retrofit2 adapter
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:'+ RETROFIT2_ADAPTER_VERSION
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:' + RETROFIT2_ADAPTER_VERSION
     //glide
     implementation 'com.github.bumptech.glide:glide:' + GLIDE_VERSION
     annotationProcessor 'com.github.bumptech.glide:compiler:' + GLIDE_VERSION
@@ -109,4 +111,6 @@ dependencies {
     implementation 'com.amap.api:search:' + AMAP_SEARCH_VERSION
     //AMap 定位
     implementation 'com.amap.api:location:' + AMAP_LOCATION_VERSION
+    //微信开放包
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }

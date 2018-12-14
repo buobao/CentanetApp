@@ -10,6 +10,8 @@ import com.cetnaline.findproperty.model.network.NetWorkManager;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.WXTokenBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.WxUserBean;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
 import com.cetnaline.findproperty.utils.RxUtil;
 
@@ -133,6 +135,39 @@ public class ApiRequestImp {
                 .login(params)
                 .compose(RxUtil.applyIoSchedulers())
                 .onErrorResumeNext(RxUtil.requestErrorHandler());
+    }
+
+    /**
+     * 微信登录 获取token
+     * @param code
+     * @return
+     */
+    public static Observable<WXTokenBean> getUserToken(String code) {
+        Map<String, String> params = new HashMap<>();
+        params.put("appid", BuildConfig.APP_ID_WX);
+        params.put("secret", BuildConfig.APP_SECRET_WX);
+        params.put("code", code);
+        params.put("grant_type", "authorization_code");
+
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .getUserToken(params)
+                .compose(RxUtil.applyIoSchedulers());
+    }
+
+    /**
+     * 获取微信用户信息
+     * @param token
+     * @param openid
+     * @return
+     */
+    public static Observable<WxUserBean> getWxUserInfo(String token, String openid) {
+        Map<String, String> params = new HashMap<>();
+        params.put("access_token", token);
+        params.put("openid", openid);
+
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .getWxUserInfo(params)
+                .compose(RxUtil.applyIoSchedulers());
     }
 
 }

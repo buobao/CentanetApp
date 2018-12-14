@@ -51,7 +51,7 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
         mPresenter = createPresenter();
         if (mPresenter!=null){
             mPresenter.attachView(this);
-            mPresenter.eventhandler();
+            mPresenter.eventHandler();
         }
         init(savedInstanceState);
     }

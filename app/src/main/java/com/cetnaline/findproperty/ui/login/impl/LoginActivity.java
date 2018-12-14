@@ -19,6 +19,7 @@ import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
+import com.cetnaline.findproperty.utils.ThirdShareUtil;
 import com.cetnaline.findproperty.utils.statusbar.StatusBarUtil;
 import com.cetnaline.findproperty.widgets.AnimationLayout;
 import com.cetnaline.findproperty.widgets.ClearableEditView;
@@ -55,6 +56,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected ClearableEditView inviteCodeEdt;
     @BindView(R.id.next_btn)
     protected TextView nextBtn;
+
+    @BindView(R.id.login_for_qq)
+    protected ImageView loginForQQ;
+    @BindView(R.id.login_for_wx)
+    protected ImageView loginForWX;
+    @BindView(R.id.login_for_wb)
+    protected ImageView loginForWB;
+
+    private String userImageUrl;
 
 //    private FullScreenDialog codeDialog;
 
@@ -115,6 +125,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             }
             mPresenter.userLogin(params);
         });
+
+        mPresenter.onViewClick(loginForWX, v -> {
+            ThirdShareUtil.requireWXUserInfo();
+        });
     }
 
     private void goNextView(String s) {
@@ -130,6 +144,22 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     protected LoginPresenter createPresenter() {
         return new LoginPresenterImpl();
+    }
+
+    @Override
+    public void eventHandler(NormalEvent normalEvent) {
+        switch (normalEvent.getCode()) {
+            case NormalEvent.WX_LOGIN:
+                Map<String, String> params = new HashMap<>();
+                params.put("WeiXinAccount", normalEvent.getParam("openId"));
+                params.put("NickName", normalEvent.getParam("nickName"));
+                if (inviteCodeEdtLayout.getVisibility() == View.VISIBLE) {
+                    params.put("YaoQingMa", inviteCodeEdt.getText().toString());
+                }
+                userImageUrl = normalEvent.getParam("picUrl");
+                mPresenter.userLogin(params);
+                break;
+        }
     }
 
     @Override
@@ -199,6 +229,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 break;
             case BaseResponseBean.SUCCESS_CODE:
                 showMessage("登录成功");
+                if (TextUtils.isEmpty(responseBean.getResult().getUserPhotoUrl())) {
+                    responseBean.getResult().setUserPhotoUrl(userImageUrl);
+                }
                 CacheHolder.getInstance().setCurrentUserInfo(responseBean.getResult()); //保存当前用户登录数据
                 RxBus.getInstance().post(new NormalEvent(NormalEvent.LOGIN_SUCCESS)); //发送登录成功事件
                 finish();
