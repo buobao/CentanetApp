@@ -10,6 +10,7 @@ import com.cetnaline.findproperty.model.network.NetWorkManager;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.SinaUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WXTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WxUserBean;
@@ -180,6 +181,24 @@ public class ApiRequestImp {
     public static Observable<QQUserInfoBean> getQqUserInfo(Map<String, String> params) {
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getQqUserInfo(params)
+                .compose(RxUtil.applyIoSchedulers());
+    }
+
+    /**
+     * 获取新浪账户信息
+     *
+     * @param token
+     * @param uid
+     * @param name
+     * @return
+     */
+    public static Observable<SinaUserInfoBean> getSinaUserInfo(String token, String uid, String name) {
+        Map<String, String> params = new HashMap<>();
+        params.put("access_token", token);
+        params.put("uid", uid);
+        params.put("screen_name", name);
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .getSinaUserInfo(params)
                 .compose(RxUtil.applyIoSchedulers());
     }
 

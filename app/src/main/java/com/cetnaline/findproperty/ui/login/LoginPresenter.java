@@ -1,6 +1,7 @@
 package com.cetnaline.findproperty.ui.login;
 
 import com.cetnaline.findproperty.base.IPresenter;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import java.util.Map;
 
@@ -13,4 +14,6 @@ public interface LoginPresenter extends IPresenter<LoginView> {
     void userLogin(Map<String, String> params);
     //获取qq用户信息
     void requestQQUserInfo(Map<String, String> params);
+    //获取微博用户信息
+    void requestSinaUserInfo(Oauth2AccessToken accessToken);
 }

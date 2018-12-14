@@ -28,8 +28,10 @@ import com.cetnaline.findproperty.utils.statusbar.StatusBarUtil;
 import com.cetnaline.findproperty.widgets.AnimationLayout;
 import com.cetnaline.findproperty.widgets.ClearableEditView;
 import com.cetnaline.findproperty.widgets.CodeInputView;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.sina.weibo.sdk.auth.WbAuthListener;
+import com.sina.weibo.sdk.auth.WbConnectErrorMessage;
 import com.tencent.connect.common.Constants;
-import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
 
 import java.util.HashMap;
@@ -158,6 +160,33 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 showMessage("已取消QQ登录");
             }
         }));
+
+        mPresenter.onViewClick(loginForWB, v-> {
+            showLoadingDialog(true);
+            ThirdShareUtil.requireSinaUserInfo(this, new WbAuthListener() {
+                @Override
+                public void onSuccess(Oauth2AccessToken oauth2AccessToken) {
+                    if (oauth2AccessToken.isSessionValid()) {
+                        mPresenter.requestSinaUserInfo(oauth2AccessToken);
+                    } else {
+                        cancelLoadingDialog();
+                        showMessage("获取微博授权失败");
+                    }
+                }
+
+                @Override
+                public void cancel() {
+                    cancelLoadingDialog();
+                    showMessage("微博登录已取消");
+                }
+
+                @Override
+                public void onFailure(WbConnectErrorMessage wbConnectErrorMessage) {
+                    cancelLoadingDialog();
+                    showMessage(wbConnectErrorMessage.getErrorMessage());
+                }
+            });
+        });
     }
 
     private void goNextView(String s) {
@@ -196,7 +225,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.REQUEST_LOGIN) {
             ThirdShareUtil.handlerTencentResult(data);
+        } else {
+            ThirdShareUtil.handlerSinaresult(requestCode,resultCode,data);
         }
+
     }
 
     @Override

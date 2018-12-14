@@ -8,6 +8,10 @@ import com.cetnaline.findproperty.BuildConfig;
 import com.cetnaline.findproperty.FindPropertyApplication;
 import com.cetnaline.findproperty.model.network.bean.responsebean.QQTokenBean;
 import com.google.gson.Gson;
+import com.sina.weibo.sdk.WbSdk;
+import com.sina.weibo.sdk.auth.AuthInfo;
+import com.sina.weibo.sdk.auth.WbAuthListener;
+import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -19,11 +23,19 @@ public class ThirdShareUtil {
     private static IWXAPI iwxapi;
     private static Tencent tencent;
     private static IUiListener iUiListener;
+    private static SsoHandler ssoHandler;
 
     public static void init(){
         iwxapi = WXAPIFactory.createWXAPI(FindPropertyApplication.getContext(), BuildConfig.APP_ID_WX, true);
         iwxapi.registerApp(BuildConfig.APP_ID_WX);
         tencent = Tencent.createInstance(BuildConfig.QQ_ID, FindPropertyApplication.getContext());
+
+        //微博sdk
+        AuthInfo authInfo = new AuthInfo(FindPropertyApplication.getContext(),
+                BuildConfig.SINA_APP_KEY,
+                BuildConfig.SINA_CALLBACK_URL,
+                BuildConfig.SINA_SCOPE);
+        WbSdk.install(FindPropertyApplication.getContext(), authInfo);
     }
 
     public static IWXAPI getIwxapi() {
@@ -87,6 +99,19 @@ public class ThirdShareUtil {
         if (tencent != null) {
             tencent.logout(context);
         }
+    }
+
+    public static void requireSinaUserInfo(Activity context, WbAuthListener listener) {
+        ssoHandler = null;
+        ssoHandler = new SsoHandler(context);
+        ssoHandler.authorizeClientSso(listener);
+    }
+
+    public static void handlerSinaresult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 32973 && ssoHandler != null) {
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+        ssoHandler = null;
     }
 
     public interface QQRequestListener {

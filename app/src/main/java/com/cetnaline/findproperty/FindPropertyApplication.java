@@ -9,6 +9,8 @@ import com.cetnaline.findproperty.model.database.DatabaseHelper;
 import com.cetnaline.findproperty.ui.service.NetworkStateService;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
 import com.cetnaline.findproperty.utils.ThirdShareUtil;
+import com.sina.weibo.sdk.WbSdk;
+import com.sina.weibo.sdk.auth.AuthInfo;
 
 public class FindPropertyApplication extends Application {
     private static Context mContext;

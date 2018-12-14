@@ -8,6 +8,7 @@ import com.cetnaline.findproperty.model.database.entity.Store;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.SinaUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WXTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WxUserBean;
@@ -121,6 +122,13 @@ public interface ApiRequestService {
      */
     @GET("https://graph.qq.com/user/get_simple_userinfo")
     Observable<QQUserInfoBean> getQqUserInfo(@QueryMap(encoded = true) Map<String, String> params);
+
+
+    /**
+     * 获取sina用户信息
+     */
+    @GET("https://api.weibo.com/2/users/show.json")
+    Observable<SinaUserInfoBean> getSinaUserInfo(@QueryMap(encoded = true) Map<String, String> params);
 }
 
 

@@ -5,6 +5,7 @@ import com.cetnaline.findproperty.model.network.services.imp.ApiRequestImp;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
 import com.cetnaline.findproperty.utils.RxUtil;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,7 +68,6 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
         .subscribe(qqUserInfoBean -> userLogin(new HashMap() {
             {
                 put("QQAccount", params.get("openid"));
-                put("AppNo", "APP_ANDROID_APUSH");
                 put("NickName", qqUserInfoBean.getNickname() == null ? "" : qqUserInfoBean.getNickname());
                 // TODO: 2018/12/14 邀请码登录 传入
 //                    String yaoqingma = SharedPreferencesUtil.getString(AppContents.YAO_QING_MA);
@@ -80,5 +80,24 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
             throwable.printStackTrace();
         }));
 
+    }
+
+    @Override
+    public void requestSinaUserInfo(Oauth2AccessToken accessToken) {
+        addDisposable(ApiRequestImp.getSinaUserInfo(accessToken.getToken(), accessToken.getUid(), "")
+        .subscribe(sinaUserInfoBean -> userLogin(new HashMap() {
+            {
+                put("SinaAccount", sinaUserInfoBean.getIdstr());
+                put("NickName", sinaUserInfoBean.getScreen_name() == null ? "":sinaUserInfoBean.getScreen_name());
+                // TODO: 2018/12/14 邀请码登录 传入
+//                    String yaoqingma = SharedPreferencesUtil.getString(AppContents.YAO_QING_MA);
+//                    if (yaoqingma != null && !"".equals(yaoqingma.trim()) && !"null".equals(yaoqingma)) {
+//                        put("YaoQingMa", yaoqingma);
+//                    }
+            }}), throwable -> {
+            iView.cancelLoadingDialog();
+            iView.showMessage("微博授权登录失败");
+            throwable.printStackTrace();
+        }));
     }
 }

@@ -27,6 +27,11 @@ android {
         buildConfigField "String", "APP_SECRET_WX", "\"${project.property("APP_SECRET_WX")}\""
         //QQ
         buildConfigField "String", "QQ_ID", "\"${project.property("QQ_ID")}\""
+        //新浪微博
+        buildConfigField "String", "SINA_APP_KEY", "\"${project.property("SINA_APP_KEY")}\""
+        buildConfigField "String", "SINA_APP_SECRET", "\"${project.property("SINA_APP_SECRET")}\""
+        buildConfigField "String", "SINA_CALLBACK_URL", "\"${project.property("SINA_CALLBACK_URL")}\""
+        buildConfigField "String", "SINA_SCOPE", "\"${project.property("SINA_SCOPE")}\""
     }
 
     compileOptions {
@@ -75,6 +80,11 @@ greendao {
     generateTests false
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -84,6 +94,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //sina
+    implementation(name: 'core-4.1.0-openDefaultRelease', ext: 'aar')
     //butterknife
     implementation 'com.jakewharton:butterknife:' + BUTTER_KNIFE_VERSION
     annotationProcessor 'com.jakewharton:butterknife-compiler:' + BUTTER_KNIFE_VERSION
