@@ -53,6 +53,7 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onResp(BaseResp baseResp) {
         if(baseResp.getType()== ConstantsAPI.COMMAND_SENDMESSAGE_TO_WX){//分享
             Log.i("WXEntryActivity","微信分享操作.....");
+            finish();
         }else if(baseResp.getType()==ConstantsAPI.COMMAND_SENDAUTH){//登陆
             SendAuth.Resp authResp = (SendAuth.Resp) baseResp;
             disposables.add(ApiRequestImp.getUserToken(authResp.code)
@@ -65,12 +66,13 @@ public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
                         event.addParam("sex", wxUserBean.getSex()+"");
                         //发送登录信息
                         RxBus.getInstance().post(event);
+                        finish();
                     },throwable -> {
                         Toast.makeText(this, "微信授权失败",Toast.LENGTH_SHORT).show();
                         throwable.printStackTrace();
+                        finish();
                     }));
         }
-        finish();
     }
 
     @Override

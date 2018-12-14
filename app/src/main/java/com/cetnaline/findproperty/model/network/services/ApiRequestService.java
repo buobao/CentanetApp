@@ -6,6 +6,7 @@ import com.cetnaline.findproperty.model.network.bean.responsebean.NewHouseGScope
 import com.cetnaline.findproperty.model.database.entity.RailLine;
 import com.cetnaline.findproperty.model.database.entity.Store;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WXTokenBean;
@@ -112,6 +113,14 @@ public interface ApiRequestService {
      */
     @GET("https://api.weixin.qq.com/sns/userinfo")
     Observable<WxUserBean> getWxUserInfo(@QueryMap(encoded = true) Map<String, String> params);
+
+    /**
+     * 获取qq用户信息
+     * @param params
+     * @return
+     */
+    @GET("https://graph.qq.com/user/get_simple_userinfo")
+    Observable<QQUserInfoBean> getQqUserInfo(@QueryMap(encoded = true) Map<String, String> params);
 }
 
 

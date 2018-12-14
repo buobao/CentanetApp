@@ -6,6 +6,7 @@ import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
 import com.cetnaline.findproperty.utils.RxUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -51,11 +52,33 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
      */
     @Override
     public void userLogin(Map<String, String> params) {
-        iView.showLoadingDialog(false);
+        iView.showLoadingDialog(true);
         addDisposable(ApiRequestImp.login(params)
                 .subscribe(userInfoBeanBaseResponseBean -> {
                     iView.cancelLoadingDialog();
                     iView.loginfinish(userInfoBeanBaseResponseBean);
                 }));
+    }
+
+    @Override
+    public void requestQQUserInfo(Map<String, String> params) {
+        iView.showLoadingDialog(true);
+        addDisposable(ApiRequestImp.getQqUserInfo(params)
+        .subscribe(qqUserInfoBean -> userLogin(new HashMap() {
+            {
+                put("QQAccount", params.get("openid"));
+                put("AppNo", "APP_ANDROID_APUSH");
+                put("NickName", qqUserInfoBean.getNickname() == null ? "" : qqUserInfoBean.getNickname());
+                // TODO: 2018/12/14 邀请码登录 传入
+//                    String yaoqingma = SharedPreferencesUtil.getString(AppContents.YAO_QING_MA);
+//                    if (yaoqingma != null && !"".equals(yaoqingma.trim()) && !"null".equals(yaoqingma)) {
+//                        put("YaoQingMa", yaoqingma);
+//                    }
+            }}), throwable -> {
+            iView.cancelLoadingDialog();
+            iView.showMessage("未能获取授权");
+            throwable.printStackTrace();
+        }));
+
     }
 }

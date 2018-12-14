@@ -1,5 +1,6 @@
 package com.cetnaline.findproperty.ui.login.impl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -9,13 +10,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cetnaline.findproperty.BuildConfig;
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
 import com.cetnaline.findproperty.bus.RxBus;
 import com.cetnaline.findproperty.bus.events.NormalEvent;
 import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.QQTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
+import com.cetnaline.findproperty.model.network.services.imp.ApiRequestImp;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
@@ -24,6 +28,9 @@ import com.cetnaline.findproperty.utils.statusbar.StatusBarUtil;
 import com.cetnaline.findproperty.widgets.AnimationLayout;
 import com.cetnaline.findproperty.widgets.ClearableEditView;
 import com.cetnaline.findproperty.widgets.CodeInputView;
+import com.tencent.connect.common.Constants;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -126,9 +133,31 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             mPresenter.userLogin(params);
         });
 
-        mPresenter.onViewClick(loginForWX, v -> {
-            ThirdShareUtil.requireWXUserInfo();
-        });
+        mPresenter.onViewClick(loginForWX, v -> ThirdShareUtil.requireWXUserInfo());
+
+        mPresenter.onViewClick(loginForQQ, v-> ThirdShareUtil.requireQQUserInfo(this, new ThirdShareUtil.QQRequestListener() {
+            @Override
+            public void onComplete(QQTokenBean bean) {
+                mPresenter.requestQQUserInfo(new HashMap<String, String>(){
+                    {
+                        put("access_token", bean.getAccess_token());
+                        put("oauth_consumer_key", BuildConfig.QQ_ID);
+                        put("openid", bean.getOpenid());
+                        put("format", "json");
+                    }
+                });
+            }
+
+            @Override
+            public void onError(UiError uiError) {
+                showMessage("授权失败");
+            }
+
+            @Override
+            public void onCancel() {
+                showMessage("已取消QQ登录");
+            }
+        }));
     }
 
     private void goNextView(String s) {
@@ -160,6 +189,20 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 mPresenter.userLogin(params);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constants.REQUEST_LOGIN) {
+            ThirdShareUtil.handlerTencentResult(data);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ThirdShareUtil.clearTencent(this);
     }
 
     @Override

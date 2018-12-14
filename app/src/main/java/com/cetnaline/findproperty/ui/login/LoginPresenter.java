@@ -11,4 +11,6 @@ public interface LoginPresenter extends IPresenter<LoginView> {
     void canceltimer();
     //用户登录
     void userLogin(Map<String, String> params);
+    //获取qq用户信息
+    void requestQQUserInfo(Map<String, String> params);
 }

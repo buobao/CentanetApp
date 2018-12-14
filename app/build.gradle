@@ -18,12 +18,15 @@ android {
         }
 
         manifestPlaceholders = [
-                AMAP_KEY : "${project.property("AMAP_KEY")}"
+                AMAP_KEY           : "${project.property("AMAP_KEY")}",
+                SHARE_QQ_KEY       : "${project.property("SHARE_QQ_KEY")}"
         ]
 
         //微信
         buildConfigField "String", "APP_ID_WX", "\"${project.property("APP_ID_WX")}\""
         buildConfigField "String", "APP_SECRET_WX", "\"${project.property("APP_SECRET_WX")}\""
+        //QQ
+        buildConfigField "String", "QQ_ID", "\"${project.property("QQ_ID")}\""
     }
 
     compileOptions {

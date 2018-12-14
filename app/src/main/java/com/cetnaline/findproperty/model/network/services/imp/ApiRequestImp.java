@@ -8,6 +8,7 @@ import com.cetnaline.findproperty.model.database.entity.Store;
 import com.cetnaline.findproperty.model.network.NetWorkContents;
 import com.cetnaline.findproperty.model.network.NetWorkManager;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WXTokenBean;
@@ -167,6 +168,18 @@ public class ApiRequestImp {
 
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getWxUserInfo(params)
+                .compose(RxUtil.applyIoSchedulers());
+    }
+
+    /**
+     * 获取qq用户信息
+     *
+     * @param params
+     * @return
+     */
+    public static Observable<QQUserInfoBean> getQqUserInfo(Map<String, String> params) {
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .getQqUserInfo(params)
                 .compose(RxUtil.applyIoSchedulers());
     }
 
