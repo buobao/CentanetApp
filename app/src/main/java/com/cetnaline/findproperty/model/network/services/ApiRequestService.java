@@ -1,12 +1,13 @@
 package com.cetnaline.findproperty.model.network.services;
 
 import com.cetnaline.findproperty.model.database.entity.GScope;
-import com.cetnaline.findproperty.model.database.entity.School;
-import com.cetnaline.findproperty.model.network.bean.responsebean.NewHouseGScopeBean;
 import com.cetnaline.findproperty.model.database.entity.RailLine;
+import com.cetnaline.findproperty.model.database.entity.School;
 import com.cetnaline.findproperty.model.database.entity.Store;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.NewHouseGScopeBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.RcTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SinaUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -129,6 +131,19 @@ public interface ApiRequestService {
      */
     @GET("https://api.weibo.com/2/users/show.json")
     Observable<SinaUserInfoBean> getSinaUserInfo(@QueryMap(encoded = true) Map<String, String> params);
+
+    /**
+     * 获取融云token
+     * @param userId 用户Id
+     * @param name 用户名
+     * @param portraitUri 用户头像路径
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("https://api.cn.ronghub.com/user/getToken.json")
+    Observable<RcTokenBean> getToken(@Field("userId") String userId, @Field("name") String name, @Field("portraitUri") String portraitUri);
+
+
 }
 
 

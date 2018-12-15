@@ -13,4 +13,5 @@ public interface BaseView extends IView {
     void connectNetworkHandler();
     void disConnectNetworkHandler();
     void eventHandler(NormalEvent normalEvent);
+    void finishView();
 }

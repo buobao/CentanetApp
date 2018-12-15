@@ -1,6 +1,12 @@
 package com.cetnaline.findproperty.ui.login.impl;
 
+import android.text.TextUtils;
+
 import com.cetnaline.findproperty.base.BasePresenter;
+import com.cetnaline.findproperty.bus.RxBus;
+import com.cetnaline.findproperty.bus.events.NormalEvent;
+import com.cetnaline.findproperty.model.cache.CacheHolder;
+import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.services.imp.ApiRequestImp;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
@@ -52,13 +58,61 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
      * @param params
      */
     @Override
-    public void userLogin(Map<String, String> params) {
+    public void userLogin(Map<String, String> params, String headImg) {
         iView.showLoadingDialog(true);
+
         addDisposable(ApiRequestImp.login(params)
-                .subscribe(userInfoBeanBaseResponseBean -> {
-                    iView.cancelLoadingDialog();
-                    iView.loginfinish(userInfoBeanBaseResponseBean);
-                }));
+                    .subscribe(userInfoBeanBaseResponseBean -> {
+                        switch (userInfoBeanBaseResponseBean.getResultNo()) {
+                            case BaseResponseBean.FAILE_CODE:
+                                iView.cancelLoadingDialog();
+                                if (!TextUtils.isEmpty(userInfoBeanBaseResponseBean.getMessage())) {
+                                    iView.showMessage(userInfoBeanBaseResponseBean.getMessage());
+                                } else {
+                                    iView.showMessage("登录失败");
+                                }
+                                break;
+                            case BaseResponseBean.REQUEST_ERROR_CODE:
+                                iView.cancelLoadingDialog();
+                                iView.showMessage("服务器请求异常");
+                                break;
+                            case BaseResponseBean.REQUEST_OVERTIME_CODE:
+                                iView.cancelLoadingDialog();
+                                iView.showMessage("网络请求超时");
+                                break;
+                            case BaseResponseBean.REQUEST_NOT_CONNECTION_CODE:
+                                iView.cancelLoadingDialog();
+                                iView.showMessage("服务器无法连接，请检查网络");
+                                break;
+                            case BaseResponseBean.SUCCESS_CODE:
+                                if (TextUtils.isEmpty(userInfoBeanBaseResponseBean.getResult().getUserPhotoUrl())) {
+                                    userInfoBeanBaseResponseBean.getResult().setUserPhotoUrl(headImg);
+                                }
+
+                                addDisposable(ApiRequestImp.getToken(userInfoBeanBaseResponseBean.getResult().getUserId(),
+                                        userInfoBeanBaseResponseBean.getResult().getNickName(),
+                                        userInfoBeanBaseResponseBean.getResult().getUserPhotoUrl())
+                                        .subscribe(rcTokenBean -> {
+                                            iView.cancelLoadingDialog();
+                                            iView.showMessage("登录成功");
+                                            CacheHolder.getInstance().setRcToken(rcTokenBean.getToken());
+                                            CacheHolder.getInstance().setCurrentUserInfo(userInfoBeanBaseResponseBean.getResult()); //保存当前用户登录数据
+                                            RxBus.getInstance().post(new NormalEvent(NormalEvent.LOGIN_SUCCESS)); //发送登录成功事件
+                                            iView.finishView();
+                                        }, throwable -> {
+                                            iView.cancelLoadingDialog();
+                                            iView.showMessage("连接融云失败");
+                                            throwable.printStackTrace();
+                                        }));
+
+                                break;
+                        }
+                    }));
+
+
+
+
+
     }
 
     @Override
@@ -74,7 +128,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
 //                    if (yaoqingma != null && !"".equals(yaoqingma.trim()) && !"null".equals(yaoqingma)) {
 //                        put("YaoQingMa", yaoqingma);
 //                    }
-            }}), throwable -> {
+            }}, qqUserInfoBean.getFigureurl()), throwable -> {
             iView.cancelLoadingDialog();
             iView.showMessage("未能获取授权");
             throwable.printStackTrace();
@@ -94,10 +148,11 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
 //                    if (yaoqingma != null && !"".equals(yaoqingma.trim()) && !"null".equals(yaoqingma)) {
 //                        put("YaoQingMa", yaoqingma);
 //                    }
-            }}), throwable -> {
+            }}, sinaUserInfoBean.getAvatar_hd()), throwable -> {
             iView.cancelLoadingDialog();
             iView.showMessage("微博授权登录失败");
             throwable.printStackTrace();
         }));
     }
+
 }

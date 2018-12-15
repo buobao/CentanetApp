@@ -60,12 +60,16 @@ android {
             versionNameSuffix "-d"
             buildConfigField "String", "API_URL", "\"${project.property("TEST_API_HOST")}\""
             buildConfigField "Integer", "GUILD_FLAG", "${project.property("GUILD_FLAG")}"
+            buildConfigField "String", "RONG_CLOUD_KEY", "\"${project.property("RONG_CLOUD_TEST_KEY")}\""
+            buildConfigField "String", "RONG_CLOUD_SECRET", "\"${project.property("RONG_CLOUD_TEST_SECRET")}\""
             //"\"${project.property("FORMAL_API_LOCATION")}\""
         }
 
         release {
             buildConfigField "String", "API_URL", "\"${project.property("FORMAL_API_HOST")}\""
             buildConfigField "Integer", "GUILD_FLAG", "${project.property("GUILD_FLAG")}"
+            buildConfigField "String", "RONG_CLOUD_KEY", "\"${project.property("RONG_CLOUD_KEY")}\""
+            buildConfigField "String", "RONG_CLOUD_SECRET", "\"${project.property("RONG_CLOUD_SECRET")}\""
             //"\"${project.property("FORMAL_API_LOCATION")}\""
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -94,6 +98,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':IMKit')
     //sina
     implementation(name: 'core-4.1.0-openDefaultRelease', ext: 'aar')
     //butterknife
@@ -128,4 +133,5 @@ dependencies {
     implementation 'com.amap.api:location:' + AMAP_LOCATION_VERSION
     //微信开放包
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation project(':IMLib')
 }

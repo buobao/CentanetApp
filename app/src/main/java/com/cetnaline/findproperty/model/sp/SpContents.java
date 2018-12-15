@@ -12,6 +12,8 @@ public class SpContents {
     public final static String BASE_DATA_VERSION = "base_data_version";
     //引导页版本号
     public final static String GUILD_VERSION = "guild_version";
+    //rong cloud token
+    public final static String RONG_CLOUD_TOKEN = "rong_cloud_token";
     /**
      * 初始化数据加载状态
      */

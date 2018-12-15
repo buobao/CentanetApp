@@ -37,6 +37,8 @@ public class CacheHolder {
 
     private UserInfoBean currentUserInfo;
 
+    private String rcToken;
+
     private static CacheHolder cacheHolder;
     private static SpHelper spHelper;
 
@@ -71,6 +73,7 @@ public class CacheHolder {
                     cacheHolder.networkStatus = ApplicationUtil.checkNetwork(context);
 
                     cacheHolder.currentUserInfo = spHelper.getUserInfo();
+                    cacheHolder.rcToken = spHelper.getString(SpContents.RONG_CLOUD_TOKEN);
                 }
             }
         }
@@ -213,6 +216,15 @@ public class CacheHolder {
     public void setSchoolDataJsonLoaded(boolean schoolDataJsonLoaded) {
         this.schoolDataJsonLoaded = schoolDataJsonLoaded;
         spHelper.saveBoolean(SpContents.SCHOOLDATA_JSON_LOADED, schoolDataJsonLoaded);
+    }
+
+    public String getRcToken() {
+        return rcToken;
+    }
+
+    public void setRcToken(String rcToken) {
+        this.rcToken = rcToken;
+        spHelper.saveString(SpContents.RONG_CLOUD_TOKEN, rcToken);
     }
 
     public boolean isNetworkStatus() {

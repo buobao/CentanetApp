@@ -13,12 +13,9 @@ import android.widget.TextView;
 import com.cetnaline.findproperty.BuildConfig;
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
-import com.cetnaline.findproperty.bus.RxBus;
 import com.cetnaline.findproperty.bus.events.NormalEvent;
-import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.QQTokenBean;
-import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
@@ -71,8 +68,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     protected ImageView loginForWX;
     @BindView(R.id.login_for_wb)
     protected ImageView loginForWB;
-
-    private String userImageUrl;
 
 //    private FullScreenDialog codeDialog;
 
@@ -131,7 +126,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             if (inviteCodeEdtLayout.getVisibility() == View.VISIBLE) {
                 params.put("YaoQingMa", inviteCodeEdt.getText().toString());
             }
-            mPresenter.userLogin(params);
+            mPresenter.userLogin(params, null);
         });
 
         mPresenter.onViewClick(loginForWX, v -> ThirdShareUtil.requireWXUserInfo());
@@ -213,8 +208,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 if (inviteCodeEdtLayout.getVisibility() == View.VISIBLE) {
                     params.put("YaoQingMa", inviteCodeEdt.getText().toString());
                 }
-                userImageUrl = normalEvent.getParam("picUrl");
-                mPresenter.userLogin(params);
+                mPresenter.userLogin(params, normalEvent.getParam("picUrl"));
                 break;
         }
     }
@@ -279,37 +273,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             txTimer.setText("重新发送");
             txTimer.setEnabled(true);
             mPresenter.canceltimer();
-        }
-    }
-
-    @Override
-    public void loginfinish(BaseResponseBean<UserInfoBean> responseBean) {
-        switch (responseBean.getResultNo()) {
-            case BaseResponseBean.FAILE_CODE:
-                if (!TextUtils.isEmpty(responseBean.getMessage())) {
-                    showMessage(responseBean.getMessage());
-                } else {
-                    showMessage("登录失败");
-                }
-                break;
-            case BaseResponseBean.REQUEST_ERROR_CODE:
-                showMessage("服务器请求异常");
-                break;
-            case BaseResponseBean.REQUEST_OVERTIME_CODE:
-                showMessage("网络请求超时");
-                break;
-            case BaseResponseBean.REQUEST_NOT_CONNECTION_CODE:
-                showMessage("服务器无法连接，请检查网络");
-                break;
-            case BaseResponseBean.SUCCESS_CODE:
-                showMessage("登录成功");
-                if (TextUtils.isEmpty(responseBean.getResult().getUserPhotoUrl())) {
-                    responseBean.getResult().setUserPhotoUrl(userImageUrl);
-                }
-                CacheHolder.getInstance().setCurrentUserInfo(responseBean.getResult()); //保存当前用户登录数据
-                RxBus.getInstance().post(new NormalEvent(NormalEvent.LOGIN_SUCCESS)); //发送登录成功事件
-                finish();
-                break;
         }
     }
 }

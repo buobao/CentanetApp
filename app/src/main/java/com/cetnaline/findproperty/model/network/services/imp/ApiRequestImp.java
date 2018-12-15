@@ -9,6 +9,7 @@ import com.cetnaline.findproperty.model.network.NetWorkContents;
 import com.cetnaline.findproperty.model.network.NetWorkManager;
 import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.RcTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SinaUserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
@@ -20,7 +21,6 @@ import com.cetnaline.findproperty.utils.RxUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeoutException;
 
 import io.reactivex.Observable;
 import retrofit2.http.Query;
@@ -199,6 +199,12 @@ public class ApiRequestImp {
         params.put("screen_name", name);
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
                 .getSinaUserInfo(params)
+                .compose(RxUtil.applyIoSchedulers());
+    }
+
+    public static Observable<RcTokenBean> getToken(String userId, String name, String portraitUri) {
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .getToken(userId,name,portraitUri)
                 .compose(RxUtil.applyIoSchedulers());
     }
 

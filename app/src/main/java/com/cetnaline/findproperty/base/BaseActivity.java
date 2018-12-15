@@ -125,6 +125,11 @@ public abstract class BaseActivity<T extends IPresenter> extends AppCompatActivi
 
     }
 
+    @Override
+    public void finishView() {
+        finish();
+    }
+
     /**
      * 设置沉浸式状态栏
      * @return
