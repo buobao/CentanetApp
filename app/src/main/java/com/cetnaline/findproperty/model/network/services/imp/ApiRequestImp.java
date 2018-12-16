@@ -203,8 +203,13 @@ public class ApiRequestImp {
     }
 
     public static Observable<RcTokenBean> getToken(String userId, String name, String portraitUri) {
+        String nonce = (int)(Math.random()*1000000000)+"";
+        String timestamp = System.currentTimeMillis()+"";
+        String signature = ApplicationUtil.sha1Encode(BuildConfig.RONG_CLOUD_SECRET+nonce+timestamp);
+
         return NetWorkManager.getInstance().getNoCacheCentalineRequest()
-                .getToken(userId,name,portraitUri)
+                .getToken(userId,name,portraitUri,BuildConfig.RONG_CLOUD_KEY,
+                        nonce,timestamp,signature)
                 .compose(RxUtil.applyIoSchedulers());
     }
 

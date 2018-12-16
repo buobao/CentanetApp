@@ -22,6 +22,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
@@ -141,7 +142,11 @@ public interface ApiRequestService {
      */
     @FormUrlEncoded
     @POST("https://api.cn.ronghub.com/user/getToken.json")
-    Observable<RcTokenBean> getToken(@Field("userId") String userId, @Field("name") String name, @Field("portraitUri") String portraitUri);
+    Observable<RcTokenBean> getToken(@Field("userId") String userId, @Field("name") String name, @Field("portraitUri") String portraitUri,
+                                     @Header("App-Key")String appKey,
+                                     @Header("Nonce")String nonce,
+                                     @Header("Timestamp")String timeStamp,
+                                     @Header("Signature")String signature);
 
 
 }

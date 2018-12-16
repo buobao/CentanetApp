@@ -58,10 +58,10 @@ android {
         debug {
 //            buildConfigField('boolean', 'DEBUG', 'true')
             versionNameSuffix "-d"
-            buildConfigField "String", "API_URL", "\"${project.property("TEST_API_HOST")}\""
+            buildConfigField "String", "API_URL", "\"${project.property("FORMAL_API_HOST")}\""
             buildConfigField "Integer", "GUILD_FLAG", "${project.property("GUILD_FLAG")}"
-            buildConfigField "String", "RONG_CLOUD_KEY", "\"${project.property("RONG_CLOUD_TEST_KEY")}\""
-            buildConfigField "String", "RONG_CLOUD_SECRET", "\"${project.property("RONG_CLOUD_TEST_SECRET")}\""
+            buildConfigField "String", "RONG_CLOUD_KEY", "\"${project.property("RONG_CLOUD_KEY")}\""
+            buildConfigField "String", "RONG_CLOUD_SECRET", "\"${project.property("RONG_CLOUD_SECRET")}\""
             //"\"${project.property("FORMAL_API_LOCATION")}\""
         }
 

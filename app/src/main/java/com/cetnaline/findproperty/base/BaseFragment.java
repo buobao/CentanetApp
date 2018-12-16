@@ -139,6 +139,13 @@ public abstract class BaseFragment<T extends IPresenter> extends Fragment implem
     public void eventHandler(NormalEvent normalEvent) {
 
     }
+
+    @Override
+    public void finishView() {
+        if (getActivity() != null) {
+            getActivity().finish();
+        }
+    }
 }
 
 
