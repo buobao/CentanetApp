@@ -27,7 +27,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        showLoadingDialog(false);
+        showLoadingDialog(true);
         webView.loadUrl("http://m.sh.centanet.com/shangye/?utm_source=wap");
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
