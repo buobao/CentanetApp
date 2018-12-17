@@ -1,5 +1,7 @@
 package com.cetnaline.findproperty.widgets;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -18,6 +20,8 @@ import android.widget.LinearLayout;
 
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class CodeInputView extends LinearLayout {
     private int codeNum;
@@ -146,6 +150,26 @@ public class CodeInputView extends LinearLayout {
                 editText.setBackgroundDrawable(itemUninputDrawable);
             }
             editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
+            editText.setOnPasteCallback(() -> {
+                ClipboardManager cm = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
+                ClipData data = cm.getPrimaryClip();
+                ClipData.Item item = data.getItemAt(0);
+                String content = item.getText().toString();
+                if (!TextUtils.isEmpty(content)) {
+                    int ii = 0;
+                    for (; ii < getChildCount() && ii < content.length(); ii++) {
+                        try {
+                            Integer.parseInt(content.charAt(ii)+"");
+                        } catch (Exception e) {
+                            break;
+                        }
+                        ((InputItem)getChildAt(ii)).setText(content.charAt(ii)+"");
+                    }
+                    if (ii == getChildCount() && onInputFinished!= null) {
+                        onInputFinished.onFinish(content.substring(0, getChildCount()));
+                    }
+                }
+            });
 //            editText.setSelection(editText.getText().length());
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int)width,(int)width);
             editText.setGravity(Gravity.CENTER);
@@ -173,7 +197,7 @@ public class CodeInputView extends LinearLayout {
     }
 
     private class InputItem extends AppCompatEditText {
-
+        private OnPasteCallback mOnPasteCallback;
         private int index;
 
         public InputItem(Context context, int index) {
@@ -199,10 +223,34 @@ public class CodeInputView extends LinearLayout {
             }
             return super.onTouchEvent(event);
         }
+
+        @Override
+        public boolean onTextContextMenuItem(int id) {
+            switch (id) {
+                case android.R.id.cut:
+                    break;
+                case android.R.id.copy:
+                    break;
+                case android.R.id.paste:
+                    if (mOnPasteCallback != null) {
+                        mOnPasteCallback.onPaste();
+                    }
+            }
+            return super.onTextContextMenuItem(id);
+        }
+
+        public void setOnPasteCallback(OnPasteCallback onPasteCallback) {
+            mOnPasteCallback = onPasteCallback;
+        }
+
     }
 
     public interface OnInputFinished {
         void onFinish(String code);
+    }
+
+    public interface OnPasteCallback {
+        void onPaste();
     }
 }
 
