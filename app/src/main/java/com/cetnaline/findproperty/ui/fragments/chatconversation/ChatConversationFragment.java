@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cetnaline.findproperty.R;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -110,9 +112,9 @@ public class ChatConversationFragment extends UriFragment implements AdapterView
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(io.rong.imkit.R.layout.rc_fr_conversationlist, container, false);
-        View emptyView = this.findViewById(view, io.rong.imkit.R.id.rc_conversation_list_empty_layout);
-        TextView emptyText = (TextView)this.findViewById(view, io.rong.imkit.R.id.rc_empty_tv);
+        View view = inflater.inflate(R.layout.fragment_chat_conversation, container, false);
+        View emptyView = this.findViewById(view, R.id.rc_conversation_list_empty_layout);
+        TextView emptyText = (TextView)this.findViewById(view, R.id.rc_empty_tv);
         emptyText.setText(this.getActivity().getResources().getString(io.rong.imkit.R.string.rc_conversation_list_empty_prompt));
         this.mList = (ListView)this.findViewById(view, io.rong.imkit.R.id.rc_list);
         this.mList.setEmptyView(emptyView);
