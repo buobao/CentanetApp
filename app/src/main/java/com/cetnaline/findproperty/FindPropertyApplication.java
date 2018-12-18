@@ -2,6 +2,7 @@ package com.cetnaline.findproperty;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 
 import com.cetnaline.findproperty.model.cache.CacheHolder;
@@ -62,7 +63,11 @@ public class FindPropertyApplication extends Application {
         }
     }
 
-
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
 
     public static Context getContext() {
         return mContext;

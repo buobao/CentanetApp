@@ -103,7 +103,7 @@ public class StatusBarUtil {
      */
     public static boolean setStatusBarDarkTheme(Activity activity, boolean dark) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
                 setStatusBarFontIconDark(activity, TYPE_M, dark);
             } else if (OSUtil.isMIUI()) {
                 setStatusBarFontIconDark(activity, TYPE_MIUI, dark);

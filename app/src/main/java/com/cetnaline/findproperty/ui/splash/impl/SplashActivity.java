@@ -47,7 +47,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> implements Spl
 
     @Override
     public void updateAppHost(String host) {
-        showMessage(host);
+//        showMessage(host);
         NetWorkManager.getInstance().resetHost(host);
         //获取基础数据
         requestBaseData();
