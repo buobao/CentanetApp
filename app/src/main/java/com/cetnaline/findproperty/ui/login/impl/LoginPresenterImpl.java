@@ -10,6 +10,7 @@ import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.services.imp.ApiRequestImp;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
+import com.cetnaline.findproperty.utils.RongUtil;
 import com.cetnaline.findproperty.utils.RxUtil;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -97,6 +98,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
                                             iView.showMessage("登录成功");
                                             CacheHolder.getInstance().setRcToken(rcTokenBean.getToken());
                                             CacheHolder.getInstance().setCurrentUserInfo(userInfoBeanBaseResponseBean.getResult()); //保存当前用户登录数据
+                                            RongUtil.connectServer();
                                             RxBus.getInstance().post(new NormalEvent(NormalEvent.LOGIN_SUCCESS)); //发送登录成功事件
                                             iView.finishView();
                                         }, throwable -> {
