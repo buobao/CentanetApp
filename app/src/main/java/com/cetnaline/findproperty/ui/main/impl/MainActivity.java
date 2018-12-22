@@ -1,6 +1,9 @@
 package com.cetnaline.findproperty.ui.main.impl;
+import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 
@@ -18,6 +21,7 @@ import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -124,6 +128,22 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
                 showMessage("当前用户已登录");
             }
         });
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermission(new String[]{ Manifest.permission.ACCESS_FINE_LOCATION}, new PermissionListener(){
+                @Override
+                public void onGranted() {
+                    showMessage("已授权定位");
+                }
+
+                @Override
+                public void onDenied(List<String> grantedPermission, List<String> deniedPermission) {
+                    showMessage("已拒绝定位");
+                }
+            });
+        }
+
     }
 
 }
