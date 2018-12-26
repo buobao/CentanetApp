@@ -1,5 +1,6 @@
 package com.cetnaline.findproperty.widgets;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,6 +22,9 @@ import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
 
 public class RefreshListView extends FrameLayout {
+    private static final String LOADING_MSG = "数据载入中...";
+    private static final String DEFAULT_MSG = "下拉刷新数据";
+
     private RecyclerView mRecyclerView;
     private LinearLayout msgBar;
     private ImageView loadingImage;
@@ -38,6 +43,7 @@ public class RefreshListView extends FrameLayout {
     private float msgBarLocationY = -1;
 
     private GestureDetector mGestureDetector;
+    private ObjectAnimator rotation;
 
     public RefreshListView(Context context) {
         this(context,null);
@@ -106,9 +112,16 @@ public class RefreshListView extends FrameLayout {
         relativeLayout.addView(msgBar, msgBarLayoutParams);
         loadingImage = new ImageView(context);
         loadingImage.setImageResource(R.drawable.ic_list_loading);
-        msgBar.addView(loadingImage);
+        LinearLayout.LayoutParams loadingImgParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        msgBar.addView(loadingImage,loadingImgParams);
+
+        rotation = ObjectAnimator.ofFloat(loadingImage,"rotation",0f,360f);
+        rotation.setRepeatCount(ObjectAnimator.INFINITE);
+        rotation.setInterpolator(new LinearInterpolator());
+        rotation.setDuration(500);
+
         statusText = new TextView(context);
-        statusText.setText("数据载入中...");
+        statusText.setText(DEFAULT_MSG);
         statusText.setTextColor(getResources().getColor(R.color.textHint));
         LinearLayout.LayoutParams statusTextParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         statusTextParams.setMargins(ApplicationUtil.dip2px(context,8),0,0,0);
@@ -159,6 +172,8 @@ public class RefreshListView extends FrameLayout {
             case MotionEvent.ACTION_DOWN:
                 break;
             case MotionEvent.ACTION_MOVE:
+                rotation.cancel();
+                statusText.setText(DEFAULT_MSG);
                 if (msgBarLocationY < 0) {
                     msgBarLocationY = msgBar.getY();
                 }
@@ -179,9 +194,14 @@ public class RefreshListView extends FrameLayout {
                     float lastY = mRecyclerView.getY();
                     double facter = Math.pow(headRefreshViewHeight - lastY,2)/Math.pow(headRefreshViewHeight,2);
                     lastPullY = event.getY();
-                    mRecyclerView.setY((float) (lastY + deltaY * facter));
-                    if (mRecyclerView.getY() > headRefreshViewHeight/3) {
-                        msgBar.setY((float) (msgBar.getY() + deltaY * facter));
+                    float locationY = (float) (lastY + deltaY * facter);
+                    if (locationY >= 0) {
+                        mRecyclerView.setY(locationY);
+                        if (mRecyclerView.getY() > headRefreshViewHeight/3) {
+                            msgBar.setY((float) (msgBar.getY() + deltaY * facter));
+                        } else {
+                            msgBar.setY(msgBarLocationY);
+                        }
                     }
                 }
                 break;
@@ -192,11 +212,15 @@ public class RefreshListView extends FrameLayout {
                         stopRefresh();
                     } else {
                         mRecyclerView.setY(headRefreshViewHeight/3);
+                        rotation.start();
+                        statusText.setText(LOADING_MSG);
                         lastScrollRefreshing = true;
                     }
                 } else {
-                    if (scrollToRefresh) {
+                    if (scrollToRefresh && event.getY() > headRefreshViewHeight/2) {
                         mRecyclerView.setY(headRefreshViewHeight/3);
+                        rotation.start();
+                        statusText.setText(LOADING_MSG);
                         lastScrollRefreshing = true;
                     } else {
                         stopRefresh();
@@ -215,6 +239,7 @@ public class RefreshListView extends FrameLayout {
     public void stopRefresh() {
         lastScrollRefreshing = false;
         scrollToRefresh = false;
+        loadingImage.clearAnimation();
         mRecyclerView.setY(0);
     }
 }
