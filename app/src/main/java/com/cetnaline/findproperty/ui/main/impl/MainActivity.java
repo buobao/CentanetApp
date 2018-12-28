@@ -17,6 +17,7 @@ import com.cetnaline.findproperty.ui.fragments.personalcenter.PersonalCenterFrag
 import com.cetnaline.findproperty.ui.login.impl.LoginActivity;
 import com.cetnaline.findproperty.ui.main.MainPresenter;
 import com.cetnaline.findproperty.ui.main.MainView;
+import com.cetnaline.findproperty.widgets.DisScrollViewPager;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
@@ -27,7 +28,7 @@ import butterknife.BindView;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
     @BindView(R.id.fragment_view_pager)
-    protected ViewPager fragmentsPager;
+    protected DisScrollViewPager fragmentsPager;
     @BindView(R.id.bottom_tab_bar)
     protected CommonTabLayout bottomTabBar;
     @BindView(R.id.map_btn)

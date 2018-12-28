@@ -1,9 +1,6 @@
 package com.cetnaline.findproperty.ui.fragments.active;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -98,41 +95,65 @@ public class ActiveFragment extends BaseFragment {
                     put("name", "Jack7");
                     put("age","27"); }});
                 add(new HashMap(){{
-                    put("name", "Jack7");
+                    put("name", "Last");
                     put("age","27"); }});
             }
         };
 //        mListView.setAdapter(new SimpleAdapter(getActivity(), data,android.R.layout.simple_list_item_1, new String[]{"name"}, new int[]{android.R.id.text1}));
-        mListView.setAdapter(new RecyclerView.Adapter() {
-            class VH extends RecyclerView.ViewHolder {
-                public VH(@NonNull View itemView) {
-                    super(itemView);
-                }
+
+        RefreshListView.RefreshListViewAdapter adapter = new RefreshListView.RefreshListViewAdapter(getActivity(),
+                android.R.layout.simple_list_item_1,
+                data,
+                new RefreshListView.RefreshListViewAdapter.OnItemBind<HashMap<String, String>>() {
+                    @Override
+                    public void onItemCreate(View view, int i) {
+                        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+                        layoutParams.height = ApplicationUtil.dip2px(getActivity(), 80);
+                        view.setLayoutParams(layoutParams);
+                    }
+
+                    @Override
+                    public void onBindData(RecyclerView.ViewHolder viewHolder, HashMap<String, String> data, int i) {
+                        viewHolder.itemView.setOnClickListener(v -> showMessage("click"));
+                        ((TextView)viewHolder.itemView.findViewById(android.R.id.text1)).setText(data.get("name"));
+                    }
+                });
+        mListView.setAdapter(adapter);
+        mListView.setListViewRefreshListener(new RefreshListView.ListViewRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //添加一条数据
+                adapter.addDatas(new ArrayList(){
+                    {
+                        add(new HashMap<String,String>(){
+                            {
+                                put("name", "Lebron");
+                            }
+                        });
+                    }
+                });
+                mListView.stopRefresh();
             }
 
-            @NonNull
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                View v = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_list_item_1, viewGroup, false);
-                ViewGroup.LayoutParams layoutParams = v.getLayoutParams();
-                layoutParams.height = ApplicationUtil.dip2px(getActivity(), 40);
-                v.setLayoutParams(layoutParams);
-                return new VH(v);
+            public void onRefreshCancel() {
+                showMessage("已取消刷新");
             }
 
             @Override
-            public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-                viewHolder.itemView.setOnClickListener(v -> showMessage("click"));
-                ((TextView)viewHolder.itemView.findViewById(android.R.id.text1)).setText(data.get(i).get("name"));
-            }
-
-            @Override
-            public int getItemCount() {
-                return data.size();
+            public boolean onLoadMore() {
+                adapter.addDatas(new ArrayList(){
+                    {
+                        add(new HashMap<String,String>(){
+                            {
+                                put("name", "More");
+                            }
+                        });
+                    }
+                });
+                return false;
             }
         });
-
-
     }
 
     @Override

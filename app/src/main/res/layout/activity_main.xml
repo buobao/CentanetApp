@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.impl.MainActivity">
 
-    <android.support.v4.view.ViewPager
+    <com.cetnaline.findproperty.widgets.DisScrollViewPager
         android:id="@+id/fragment_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
