@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -24,12 +25,15 @@ import com.cetnaline.findproperty.utils.ApplicationUtil;
 public class RefreshListView extends FrameLayout {
     private static final String LOADING_MSG = "数据载入中...";
     private static final String DEFAULT_MSG = "下拉刷新数据";
+    private static final String ALREADY_REFRESH_MSG = "释放刷新数据";
+    private static final String CANCEL_REFRESH_MSG = "释放以取消刷新";
 
+    private int headRefreshViewHeight;
     private RecyclerView mRecyclerView;
+    private LinearLayout smoothLayout;
     private LinearLayout msgBar;
     private ImageView loadingImage;
     private TextView statusText;
-    private int headRefreshViewHeight;
     private RecyclerView.Adapter mAdapter;
 
     private boolean isOnTop;
@@ -37,10 +41,10 @@ public class RefreshListView extends FrameLayout {
 
     private boolean scrollToRefresh;  //标识是否需要下拉刷新
     private boolean lastScrollRefreshing; //标识上一次下拉刷新仍在执行
+    private boolean pullAlreadyCanceled;
 
     private float lastPullY = -1;
     private float lastRefreshY = -1;
-    private float msgBarLocationY = -1;
 
     private GestureDetector mGestureDetector;
     private ObjectAnimator rotation;
@@ -102,14 +106,20 @@ public class RefreshListView extends FrameLayout {
 
         RelativeLayout relativeLayout = new RelativeLayout(context);
         relativeLayout.setBackgroundColor(Color.parseColor("#eeeeee"));
-        FrameLayout.LayoutParams headLoadingViewParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, headRefreshViewHeight);
+        FrameLayout.LayoutParams headLoadingViewParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         this.addView(relativeLayout,headLoadingViewParams);
+        smoothLayout = new LinearLayout(context);
+        smoothLayout.setOrientation(LinearLayout.VERTICAL);
+        FrameLayout.LayoutParams smoothLayoutParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        smoothLayoutParams.setMargins(0,-headRefreshViewHeight/3,0,0);
+        this.addView(smoothLayout,smoothLayoutParams);
+
         msgBar = new LinearLayout(context);
-        RelativeLayout.LayoutParams msgBarLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, headRefreshViewHeight/3);
-        msgBarLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         msgBar.setGravity(Gravity.CENTER);
         msgBar.setOrientation(LinearLayout.HORIZONTAL);
-        relativeLayout.addView(msgBar, msgBarLayoutParams);
+        LinearLayout.LayoutParams msgBarLayoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,headRefreshViewHeight/3);
+        smoothLayout.addView(msgBar, msgBarLayoutParams);
+
         loadingImage = new ImageView(context);
         loadingImage.setImageResource(R.drawable.ic_list_loading);
         LinearLayout.LayoutParams loadingImgParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -128,11 +138,11 @@ public class RefreshListView extends FrameLayout {
         msgBar.addView(statusText, statusTextParams);
 
         mRecyclerView = new RecyclerView(context);
-        FrameLayout.LayoutParams listParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams listParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
         mRecyclerView.setBackgroundColor(Color.WHITE);
 //        mRecyclerView.setNestedScrollingEnabled(true);
-        this.addView(mRecyclerView, listParams);
+        smoothLayout.addView(mRecyclerView, listParams);
 
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -174,51 +184,54 @@ public class RefreshListView extends FrameLayout {
             case MotionEvent.ACTION_MOVE:
                 rotation.cancel();
                 statusText.setText(DEFAULT_MSG);
-                if (msgBarLocationY < 0) {
-                    msgBarLocationY = msgBar.getY();
-                }
-                if (mRecyclerView.getY() >= headRefreshViewHeight) {
-                    break;
-                } else if (mRecyclerView.getY() >= headRefreshViewHeight/2) {
-                    scrollToRefresh = true;
-                }
-                if (lastScrollRefreshing && lastRefreshY < 0) {
-                    lastRefreshY = event.getY();
-                }
-
                 if (lastPullY < 0) {
                     lastPullY = event.getY();
                 } else {
                     float deltaY = event.getY() - lastPullY;
-                    loadingImage.setRotation(loadingImage.getRotation() + deltaY);
-                    float lastY = mRecyclerView.getY();
-                    double facter = Math.pow(headRefreshViewHeight - lastY,2)/Math.pow(headRefreshViewHeight,2);
-                    lastPullY = event.getY();
-                    float locationY = (float) (lastY + deltaY * facter);
-                    if (locationY >= 0) {
-                        mRecyclerView.setY(locationY);
-                        if (mRecyclerView.getY() > headRefreshViewHeight/3) {
-                            msgBar.setY((float) (msgBar.getY() + deltaY * facter));
-                        } else {
-                            msgBar.setY(msgBarLocationY);
+                    if (smoothLayout.getY() >= headRefreshViewHeight && deltaY>=0) {
+                        break;
+                    } else if (smoothLayout.getY() >= headRefreshViewHeight/3) {
+                        statusText.setText(ALREADY_REFRESH_MSG);
+                        scrollToRefresh = true;
+                    }
+                    if (lastScrollRefreshing) {
+                        if (lastRefreshY < 0) {
+                            lastRefreshY = event.getY();
+                        } else if (event.getY() - lastRefreshY < headRefreshViewHeight/2){
+                            statusText.setText(CANCEL_REFRESH_MSG);
                         }
+                    }
+
+                    loadingImage.setRotation(loadingImage.getRotation() + deltaY);
+                    float listY = smoothLayout.getY();
+                    double facter = Math.pow(headRefreshViewHeight - listY,2)/Math.pow(headRefreshViewHeight,2);
+                    lastPullY = event.getY();
+                    float locationY = (float) (listY + deltaY * facter);
+                    if (locationY > -headRefreshViewHeight/3) {
+                        smoothLayout.setY(locationY);
+                        pullAlreadyCanceled = false;
+                    } else {
+                        pullAlreadyCanceled = true;
                     }
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                if (pullAlreadyCanceled) {
+                    break;
+                }
                 if (lastScrollRefreshing) {
                     if (event.getY() - lastRefreshY < headRefreshViewHeight/2) {
                         //轻拉取消
                         stopRefresh();
                     } else {
-                        mRecyclerView.setY(headRefreshViewHeight/3);
+                        smoothLayout.setY(0);
                         rotation.start();
                         statusText.setText(LOADING_MSG);
                         lastScrollRefreshing = true;
                     }
                 } else {
                     if (scrollToRefresh && event.getY() > headRefreshViewHeight/2) {
-                        mRecyclerView.setY(headRefreshViewHeight/3);
+                        smoothLayout.setY(0);
                         rotation.start();
                         statusText.setText(LOADING_MSG);
                         lastScrollRefreshing = true;
@@ -226,10 +239,10 @@ public class RefreshListView extends FrameLayout {
                         stopRefresh();
                     }
                 }
+                msgBar.setY(0);
                 lastPullY = -1;
                 lastRefreshY = -1;
                 scrollToRefresh = false;
-                msgBar.setY(msgBarLocationY);
                 break;
         }
 
@@ -240,7 +253,7 @@ public class RefreshListView extends FrameLayout {
         lastScrollRefreshing = false;
         scrollToRefresh = false;
         loadingImage.clearAnimation();
-        mRecyclerView.setY(0);
+        smoothLayout.setY(-headRefreshViewHeight/3);
     }
 }
 
