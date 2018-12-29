@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -153,8 +154,10 @@ public class RefreshListView extends FrameLayout {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (isOnTop) {
             switch (ev.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    actionUpClearStatus(ev);
                 case MotionEvent.ACTION_MOVE:
-                    if (!isHorizontalDragStatus) { //是否已锁定横向滑动
+                    if (!isHorizontalDragStatus) {
                         if (lastPullY < 0) {
                             lastPullY = ev.getY();
                         } else {
@@ -162,15 +165,17 @@ public class RefreshListView extends FrameLayout {
                                 isRefreshStatus = true;
                             }
                         }
+                    } else {
+                        return super.onInterceptTouchEvent(ev);
                     }
 
-                    if (isRefreshStatus) {  //是否已所动竖向滑动
+                    if (isRefreshStatus) {  //是否已锁定竖向滑动
                         return isRefreshStatus;
                     } else {
                         if (lastPullX < 0) {
                             lastPullX = ev.getX();
                         } else {
-                            if (lastPullX - ev.getX() > ApplicationUtil.dip2px(getContext(), 5)) {
+                            if (ev.getX() - lastPullX < -ApplicationUtil.dip2px(getContext(), 5)) {
                                 isHorizontalDragStatus = true;
                             }
                         }
@@ -188,48 +193,49 @@ public class RefreshListView extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                break;
-            case MotionEvent.ACTION_MOVE:
-                rotation.cancel();
-                statusText.setText(DEFAULT_MSG);
-                if (lastPullY < 0) {
-                    lastPullY = event.getY();
-                } else {
-                    float deltaY = event.getY() - lastPullY;
-                    if (smoothLayout.getY() >= headRefreshViewHeight && deltaY>=0) {
-                        break;
-                    } else if (smoothLayout.getY() >= headRefreshViewHeight/3) {
-                        statusText.setText(ALREADY_REFRESH_MSG);
-                        scrollToRefresh = true;
-                    }
-                    if (lastScrollRefreshing) {
-                        if (lastRefreshY < 0) {
-                            lastRefreshY = event.getY();
-                        } else if (event.getY() - lastRefreshY < headRefreshViewHeight/2){
-                            statusText.setText(CANCEL_REFRESH_MSG);
+        if (!isHorizontalDragStatus) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    actionUpClearStatus(event);
+                case MotionEvent.ACTION_MOVE:
+                    rotation.cancel();
+                    statusText.setText(DEFAULT_MSG);
+                    if (lastPullY < 0) {
+                        lastPullY = event.getY();
+                    } else {
+                        float deltaY = event.getY() - lastPullY;
+                        if (smoothLayout.getY() >= headRefreshViewHeight && deltaY >= 0) {
+                            break;
+                        } else if (smoothLayout.getY() >= headRefreshViewHeight / 3) {
+                            statusText.setText(ALREADY_REFRESH_MSG);
+                            scrollToRefresh = true;
+                        }
+                        if (lastScrollRefreshing) {
+                            if (lastRefreshY < 0) {
+                                lastRefreshY = event.getY();
+                            } else if (event.getY() - lastRefreshY < headRefreshViewHeight / 2) {
+                                statusText.setText(CANCEL_REFRESH_MSG);
+                            }
+                        }
+
+                        loadingImage.setRotation(loadingImage.getRotation() + deltaY);
+                        float listY = smoothLayout.getY();
+                        double facter = Math.pow(headRefreshViewHeight - listY, 2) / Math.pow(headRefreshViewHeight, 2);
+                        lastPullY = event.getY();
+                        float locationY = (float) (listY + deltaY * facter);
+                        if (locationY > -headRefreshViewHeight / 3) {
+                            smoothLayout.setY(locationY > headRefreshViewHeight ? headRefreshViewHeight : locationY);
+                            pullAlreadyCanceled = false;
+                        } else {
+                            pullAlreadyCanceled = true;
                         }
                     }
-
-                    loadingImage.setRotation(loadingImage.getRotation() + deltaY);
-                    float listY = smoothLayout.getY();
-                    double facter = Math.pow(headRefreshViewHeight - listY,2)/Math.pow(headRefreshViewHeight,2);
-                    lastPullY = event.getY();
-                    float locationY = (float) (listY + deltaY * facter);
-                    if (locationY > -headRefreshViewHeight/3) {
-                        smoothLayout.setY(locationY > headRefreshViewHeight ? headRefreshViewHeight : locationY);
-                        pullAlreadyCanceled = false;
-                    } else {
-                        pullAlreadyCanceled = true;
-                    }
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                actionUpClearStatus(event);
-                break;
+                    break;
+                case MotionEvent.ACTION_UP:
+                    actionUpClearStatus(event);
+                    break;
+            }
         }
-
         return super.onTouchEvent(event);
     }
 
@@ -269,8 +275,8 @@ public class RefreshListView extends FrameLayout {
             }
         }
         lastPullY = -1;
-        lastPullX = -1;
         lastRefreshY = -1;
+        lastPullX = -1;
         scrollToRefresh = false;
         isRefreshStatus = false;
         isHorizontalDragStatus = false;
@@ -337,25 +343,19 @@ public class RefreshListView extends FrameLayout {
             if (mOnItemBind != null) {
                 mOnItemBind.onItemCreate(v,i);
             }
-            LinearLayout parentLayout = new LinearLayout(mContext);
-            parentLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+            ScrollLayout parentLayout = new ScrollLayout(mContext, ApplicationUtil.dip2px(mContext,120));
             LinearLayout.LayoutParams parentParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, v.getLayoutParams().height);
             parentLayout.setLayoutParams(parentParams);
-            parentLayout.addView(v);
+            parentLayout.addChildView(v, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.MATCH_PARENT));
             TextView deleteBtn = new TextView(mContext);
             deleteBtn.setText("删除");
             deleteBtn.setTextColor(Color.WHITE);
             deleteBtn.setGravity(Gravity.CENTER);
             LinearLayout.LayoutParams btnLayoutParams = new LinearLayout.LayoutParams(ApplicationUtil.dip2px(mContext,120), v.getLayoutParams().height);
             deleteBtn.setBackgroundColor(mContext.getResources().getColor(R.color.colorAccent));
-            parentLayout.addView(deleteBtn, btnLayoutParams);
-            parentLayout.setOnTouchListener((v1, event) -> {
-                RefreshListView refreshListView = (RefreshListView) viewGroup.getParent().getParent();
-                if (refreshListView.isHorizontalDragStatus) {
-                    return true;
-                }
-                return false;
-            });
+            parentLayout.addChildView(deleteBtn, btnLayoutParams);
+            parentLayout.setClickable(true);
             return new VH(parentLayout);
         }
 
@@ -375,6 +375,69 @@ public class RefreshListView extends FrameLayout {
             void onItemCreate(View view, int i);
             void onBindData(RecyclerView.ViewHolder viewHolder, T data, int i);
         }
+    }
+
+    public static class ScrollLayout extends LinearLayout {
+        private float lastX = -1;
+        private boolean isScroll;
+        private LinearLayout parent;
+
+        private int scrollWidth = 200;
+        public ScrollLayout(Context context, int scrollWidth) {
+            super(context);
+            this.scrollWidth = scrollWidth;
+            init(context, null);
+        }
+
+        public ScrollLayout(Context context, @Nullable AttributeSet attrs) {
+            super(context, attrs);
+            init(context,attrs);
+        }
+
+        private void init(Context context, AttributeSet attrs) {
+            setOrientation(HORIZONTAL);
+            parent = new LinearLayout(context);
+            parent.setOrientation(HORIZONTAL);
+            LinearLayout.LayoutParams parenParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            addView(parent, parenParams);
+        }
+
+        public void addChildView(View view, LinearLayout.LayoutParams params) {
+            parent.addView(view,params);
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent ev) {
+            switch (ev.getAction()) {
+                case MotionEvent.ACTION_MOVE:
+                    if (lastX < 0) {
+                        lastX = ev.getX();
+                    } else {
+                        if (!isScroll && ev.getX() - lastX < -ApplicationUtil.dip2px(getContext(), 5)) {
+                            isScroll = true;
+                        } else {
+                            float currentX = parent.getX();
+                            if (currentX > -scrollWidth) {
+                                float deltaX = ev.getX() - lastX;
+                                if (deltaX < -scrollWidth) {
+                                    parent.setX(-scrollWidth);
+                                } else if (deltaX <= 0) {
+                                    parent.setX(currentX + deltaX);
+                                } else {
+                                    parent.setX(0);
+                                }
+                            }
+                            lastX = ev.getX();
+                        }
+                    }
+                case MotionEvent.ACTION_UP:
+                    lastX = -1;
+                    isScroll = false;
+                    break;
+            }
+            return super.dispatchTouchEvent(ev);
+        }
+
     }
 }
 

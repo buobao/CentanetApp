@@ -114,7 +114,7 @@ public class ActiveFragment extends BaseFragment {
 
                     @Override
                     public void onBindData(RecyclerView.ViewHolder viewHolder, HashMap<String, String> data, int i) {
-                        viewHolder.itemView.setOnClickListener(v -> showMessage("click"));
+//                        viewHolder.itemView.setOnClickListener(v -> showMessage("click"));
                         ((TextView)viewHolder.itemView.findViewById(android.R.id.text1)).setText(data.get("name"));
                     }
                 });
