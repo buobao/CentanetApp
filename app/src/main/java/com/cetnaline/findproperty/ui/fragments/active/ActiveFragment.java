@@ -1,24 +1,25 @@
 package com.cetnaline.findproperty.ui.fragments.active;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseFragment;
 import com.cetnaline.findproperty.base.IPresenter;
-import com.cetnaline.findproperty.utils.ApplicationUtil;
-import com.cetnaline.findproperty.widgets.RefreshListView;
+import com.cetnaline.findproperty.widgets.CustomListView;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 
 public class ActiveFragment extends BaseFragment {
-    @BindView(R.id.listview)
-    protected RefreshListView mListView;
+    @BindView(R.id.list)
+    CustomListView listView;
 
     @Override
     protected int getLayoutId() {
@@ -99,61 +100,8 @@ public class ActiveFragment extends BaseFragment {
                     put("age","27"); }});
             }
         };
-//        mListView.setAdapter(new SimpleAdapter(getActivity(), data,android.R.layout.simple_list_item_1, new String[]{"name"}, new int[]{android.R.id.text1}));
 
-        RefreshListView.RefreshListViewAdapter adapter = new RefreshListView.RefreshListViewAdapter(getActivity(),
-                android.R.layout.simple_list_item_1,
-                data,
-                new RefreshListView.RefreshListViewAdapter.OnItemBind<HashMap<String, String>>() {
-                    @Override
-                    public void onItemCreate(View view, int i) {
-                        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                        layoutParams.height = ApplicationUtil.dip2px(getActivity(), 80);
-                        view.setLayoutParams(layoutParams);
-                    }
-
-                    @Override
-                    public void onBindData(RecyclerView.ViewHolder viewHolder, HashMap<String, String> data, int i) {
-//                        viewHolder.itemView.setOnClickListener(v -> showMessage("click"));
-                        ((TextView)viewHolder.itemView.findViewById(android.R.id.text1)).setText(data.get("name"));
-                    }
-                });
-        mListView.setAdapter(adapter);
-        mListView.setListViewRefreshListener(new RefreshListView.ListViewRefreshListener() {
-            @Override
-            public void onRefresh() {
-                //添加一条数据
-                adapter.addDatas(new ArrayList(){
-                    {
-                        add(new HashMap<String,String>(){
-                            {
-                                put("name", "Lebron");
-                            }
-                        });
-                    }
-                });
-                mListView.stopRefresh();
-            }
-
-            @Override
-            public void onRefreshCancel() {
-                showMessage("已取消刷新");
-            }
-
-            @Override
-            public boolean onLoadMore() {
-                adapter.addDatas(new ArrayList(){
-                    {
-                        add(new HashMap<String,String>(){
-                            {
-                                put("name", "More");
-                            }
-                        });
-                    }
-                });
-                return false;
-            }
-        });
+        listView.setAdapter(new MyItemAdapter(android.R.layout.simple_list_item_2, data));
     }
 
     @Override
@@ -161,5 +109,17 @@ public class ActiveFragment extends BaseFragment {
 
     }
 
+    private static class MyItemAdapter extends BaseQuickAdapter {
+        public MyItemAdapter(int layoutResId, @Nullable List data) {
+            super(layoutResId, data);
+        }
+
+        @Override
+        protected void convert(BaseViewHolder helper, Object item) {
+            HashMap<String, String> map = (HashMap<String, String>) item;
+            helper.setText(android.R.id.text1,map.get("name"));
+            helper.setText(android.R.id.text2,map.get("age"));
+        }
+    }
 
 }

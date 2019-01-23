@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/smartRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srlAccentColor="@color/colorAccent"
+        app:srlPrimaryColor="@color/white"
+        app:srlTextSizeTitle="16sp"
+        app:srlTextSizeTime="10dp"
+        app:srlTextTimeMarginTop="2dp"
+        app:srlEnableLastTime="true"
+        app:srlFinishDuration="500"
+        app:srlDrawableSize="20dp"
+        app:srlDrawableArrowSize="20dp"
+        app:srlDrawableProgressSize="20dp"
+        app:srlDrawableMarginRight="20dp"
+        app:srlClassicsSpinnerStyle="Translate"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srlAccentColor="@color/colorAccent"
+        app:srlPrimaryColor="@color/white"
+        app:srlTextSizeTitle="16sp"
+        app:srlFinishDuration="500"
+        app:srlDrawableSize="20dp"
+        app:srlDrawableArrowSize="20dp"
+        app:srlDrawableProgressSize="20dp"
+        app:srlDrawableMarginRight="20dp"
+        app:srlClassicsSpinnerStyle="Translate"/>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

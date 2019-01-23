@@ -17,4 +17,6 @@
     <color name="textHint">#c4c4c6</color>
     <color name="textHintDark">#909090</color>
 
+    <color name="textMsg">#bcbcbc</color>
+
 </resources>
