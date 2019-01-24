@@ -8,10 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NormalEvent implements Parcelable {
-    public static final int NETWORK_CONNECTED = 1;    //网络连接事件
+    public static final int NETWORK_CONNECTED = 1;     //网络连接事件
     public static final int NETWORK_DISCONNECTED = 2;  //网络断开事件
     public static final int LOGIN_SUCCESS = 3;         //登录成功事件
     public static final int WX_LOGIN = 4;              //微信登录
+    public static final int RONG_CONNECT_SUCCESS = 5;  //连接融云成功事件
 
     private int code;
     private Map<String, String> params;

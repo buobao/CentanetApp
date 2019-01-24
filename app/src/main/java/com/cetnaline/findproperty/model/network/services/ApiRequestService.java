@@ -10,6 +10,7 @@ import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean
 import com.cetnaline.findproperty.model.network.bean.responsebean.RcTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SinaUserInfoBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.StaffListBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WXTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WxUserBean;
@@ -148,7 +149,13 @@ public interface ApiRequestService {
                                      @Header("Timestamp")String timeStamp,
                                      @Header("Signature")String signature);
 
-
+    /**
+     * 获取经济人详情
+     * @param staffNo
+     * @return
+     */
+    @GET("StaffRequest")
+    Observable<BaseResponseBean<StaffListBean>> getStaffDetail(@Query("StaffNo") String staffNo);
 }
 
 

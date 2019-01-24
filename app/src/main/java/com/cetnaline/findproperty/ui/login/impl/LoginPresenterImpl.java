@@ -10,7 +10,6 @@ import com.cetnaline.findproperty.model.network.bean.BaseResponseBean;
 import com.cetnaline.findproperty.model.network.services.imp.ApiRequestImp;
 import com.cetnaline.findproperty.ui.login.LoginPresenter;
 import com.cetnaline.findproperty.ui.login.LoginView;
-import com.cetnaline.findproperty.utils.RongUtil;
 import com.cetnaline.findproperty.utils.RxUtil;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -90,7 +89,8 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
                                     userInfoBeanBaseResponseBean.getResult().setUserPhotoUrl(headImg);
                                 }
 
-                                addDisposable(ApiRequestImp.getToken(userInfoBeanBaseResponseBean.getResult().getUserId(),
+                                //获取融云token
+                                addDisposable(ApiRequestImp.getToken("u_" + userInfoBeanBaseResponseBean.getResult().getUserId().toLowerCase(),
                                         userInfoBeanBaseResponseBean.getResult().getNickName(),
                                         userInfoBeanBaseResponseBean.getResult().getUserPhotoUrl())
                                         .subscribe(rcTokenBean -> {
@@ -98,7 +98,7 @@ public class LoginPresenterImpl extends BasePresenter<LoginView> implements Logi
                                             iView.showMessage("登录成功");
                                             CacheHolder.getInstance().setRcToken(rcTokenBean.getToken());
                                             CacheHolder.getInstance().setCurrentUserInfo(userInfoBeanBaseResponseBean.getResult()); //保存当前用户登录数据
-                                            RongUtil.connectServer();
+                                            //这里用于通知登录服务器成功刷新相关用户数据，融云连接成功事件请查看RongUtil
                                             RxBus.getInstance().post(new NormalEvent(NormalEvent.LOGIN_SUCCESS)); //发送登录成功事件
                                             iView.finishView();
                                         }, throwable -> {

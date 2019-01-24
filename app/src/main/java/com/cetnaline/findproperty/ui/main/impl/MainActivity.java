@@ -1,15 +1,21 @@
 package com.cetnaline.findproperty.ui.main.impl;
 import android.Manifest;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.ImageView;
 
+import com.cetnaline.findproperty.FindPropertyApplication;
 import com.cetnaline.findproperty.R;
 import com.cetnaline.findproperty.base.BaseActivity;
+import com.cetnaline.findproperty.bus.RxBus;
+import com.cetnaline.findproperty.bus.events.NormalEvent;
 import com.cetnaline.findproperty.model.cache.CacheHolder;
+import com.cetnaline.findproperty.ui.conversation.ConversationActivity;
 import com.cetnaline.findproperty.ui.fragments.active.ActiveFragment;
 import com.cetnaline.findproperty.ui.fragments.chatconversation.ChatConversationFragment;
 import com.cetnaline.findproperty.ui.fragments.home.HomeFragment;
@@ -17,7 +23,9 @@ import com.cetnaline.findproperty.ui.fragments.personalcenter.PersonalCenterFrag
 import com.cetnaline.findproperty.ui.login.impl.LoginActivity;
 import com.cetnaline.findproperty.ui.main.MainPresenter;
 import com.cetnaline.findproperty.ui.main.MainView;
+import com.cetnaline.findproperty.utils.ApplicationUtil;
 import com.cetnaline.findproperty.widgets.DisScrollViewPager;
+import com.cetnaline.findproperty.widgets.NotificationHelper;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 
@@ -25,6 +33,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import io.rong.eventbus.EventBus;
+import io.rong.imkit.RongIM;
+import io.rong.imkit.model.Event;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.UserInfo;
+import io.rong.message.TextMessage;
 
 public class MainActivity extends BaseActivity<MainPresenter> implements MainView {
     @BindView(R.id.fragment_view_pager)
@@ -145,7 +159,20 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainVie
             });
         }
 
+        if (CacheHolder.getInstance().isLogin()) {
+            mPresenter.connectRongCloudServer();
+        }
+
     }
+
+    @Override
+    public void eventHandler(NormalEvent normalEvent) {
+        //登录成功连接融云
+        if (normalEvent.getCode() == NormalEvent.LOGIN_SUCCESS) {
+            mPresenter.connectRongCloudServer();
+        }
+    }
+
 
 }
 

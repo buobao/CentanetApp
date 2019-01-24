@@ -12,6 +12,7 @@ import com.cetnaline.findproperty.model.network.bean.responsebean.QQUserInfoBean
 import com.cetnaline.findproperty.model.network.bean.responsebean.RcTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SearchMenuBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.SinaUserInfoBean;
+import com.cetnaline.findproperty.model.network.bean.responsebean.StaffListBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.UserInfoBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WXTokenBean;
 import com.cetnaline.findproperty.model.network.bean.responsebean.WxUserBean;
@@ -213,6 +214,13 @@ public class ApiRequestImp {
                 .compose(RxUtil.applyIoSchedulers());
     }
 
+
+    public static Observable<BaseResponseBean<StaffListBean>> getStaffInfo(String staffId) {
+        return NetWorkManager.getInstance().getNoCacheCentalineRequest()
+                .getStaffDetail(staffId)
+                .compose(RxUtil.applyIoSchedulers())
+                .onErrorResumeNext(RxUtil.requestErrorHandler());
+    }
 }
 
 

@@ -2,10 +2,12 @@ package com.cetnaline.findproperty.utils;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.graphics.Rect;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
@@ -15,6 +17,7 @@ import com.cetnaline.findproperty.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class ApplicationUtil {
 
@@ -147,6 +150,11 @@ public class ApplicationUtil {
         return "";
     }
 
+    /**
+     * sha1加密
+     * @param str
+     * @return
+     */
     public static String sha1Encode(String str){
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
@@ -166,5 +174,24 @@ public class ApplicationUtil {
         }
 
         return null;
+    }
+
+    /**
+     * 判断activity是否在前台
+     * @param context
+     * @param className
+     * @return
+     */
+    public static boolean isForeground(Context context, String className) {
+        if (context == null || TextUtils.isEmpty(className))
+            return false;
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
+        if (list != null && list.size() > 0) {
+            ComponentName cpn = list.get(0).topActivity;
+            if (className.equals(cpn.getClassName()))
+                return true;
+        }
+        return false;
     }
 }

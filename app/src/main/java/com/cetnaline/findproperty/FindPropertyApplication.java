@@ -6,7 +6,6 @@ import android.support.multidex.MultiDex;
 import com.cetnaline.findproperty.model.cache.CacheHolder;
 import com.cetnaline.findproperty.model.database.DatabaseHelper;
 import com.cetnaline.findproperty.utils.ApplicationUtil;
-import com.cetnaline.findproperty.utils.RongUtil;
 import com.cetnaline.findproperty.utils.ThirdShareUtil;
 
 import io.rong.imkit.RongIM;
@@ -25,7 +24,6 @@ public class FindPropertyApplication extends Application {
             DatabaseHelper.init(this);
             ThirdShareUtil.init();
             RongIM.init(this, BuildConfig.RONG_CLOUD_KEY);
-            RongUtil.connectServer();
         }
     }
 
