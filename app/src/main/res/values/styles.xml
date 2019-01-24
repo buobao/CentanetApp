@@ -32,4 +32,5 @@
         <item name="android:windowEnterAnimation">@anim/fullscreendialog_enter</item>
         <item name="android:windowExitAnimation">@anim/fullscreendialog_exit</item>
     </style>
+
 </resources>

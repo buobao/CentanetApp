@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fbfbfb">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/home_top_bg" />
+
+        <RelativeLayout
+            android:id="@+id/top_ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <RelativeLayout
+                android:id="@+id/home_top_tool_ly"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/id_btn"
+                    android:layout_width="45dp"
+                    android:layout_height="35dp"
+                    android:padding="10dp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_home_identity" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/centaline_logo_2010" />
+
+                <TextView
+                    android:id="@+id/publish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:drawablePadding="5dp"
+                    android:text="发布房源"
+                    android:drawableLeft="@drawable/ic_publish"
+                    android:textColor="@color/white"
+                    android:layout_alignParentRight="true" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/home_search_ly_p"
+            android:layout_below="@+id/top_ly"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/home_search_ly"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:paddingLeft="10dp"
+                android:background="@drawable/home_search_background"
+                android:drawableLeft="@drawable/ic_search_gray"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical"
+                android:text="小区/学校/地铁/板块"
+                android:textColor="#a2a2a2"
+                android:textSize="@dimen/text_small" />
+            <ImageView
+                android:id="@+id/scan_btn"
+                android:layout_width="25dp"
+                android:layout_height="15dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8dp"
+                app:srcCompat="@drawable/ic_home_scan"
+                tools:ignore="VectorDrawableCompat" />
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/chart_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/home_search_ly_p">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_margin="15dp"
+            app:cardElevation="6dp"
+            app:cardMaxElevation="6dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="false">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:background="@color/white">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp">
+
+                        <TextView
+                            android:id="@+id/chart_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="二手房成均价"
+                            android:textColor="#999999"
+                            android:textSize="@dimen/text_small" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp">
+
+                        <TextView
+                            android:id="@+id/home_num1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/textNormal"
+                            android:textSize="@dimen/text_large" />
+
+                        <TextView
+                            android:id="@+id/unit_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="元／平"
+                            android:textSize="@dimen/text_small" />
+
+                        <ImageView
+                            android:id="@+id/home_process"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginLeft="15dp"
+                            android:src="@drawable/ic_home_process_down" />
+
+                        <TextView
+                            android:id="@+id/home_num2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="0%"
+                            android:textColor="#333333"
+                            android:textSize="@dimen/text_small" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/location_ly"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/home_scope_bg"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="2dp">
+
+                        <TextView
+                            android:id="@+id/home_scope_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:maxLength="4"
+                            android:singleLine="true"
+                            android:text=""
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/text_small" />
+
+                        <ImageView
+                            android:layout_width="10dp"
+                            android:layout_height="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            app:srcCompat="@drawable/ic_home_scope_down"
+                            tools:ignore="VectorDrawableCompat" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/chart_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp">
+
+                </android.support.v4.view.ViewPager>
+
+                <RelativeLayout
+                    android:id="@+id/chart_pager_null"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/chart_pager_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/chart_pager_change"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="15dp"
+                        android:textColor="@color/textGray"/>
+
+                    <TextView
+                        android:id="@+id/chart_pager_change"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:textSize="15sp"
+                        android:textColor="@color/colorAccent"
+                        android:background="@drawable/tv_home_change_area"
+                        android:text="切换地区"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

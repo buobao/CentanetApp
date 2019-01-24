@@ -115,12 +115,7 @@ public class MainPresenterImpl extends BasePresenter<MainView> implements MainPr
         }
         //这里用以向融云组件发送消息通知
         EventBus.getDefault().post(new Event.OnReceiveMessageEvent(message, 0));
-        RongIM.setUserInfoProvider(new RongIM.UserInfoProvider() {
-            @Override
-            public UserInfo getUserInfo(String s) {
-                return userInfo;
-            }
-        }, true);
+        RongIM.setUserInfoProvider(s -> userInfo, true);
     }
 
 }

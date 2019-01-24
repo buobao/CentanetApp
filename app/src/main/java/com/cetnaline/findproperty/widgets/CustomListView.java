@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.cetnaline.findproperty.R;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -21,6 +22,7 @@ public class CustomListView extends FrameLayout {
     RecyclerView mRecyclerView;
 
     private TextView emptyText;
+    private BaseQuickAdapter mAdapter;
 
     public CustomListView(@NonNull Context context) {
         super(context);
@@ -47,8 +49,9 @@ public class CustomListView extends FrameLayout {
         emptyText.setText(text);
     }
 
-    public void setAdapter(RecyclerView.Adapter adapter) {
-        mRecyclerView.setAdapter(adapter);
+    public void setAdapter(BaseQuickAdapter adapter) {
+        mAdapter = adapter;
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     public void showEmptyView(boolean show) {
@@ -85,6 +88,12 @@ public class CustomListView extends FrameLayout {
 
     public void setOnRefreshListener(OnRefreshListener listener){
         mRefresh.setOnRefreshListener(listener);
+    }
+
+    public void addHeadView(View head) {
+        if (mAdapter != null) {
+            mAdapter.addHeaderView(head);
+        }
     }
 
 }
